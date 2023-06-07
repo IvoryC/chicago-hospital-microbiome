@@ -1,0 +1,142 @@
+---
+title: "Chicago Hospital WGS metadata"
+output: html_document
+date: "2023-06-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Metadata from SRA project PRJEB13117
+
+The full metadata table is very tedious to look through. I want to pick out the columns that might be informative in reanalyzing the data to save as a smaller table. Along the way, I want to get an idea of what I have to work with.
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+library(tidyr)
+library(ggplot2)
+```
+
+```{r}
+data = read.csv("PRJEB13117_SraRunTable.csv")
+row.names(data) = data$Run
+```
+
+Save any output to this folder:
+```{r}
+outDir = "PRJEB13117_output"
+suppressWarnings(dir.create(outDir))
+```
+
+## General sorting of columns
+
+Weed through the un-interesting things
+```{r}
+
+# columnes with the same value for all rows
+allRowCols = c()
+allRowVals = c()
+
+# columns with unique values in each row
+pot.identifier =c()
+
+# known to be boring adminstriative info
+boring = c("create_date", "DATASTORE.filetype", "DATASTORE.provider", "DATASTORE.region")
+
+for (col in names(data)){
+  vals = unique(data[,col])
+  if(col %in% boring) a=1
+  else if (length(vals)==1){
+    allRowCols = union(allRowCols, col)
+    allRowVals = c(allRowVals, paste0("all rows: ", col, " = ", paste(vals, collapse = ", ")))
+  } 
+  else if (length(vals) == nrow(data) ){
+    pot.identifier = union(pot.identifier, col)
+    message("potentially an id column: ", col, " (n=", length(vals), ")")
+    # print(vals[1:6])
+  }
+  else if (length(vals) > 6 ) {
+    message(col, " (n=", length(vals), ")")
+    print(vals[1:6])
+  }else {
+    message(col, " (n=", length(vals), ")")
+    print(vals)
+  }
+}
+```
+
+It looks like there are several id columns; though not "Bytes" or "Bases".
+
+It looks like our only informative column with different values between samples is Collection_Date.
+
+Several columns have valures that are the same for all rows, and some of them are invormative about the dataset as a whole, but I don't need to keep a whole column of repeated data.
+
+
+## Whats interesting
+
+```{r}
+data$date = as.Date(data$Collection_Date)
+data$thDay = data$date - min(data$date)
+datesdf = data.frame(table(data$date))
+names(datesdf) = c("Collection_Date", "numberSamples")
+write.table(datesdf, file=file.path(outDir, "samplesPerDate.txt"),
+            quote=F, row.names = F, sep="\t")
+datesdf
+```
+
+Previewing the data that's the same for alls rows, bits that I think are noteworthy are these:
+```{r}
+usefulBits = c(
+  "Center.Name = NASEER",
+  "assay.Type = WGS",
+  "AvgSpotLen = 202",
+  "Organism = metagenome"         ,                    
+  "Instrument = Illumina HiSeq 1500",
+  "SRA.Study = ERP014653",
+  "ventilation_type = mechanical ventilation",
+  "filter_type = electrostatic air treatment",
+  "LibraryLayout = PAIRED",                                     
+  "LibrarySelection = RANDOM PCR",                            
+  "LibrarySource = METAGENOMIC"
+)
+```
+
+## Write reduced version of the whole table.
+
+Of the several id columns, we can just keep Run, that id can be used to link back if needed; none of the others look immediately usefull.
+
+```{r}
+file = file.path(outDir, "PRJEB13117_SraRunTable_reduced.txt")
+keep_cols = c("Run", "Bytes", "Collection_Date", "thDay")
+writeLines(file, text=paste("#", usefulBits))
+write.table(data[,keep_cols], file=file,
+            quote=F, row.names = F, append = T, sep="\t")
+```
+
+
+## General review of columns
+
+Is anything else interesting?
+```{r}
+for (col in names(data)){
+  vals = unique(data[,col])
+  if (length(vals)==1){
+    message("all rows: ", col, " = ", vals)
+  } 
+  else if (length(vals) > 6 ) {
+    message(col, " (n=", length(vals), ")")
+    print(vals[1:6])
+  }else {
+    message(col, " (n=", length(vals), ")")
+    print(vals)
+  }
+}
+```
+
+
+
+```{r}
+sessionInfo()
+```
+

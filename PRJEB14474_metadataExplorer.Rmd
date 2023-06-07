@@ -1,0 +1,359 @@
+---
+title: "Chicago Hospital Metadata"
+output: html_document
+date: "2023-06-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Metadata from SRA project PRJEB14474
+
+The full metadata table is very tedious to look through. I want to pick out the columns that might be informative in reanalyzing the data to save as a smaller table. Along the way, I want to get an idea of what I have to work with.
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+library(tidyr)
+library(ggplot2)
+```
+
+```{r}
+data = read.delim2("PRJEB14474_SraRunTable.txt")
+row.names(data) = data$ID
+```
+
+Save any output to this folder:
+```{r}
+outDir = "PRJEB14474_output"
+suppressWarnings(dir.create(outDir))
+```
+
+
+## Some modified data
+
+### Date
+
+Convert the Date values into sortable numeric values.
+```{r}
+ds = strsplit(data$Date, split="/")
+ds2 = do.call(rbind, ds) %>% data.frame()
+row.names(ds2) = data$ID
+names(ds2) = c("month", "day", "year")
+ds2$monthC = as.character(ds2$month)
+need0 = as.numeric(ds2$month) < 10
+ds2$monthC[need0] = paste0("0", ds2$month[need0])
+ds2$datestring = paste0("20", ds2$year, "-", ds2$monthC, "-", ds2$day)
+ds2$date = as.Date(ds2$datestring)
+ds2$thDay = as.numeric( ds2$date - min(ds2$date) )
+```
+
+Dates are represented as number of days after `r min(ds2$date)` in the column `study_day`
+
+```{r}
+head(ds2)
+```
+
+
+### host_subject_id
+
+This id column seems to have 3 parts separated by ".".  
+
+```{r}
+head(data$host_subject_id)
+```
+
+First looks like location, second looks like sampel type, and third is an integer.  Not sure what that means.  Lets grab it and check it out.
+
+```{r}
+data$hsi3 = sapply(strsplit(data$host_subject_id, split=".", fixed=T),
+             "[", 3)
+data$hsi3 = as.numeric(data$hsi3)
+summary(data$hsi3)
+```
+
+Lets see if it is correlated with any other data.
+
+```{r}
+ds3 = merge(ds2, data["hsi3"], by=0)
+row.names(ds3) = ds3$Row.names
+ds3 = ds3[,grep(x=names(ds3), "Row.names", value=T, invert = T)]
+plot(ds3$hsi3 , ds3$thDay, las=1)
+```
+```{r}
+table(ds3$thDay - ds3$hsi3 == 81)
+```
+
+Oh! I guess this number refers to integer day.
+
+And maybe 0 is the day the hospital opened?  The paper says "Sampling began 2 months before the hos- pital opening on 23 February 2013 and continued for a year thereafter."
+
+```{r}
+is0 = which(ds3$hsi3 == 0 )
+ds3$date[is0]
+```
+
+Close enough! Lets call this "study_day".
+```{r}
+ds3$study_day = ds3$hsi3
+```
+
+## Reduced data frame
+
+Select limited columns.
+```{r}
+df = merge(data, ds3, by=0)
+df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat")]
+```
+
+```{r}
+write.table(file = file.path(outDir, "PRJEB14474_SraRunTable_reduced.txt"), 
+            df2, quote=F, row.names = F, sep="\t")
+```
+
+
+## Visually summarize
+
+### Whats interesting
+
+
+Location vs SAMPLE_TYPE
+```{r}
+df7 = df2 %>% 
+  count(SAMPLE_TYPE, Location)
+
+hm = ggplot(df7, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
+  geom_tile() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  ggtitle("PRJEB14474 samples", subtitle = paste("N =", nrow(data)))
+hm
+
+ggsave(file.path(outDir, "Locatoin-sampletype_heat.png"), hm)
+write.table(df2 %>% 
+              count(Location, SAMPLE_TYPE) %>% 
+              mutate_all(function(x) replace(x, x=='', NA)) %>%
+              pivot_wider(names_from = Location, values_from = "n" ),
+            file = file.path(outDir, "Location-sampletype_table.txt"),
+            quote=F, sep="\t", row.names = F)
+```
+I guess the 'blank control' samples are not assigned a location.
+
+
+Heatmap.
+Visually, how many of each type of sample were collected each day?
+```{r}
+df3 = df2 %>% count(study_day, SAMPLE_TYPE)
+# ggplot(df3) +
+#   geom_tile(aes(x=study_day, y=SAMPLE_TYPE, color=n, fill=n)) +
+#   scale_color_gradient(low="blue", high="red") +
+#   scale_fill_gradient(low="blue", high="red")
+```
+
+That's so fine its hard to read. 
+
+What if we lump together samples collected in a 10-day period?
+```{r}
+df4 = df2 %>% mutate(ishDay=round(study_day, -1)) %>% count(ishDay, SAMPLE_TYPE)
+
+byday = ggplot(df4) +
+  geom_tile(aes(x=ishDay, y=SAMPLE_TYPE, color=n, fill=n)) +
+  scale_color_gradient(low="blue", high="red") +
+  scale_fill_gradient(low="blue", high="red") +
+  xlab("Day (rounded to 10-day period)") +
+  geom_vline(x = 0,
+             xintercept = 0,
+             linetype = "solid") +
+  annotate(geom = "text",
+             label = " opening",
+             x = 0, y=-1, 
+             vjust = 1, hjust=0) +
+  coord_cartesian(ylim = c(0, 23), clip = "off")
+byday
+
+ggsave(file.path(outDir, "time-sampletype_heat.png"), byday)
+```
+
+
+
+For each sample type, how are samples distributed over time?
+```{r}
+p2 = ggplot(df3, aes(x=study_day, y=n)) +
+  geom_point() +
+  facet_wrap(facets="SAMPLE_TYPE") +
+  geom_point(aes(color=as.character(n))) + scale_color_hue()
+p2
+```
+
+## Which columns are redundant
+
+### SAMPLE_TYPE = surface
+
+Is there any difference between the "SAMPLE_TYPE" column and the "surface" column?
+```{r}
+ns = which(data$surface != data$SAMPLE_TYPE)
+cotype = paste(data$surface[ns], data$SAMPLE_TYPE[ns])
+table(cotype)
+```
+No. SAMPLE_TYPE and surface are the same. One uses the term BLANK the other says "blank control", otherwise identical.
+
+What are the values of the "SAMPLE_TYPE" feature? How often does each value appear?
+```{r}
+table(data$SAMPLE_TYPE)
+```
+
+There are 22 values. "glove from box" might be considered additional blanks.
+
+### Location = loccat
+
+Is there any difference between "Location" and "loccat"?
+```{r}
+table(data$Location == data$loccat)
+```
+No. Those are synonymous features.
+
+What are the values for Location? How often do they appear?
+```{r}
+table(data$Location)
+```
+### run_prefix and run_date
+
+Is there a relationship between "run_prefix..exp." and "target_gene..exp." ?
+```{r}
+data %>% 
+  count(target_gene..exp., run_prefix..exp.) %>%
+  mutate_at(c("target_gene..exp.", "run_prefix..exp."), function(x) replace(x, x=='', "unknown")) %>%
+  pivot_wider(names_from = run_prefix..exp., values_from= n)
+```
+This is probably just a data-entry artifact.  Only the run_prefix is meaningful--if it really different sequencing.
+Notice that "target_subfragment..exp." is always V4.
+
+Is run_date..exp. interesting?
+```{r}
+dats = split(data, f=data$run_date..exp.)
+# lapply(dats, function(df) unique(df$SAMPLE_TYPE))
+# lapply(dats, function(df) unique(df$Location))
+lapply(dats, function(df) unique(df$run_prefix..exp.))
+# lapply(dats, function(df) unique(df$Date) %>% sort())
+```
+I had assumed run_date would be the date the sample was run on the sequencer.  I wonder if a subset of samples was a different data entry batch so they have "16S rRNA" instead of "16S", and they don't specify a run_prefix and the date was entered incorrectly (could be the date was set incorrectly in the sequencer?).
+
+Does run_prefix have any relationship with Location? 
+```{r}
+data %>% 
+  count(Location, run_prefix..exp.) %>%
+  mutate_at(c("Location", "run_prefix..exp."), function(x) replace(x, x=='', "unknown")) %>%
+  pivot_wider(names_from = run_prefix..exp., values_from= n)
+```
+
+Does run_prefix have any relationship with SAMPLE_TYPE?
+```{r}
+data %>% 
+  count(SAMPLE_TYPE, run_prefix..exp.) %>%
+  mutate_at(c("SAMPLE_TYPE", "run_prefix..exp."), function(x) replace(x, x=='', "unknown")) %>%
+  pivot_wider(names_from = run_prefix..exp., values_from= n)
+```
+
+Does run_prefix have any relationship with AvgSpotLen?
+```{r}
+data %>% 
+  count(AvgSpotLen, run_prefix..exp.) %>%
+  mutate_at(c("AvgSpotLen", "run_prefix..exp."), function(x) replace(x, x=='', "unknown")) %>%
+  pivot_wider(names_from = run_prefix..exp., values_from= n)
+```
+The samples with prefix "MiSeq" have avg spot lengths of 150-151. All of the ones that start with "HiSeq" have ave spot length <150.  I'm not sure why there is a relationship between different HiSeq prefix sets and different spot lengths.
+
+### Date = COLLECTION_TIMESTAMP
+
+Is there any difference between "Date" and "COLLECTOIN_TIMESTAMP"
+```{r}
+table(data$Date == gsub(" 12:00", "", data$COLLECTION_TIMESTAMP))
+```
+COLLECTOIN_TIMESTAMP includes " 12:00" at the end of the Date value.
+
+
+
+### run_prefix vs Date
+
+Does run_prefix have any relationship with Date?
+```{r}
+df5 = df2 %>% 
+  mutate_at(c("study_day"), function(x) round(x, -1)) %>%
+  count(study_day, run_prefix..exp.) %>%
+  mutate_at(c("study_day", "run_prefix..exp."), function(x) replace(x, x=='', "unknown")) 
+
+ggplot(df5, aes(x=as.numeric(study_day), y=run_prefix..exp., color=n, fill=n)) + 
+  geom_tile()
+```
+
+```{r}
+# df5 %>% pivot_wider(names_from = run_prefix..exp., values_from= n)
+```
+
+### env_biome
+
+Is env_biome interesting?
+```{r}
+table(data$env_biome)
+```
+
+Nope. not interesting.
+
+### env_feature
+
+Is env_feature interesting?
+```{r}
+feats = split(data, f=data$env_feature)
+lapply(feats, function(df) unique(df$SAMPLE_TYPE))
+```
+No, env_feature is a grouping or category of SAMPLE_TYPE; SAMPLE_TYPE is a sub-type of env_feature. not interesting.
+
+### env_material
+
+Is env_material interesting?
+```{r}
+mats = split(data, f=data$env_material)
+lapply(mats, function(df) unique(df$SAMPLE_TYPE))
+```
+Not really, env_material is a grouping or category of SAMPLE_TYPE; SAMPLE_TYPE is a sub-type of env_material not interesting. But, a helpful category, so lets keep it.
+
+### surcat
+
+Is surcat interesting?
+```{r}
+surcats = split(data, f=data$surcat)
+lapply(surcats, function(df) unique(df$SAMPLE_TYPE))
+```
+Yes! surcat is interesting because it distinguishes staff skin from patient skinn for "Hand" and "Nose" samples. (that was implied by location...but not explicit)
+
+Does that correspond with Location?
+```{r}
+lapply(surcats[c("Patient_Skin", "Staff_Skin")], function(df) unique(df$Location))
+```
+yes! 
+
+## General review of columns
+
+Is anything else interesting?
+```{r}
+for (col in names(data)){
+  vals = unique(data[,col])
+  if (length(vals)==1){
+    message("all rows: ", col, " = ", vals)
+  } 
+  else if (length(vals) > 6 ) {
+    message(col, " (n=", length(vals), ")")
+    print(vals[1:6])
+  }else {
+    message(col, " (n=", length(vals), ")")
+    print(vals)
+  }
+}
+```
+
+I think we grabbed all the info that we might care about. :)
+
+
+```{r}
+sessionInfo()
+```
+
