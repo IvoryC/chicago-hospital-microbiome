@@ -15,6 +15,7 @@ The full metadata table is very tedious to look through. I want to pick out the 
 ```{r}
 suppressPackageStartupMessages(library(dplyr))
 library(tidyr)
+library(dplyr)
 library(ggplot2)
 ```
 
@@ -120,17 +121,17 @@ write.table(file = file.path(outDir, "PRJEB14474_SraRunTable_reduced.txt"),
 Location vs SAMPLE_TYPE
 ```{r}
 df7 = df2 %>% 
+  mutate(SAMPLE_TYPE = paste0("(", surcat, ") ", SAMPLE_TYPE)) %>%
   count(SAMPLE_TYPE, Location)
 
 hm = ggplot(df7, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
   geom_tile() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
-  ggtitle("PRJEB14474 samples", subtitle = paste("N =", nrow(data)))
+  ggtitle("PRJEB14474 samples", subtitle = paste("N =", sum(df7$n)))
 hm
 
 ggsave(file.path(outDir, "Locatoin-sampletype_heat.png"), hm)
-write.table(df2 %>% 
-              count(Location, SAMPLE_TYPE) %>% 
+write.table(df7 %>% 
               mutate_all(function(x) replace(x, x=='', NA)) %>%
               pivot_wider(names_from = Location, values_from = "n" ),
             file = file.path(outDir, "Location-sampletype_table.txt"),
@@ -138,8 +139,39 @@ write.table(df2 %>%
 ```
 I guess the 'blank control' samples are not assigned a location.
 
+Repeat, but only consider unque samples.
+```{r}
+df8 = df2 %>% 
+  filter(!duplicated(Sample.Name)) %>%
+  mutate(SAMPLE_TYPE = paste0("(", surcat, ") ", SAMPLE_TYPE)) %>%
+  count(SAMPLE_TYPE, Location)
 
-Heatmap.
+hm = ggplot(df8, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
+  geom_tile() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  ggtitle("PRJEB14474 samples (unqiue samples)", subtitle = paste("N =", sum(df8$n)))
+hm
+```
+
+That looks pretty much the same. Where are the technical replicates?
+
+```{r}
+df8 = df2 %>% 
+  filter(duplicated(Sample.Name)) %>%
+  mutate(SAMPLE_TYPE = paste0("(", surcat, ") ", SAMPLE_TYPE)) %>%
+  count(SAMPLE_TYPE, Location)
+
+hm = ggplot(df8, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
+  geom_tile() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  ggtitle("PRJEB14474 samples (technical replicates)", subtitle = paste("N =", sum(df8$n)))
+hm
+```
+
+
+
+Sampling over time.
+
 Visually, how many of each type of sample were collected each day?
 ```{r}
 df3 = df2 %>% count(study_day, SAMPLE_TYPE)
@@ -153,7 +185,10 @@ That's so fine its hard to read.
 
 What if we lump together samples collected in a 10-day period?
 ```{r}
-df4 = df2 %>% mutate(ishDay=round(study_day, -1)) %>% count(ishDay, SAMPLE_TYPE)
+df4 = df2 %>% 
+  mutate(SAMPLE_TYPE = paste0("(", surcat, ") ", SAMPLE_TYPE)) %>%
+  mutate(ishDay=round(study_day, -1)) %>% 
+  count(ishDay, SAMPLE_TYPE)
 
 byday = ggplot(df4) +
   geom_tile(aes(x=ishDay, y=SAMPLE_TYPE, color=n, fill=n)) +
@@ -166,8 +201,9 @@ byday = ggplot(df4) +
   annotate(geom = "text",
              label = " opening",
              x = 0, y=-1, 
-             vjust = 1, hjust=0) +
-  coord_cartesian(ylim = c(0, 23), clip = "off")
+             vjust = 1, hjust=0)
+# +
+  # coord_cartesian(ylim = c(0, 23), clip = "off")
 byday
 
 ggsave(file.path(outDir, "time-sampletype_heat.png"), byday)
@@ -183,6 +219,31 @@ p2 = ggplot(df3, aes(x=study_day, y=n)) +
   geom_point(aes(color=as.character(n))) + scale_color_hue()
 p2
 ```
+
+Location sampling over time
+
+```{r}
+df9 = df2 %>% 
+  mutate(ishDay=round(study_day, -1)) %>% 
+  count(ishDay, Location)
+
+byday = ggplot(df9) +
+  geom_tile(aes(x=ishDay, y=Location, color=n, fill=n)) +
+  scale_color_gradient(low="blue", high="orange") +
+  scale_fill_gradient(low="blue", high="orange") +
+  xlab("Day (rounded to 10-day period)") +
+  geom_vline(x = 0,
+             xintercept = 0,
+             linetype = "solid") +
+  annotate(geom = "text",
+             label = " opening",
+             x = 0, y=-1, 
+             vjust = 1, hjust=0)
+byday
+
+ggsave(file.path(outDir, "time-location_heat.png"), byday)
+```
+
 
 ## Which columns are redundant
 
@@ -323,7 +384,7 @@ Is surcat interesting?
 surcats = split(data, f=data$surcat)
 lapply(surcats, function(df) unique(df$SAMPLE_TYPE))
 ```
-Yes! surcat is interesting because it distinguishes staff skin from patient skinn for "Hand" and "Nose" samples. (that was implied by location...but not explicit)
+Yes! surcat is interesting because it distinguishes staff skin from patient skin for "Hand" and "Nose" samples. (that was implied by location...but not explicit)
 
 Does that correspond with Location?
 ```{r}
