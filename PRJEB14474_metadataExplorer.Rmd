@@ -17,6 +17,7 @@ suppressPackageStartupMessages(library(dplyr))
 library(tidyr)
 library(dplyr)
 library(ggplot2)
+library(ggrepel)
 ```
 
 ```{r}
@@ -104,7 +105,7 @@ ds3$study_day = ds3$hsi3
 Select limited columns.
 ```{r}
 df = merge(data, ds3, by=0)
-df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat")]
+df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat", "Bases")]
 ```
 
 ```{r}
@@ -243,6 +244,33 @@ byday
 
 ggsave(file.path(outDir, "time-location_heat.png"), byday)
 ```
+### Bases per sample type
+
+```{r}
+data %>% 
+  count(AvgSpotLen, run_prefix..exp.) %>%
+  mutate_at(c("AvgSpotLen", "run_prefix..exp."), function(x) replace(x, x=='', "unknown")) %>%
+  pivot_wider(names_from = run_prefix..exp., values_from= n)
+
+p1 = ggplot(data, aes(x=SAMPLE_TYPE, y=Bases, color=surcat)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) 
+
+p1 + geom_boxplot()
+```
+Of the subset that I used for testing, which samples have the most bases?
+```{r}
+subset = df2 %>% filter(df$study_day==4)
+subsetPlot = ggplot(subset, aes(x=SAMPLE_TYPE, y=Bases, color=surcat)) +
+  geom_point() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) 
+# subsetPlot + geom_text(aes(label=ID, vjust=-.5))
+# subsetPlot + geom_label(aes(label=ID, vjust=-.5))
+subsetPlot + geom_text_repel(aes(label = ID), show.legend = FALSE)
+# three cheers for the ggrepel package! otherwise the labels for ERR1460012 and ERR1459325 would cover each other!
+```
+
+Well, fiddles. I gave the intern a subset where the blanks are some of the largest samples and some of the actual samples are essentially empty.
 
 
 ## Which columns are redundant
