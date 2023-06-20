@@ -1,0 +1,112 @@
+---
+title: "Processing Batches"
+output: html_document
+date: "2023-06-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# PRJEB14474
+
+This is a 16S data set.  We can process it using DADA2.  To run >3000 efficiently, we want to use the cluster. I don't really want to put 3k samples on one job and I don't want to put one sample on each of 3k jobs.  
+
+How I split the samples across jobs shouldn't matter as long as they don't affect each other. **I think** Figaro may use information across samples to determine the best filtering parameters, but the filtering itself is done independently per sample. **I think** the error model uses all samples to create a single model, so that part should probably be done using groups that we would expect to have the same error factors (like being part of the same run on the same machine). And **I think** the samples are independent by default in DADA2 ASV assignment. 
+
+Libraries.
+```{r}
+library(ggplot2)
+```
+
+We need the metadata. (in this case, this is our data.)
+```{r}
+data = read.delim2("PRJEB14474_SraRunTable.txt")
+row.names(data) = data$ID
+```
+
+The output will go in a folder of data to upload to the cluster.
+```{r}
+outDir = "processing-PRJEB14474"
+suppressWarnings(dir.create(outDir))
+```
+
+
+### Filtering Batches
+
+For filtering, I think I will split them by sequencing batch. I don't fully understand what the "run_prefix..exp." feature is, but I'm guessing it indicates which sequencing run a sample was sequenced on; and it demonstrably coincides with some sequencing characteristics. 
+
+Does run_prefix have any relationship with AvgSpotLen?
+```{r}
+blankVals = data$run_prefix..exp. == ""
+data$run_prefix..exp.[blankVals] = "otherRun"
+
+ggplot(data, aes(x=run_prefix..exp., y=AvgSpotLen, fill=run_prefix..exp.)) +
+  geom_boxplot() + 
+  geom_jitter(height=0, width=.2)
+```
+
+So `run_prefix..exp.` will define the filtering batches.
+
+For each batch, I need to know how many samples are in the batch, and how many total bases there are to estimate the required resources.
+```{r}
+ds = split(data, f=data$run_prefix..exp.)
+nSamples = sapply(ds, nrow)
+totalBases = sapply(ds, function(x) sum(x$Bases))
+df = data.frame(FilterBatchID=names(ds), hours=8, cores=1, mem="32GB", nSamples, totalBases)
+
+df
+write.table(df, file=file.path(outDir, "filterBatches.txt"), sep="\t", row.names=F, quote=F)
+```
+
+Ben Callahan comments [here]() that in his own experience:
+
+>Dataset: Relatively good quality Hiseq lanes of ~150M reads each, split amongst ~750 samples from a varying mix of oral, fecal and vaginal communities.
+>
+>Hardware: A general compute node with 16 cores and 64GB of memory.
+>
+>Running times: Filtering takes 2-3 hours (and is run on 2 cores and 16GB of memory). The sample inference workflow (16 cores, 64GB) takes from 2-16 hours, with running times increasing with lower run quality and higher diversity samples. 
+>
+
+I think the largest of our batches is less or comparable to that. Though I don't have read counts, I have base counts, so that's a guess.  I padded a bit from there. I think of one node = one core (though I gather that's not accurate), 
+
+### Figaro
+I looked into using figaro. We will not use it for this project. Figaro is designed to optimize parameters for pair reads, its not happy about single reads, which is what we have.  I think the goal of the optimization is to maximize the chance of getting an accurate merged read --cutting off questionable data but keeping enough to ensure overlap. It solves a problem that we don't have.
+
+### Error batches
+
+For this we def want to stick to the technical process.
+```{r}
+dsErr = split(data, f=data$run_prefix..exp.)
+nSamplesErr = sapply(dsErr, nrow)
+totalBasesErr = sapply(dsErr, function(x) sum(x$Bases))
+dfErr = data.frame(LearnErrorBatchID=names(dsErr), hours=2, cores=1, mem="32GB", nSamplesErr, totalBasesErr)
+dfErr
+```
+This happens to be exactly the same as the batch separation we used above.
+
+```{r}
+write.table(dfErr, file=file.path(outDir, "errorBatches.txt"), sep="\t", row.names=F, quote=F)
+```
+
+### DADA2 batches
+
+For feeding data through DADA2, lets separate it by sample type.
+```{r}
+dsDD = split(data, f=data$SAMPLE_TYPE)
+nSamplesDD = sapply(dsDD, nrow)
+totalBasesDD = sapply(dsDD, function(x) sum(x$Bases))
+dfDD = data.frame(DADA2BatchID=names(dsDD), hours=2, cores=1, mem="32GB", nSamplesDD, totalBasesDD)
+row.names(dfDD) = NULL
+dfDD
+```
+
+```{r}
+write.table(dfDD, file=file.path(outDir, "dada2Batches.txt"), sep="\t", row.names=F, quote=F)
+```
+
+
+All of the data2 batches can be merged into a single seqtable. Assign taxonomy can run on each once on the big table for to make one big reference.
+
+The whole process (starting with filtering) will be done for a 120 truncLen and a 150 bp truncLen.
+
