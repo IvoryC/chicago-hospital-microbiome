@@ -21,13 +21,13 @@ library(ggplot2)
 
 We need the metadata. (in this case, this is our data.)
 ```{r}
-data = read.delim2("PRJEB14474_SraRunTable.txt")
+data = read.delim2("../01_download_metadata/PRJEB14474_SraRunTable.txt")
 row.names(data) = data$ID
 ```
 
 The output will go in a folder of data to upload to the cluster.
 ```{r}
-outDir = "processing-PRJEB14474"
+outDir = "output"
 suppressWarnings(dir.create(outDir))
 ```
 

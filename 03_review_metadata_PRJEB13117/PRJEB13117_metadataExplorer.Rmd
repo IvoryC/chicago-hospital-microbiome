@@ -19,13 +19,13 @@ library(ggplot2)
 ```
 
 ```{r}
-data = read.csv("PRJEB13117_SraRunTable.csv")
+data = read.csv("../01_download_metadata/PRJEB13117_SraRunTable.csv")
 row.names(data) = data$Run
 ```
 
 Save any output to this folder:
 ```{r}
-outDir = "PRJEB13117_output"
+outDir = "output"
 suppressWarnings(dir.create(outDir))
 ```
 
