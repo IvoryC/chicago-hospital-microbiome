@@ -105,7 +105,7 @@ ds3$study_day = ds3$hsi3
 Select limited columns.
 ```{r}
 df = merge(data, ds3, by=0)
-df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat", "Bases")]
+df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat", "Bases", "AvgSpotLen")]
 ```
 
 ```{r}

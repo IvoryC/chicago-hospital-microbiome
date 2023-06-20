@@ -21,7 +21,7 @@ library(ggplot2)
 
 We need the metadata. (in this case, this is our data.)
 ```{r}
-data = read.delim2("../01_download_metadata/PRJEB14474_SraRunTable.txt")
+data = read.delim2("../02_review_metadata_PRJEB14474/output/PRJEB14474_SraRunTable_reduced.txt")
 row.names(data) = data$ID
 ```
 
