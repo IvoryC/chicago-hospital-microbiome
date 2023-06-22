@@ -13,22 +13,16 @@ library(dada2); packageVersion("dada2")
 # This expects an argument telling it which subset of the metadata to work on
 # so as to only process this "batch"
 # example: HiSeq1_8
-# optional second arg is the path the sequences files
 
-gzDir = "/Users/ieclabau/BigPublicData/PRJEB14474"
 args = commandArgs(trailingOnly=TRUE)
 if (length(args) == 0) {
   stop("Expected an argument, such as HiSeq1_4")
 }else if (length(args) == 1) {
   batchID = args[1]
-}else if (length(args) == 2) {
-  batchID = args[1]
-  gzDir = args2
 }else {
   stop("Too many arguments. Expected one, such as HiSeq1_4")
 }
 message("Processing reads with run prefix: ", batchID)
-stop("not actually ready yet.")
 
 #### Find metadata ####
 
@@ -48,7 +42,11 @@ message("Processing ", nrow(meta), " sequence files.")
 
 #### Find sequences ####
 
-gzFiles = dir(gzDir, pattern="fastq.gz", full.names = T)
+gzDir = "/Users/ieclabau/BigPublicData/PRJEB14474"
+gzDirs = dir(gzDir, pattern = "^ERR14", full.names = T)
+gzFiles = unlist(lapply(gzDirs, dir, pattern="fastq.gz", full.names = T))
+
+# gzFiles = dir(gzDir, pattern="fastq.gz", full.names = T)
 ids = gsub(".fastq.gz", "", basename(gzFiles))
 names(gzFiles) = ids
 
@@ -97,6 +95,7 @@ message("Out of ", length(ids), " input files, ",
 passedFilter = row.names(filterTable)[filterTable[,"reads.out"] > 0]
 gzFiles = gzFiles[passedFilter]
 filtFiles = filtFiles[passedFilter]
+filterTable = filterTable[passedFilter,]
 ids = passedFilter
 message("Proceding with ", length(passedFilter), " files.")
 
@@ -124,16 +123,18 @@ seqtab = makeSequenceTable(dadaAs)
 
 seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
 
-perChim = 1 - sum(seqtab.nochim)/sum(seqtab)
+perChim = round(1 - sum(seqtab.nochim)/sum(seqtab), 1)
 message("About ", perChim * 100, "% of the sequences were the \"chimera\" ASVs.")
 
 message("Moving forward with ", ncol(seqtab.nochim), " ASVs.")
 
 #### filter scarce ASV ####
 
-# an ASV have at least 1 read in at least 1% of samples or an equivalent number of total reads.
-minCount = ceiling(nrow(seqtab.nochim) * .01) 
-keepASV = colSums(seqtab.nochim) >= minCount
+# an ASV have **more than** 1 read in 1% of samples or an equivalent number of total reads.
+# using ceiling and requiring > not just >= means that a count of 1 in 1 in 
+# a data set with <100 reads, is still removed.
+minCount = ceiling(nrow(seqtab.nochim) * .01)
+keepASV = colSums(seqtab.nochim) > minCount
 seqtab.filtered = seqtab.nochim[,keepASV]
 
 message("Dropped ", ncol(seqtab.nochim) - ncol(seqtab.filtered), " scarce ASVs.")
@@ -148,32 +149,36 @@ message("ASVs removed by 4% filter (hypothetical): ", sum(colSums(seqtab.nochim)
 message("ASVs removed by 5% filter (hypothetical): ", sum(colSums(seqtab.nochim) < ceiling(nrow(seqtab.nochim) * .05) ))
 
 
-png(file.path(outDir, "asv-total-abundance.png"))
-
-plot(1:ncol(seqtab), log(colSums(seqtab)), las=1, 
-     main=paste0("ASV totals (", batchID, ")"), 
-     ylab="log10 of sum of ASV total counts accross all samples", 
-     xlab="ASVs ordered by abundance")
-mtext(text=paste0(nrow(seqtab), " sequence files"), adj=0)
-mtext(text=paste0(ncol(seqtab), " ASVs"), adj=1)
-abline(h=1:20, col="gray90")
-linesAtX=seq(1000,ncol(seqtab), 1000)
-segments(x0=linesAtX, x1=linesAtX, y0=0, y1=log(colSums(seqtab))[linesAtX], col="gray90")
-points(1:ncol(seqtab), log(colSums(seqtab)))
-
-dev.off()
+# png(file.path(outDir, "asv-total-abundance.png"))
+# 
+# plot(1:ncol(seqtab), log(colSums(seqtab)), las=1, 
+#      main=paste0("ASV totals (", batchID, ")"), 
+#      ylab="log10 of sum of ASV total counts accross all samples", 
+#      xlab="ASVs ordered by abundance")
+# mtext(text=paste0(nrow(seqtab), " sequence files"), adj=0)
+# mtext(text=paste0(ncol(seqtab), " ASVs"), adj=1)
+# abline(h=1:20, col="gray90")
+# linesAtX=seq(1000,ncol(seqtab), 1000)
+# segments(x0=linesAtX, x1=linesAtX, y0=0, y1=log(colSums(seqtab))[linesAtX], col="gray90")
+# points(1:ncol(seqtab), log(colSums(seqtab)))
+# 
+# dev.off()
 
 
 
 #### change ASV to ids ####
 
-asvID = paste0("ASV.", 1:ncol(seqtab.filtered))
-asv.id.table = data.frame(asvID=asvID, ASV=colnames(seqtab.filtered))
-colnames(seqtab.filtered) = asvID
-
-asv.id.File = file.path(outDir, paste0("asv-id-seq", batchID, ".txt"))
-write.table(x=asv.id.table, file=asv.id.File, quote=F, sep="\t", row.names = F)
-message("ASV ids and full sequences were written to: ", asv.id.File)
+if (batchID=="ALL") {
+  
+  asvID = paste0("ASV.", 1:ncol(seqtab.filtered))
+  asv.id.table = data.frame(asvID=asvID, ASV=colnames(seqtab.filtered))
+  colnames(seqtab.filtered) = asvID
+  
+  asv.id.File = file.path(outDir, paste0("asv-id-seq", batchID, ".txt"))
+  write.table(x=asv.id.table, file=asv.id.File, quote=F, sep="\t", row.names = F)
+  message("ASV ids and full sequences were written to: ", asv.id.File)
+  
+}
 
 #### save output ####
 
