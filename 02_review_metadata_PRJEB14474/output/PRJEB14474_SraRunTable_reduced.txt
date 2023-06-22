@@ -2139,440 +2139,440 @@ ERR1461457	SAMEA4038879	qiita_sid_10172:10172.9946	Staff 09-A.Nose.283	12/4/13	2
 ERR1461458	SAMEA4038880	qiita_sid_10172:10172.9948	Staff 09-A.Personal Cell Phone.283	12/4/13	283	Personal Cell Phone	Staff 09-A	HiSeq1_8	surface layer	Staff_Surface	4831209	122
 ERR1461459	SAMEA4038881	qiita_sid_10172:10172.9949	Staff 09-A.Hospital Pager.283	12/4/13	283	Hospital Pager	Staff 09-A	HiSeq1_8	surface layer	Staff_Surface	4523050	122
 ERR1461460	SAMEA4038882	qiita_sid_10172:10172.9950	Staff 09-A.Shirt Hem.283	12/4/13	283	Shirt Hem	Staff 09-A	HiSeq1_8	anthropogenic environmental material	Staff_Surface	4636029	122
-ERR1461461	SAMEA4038887	qiita_sid_10172:10172.10023	Staff 10-C.Hand.283	12/4/13	283	Hand	Staff 10-C		sebum	Staff_Skin	23217513	128
-ERR1461462	SAMEA4038888	qiita_sid_10172:10172.10024	Staff 10-C.Nose.283	12/4/13	283	Nose	Staff 10-C		sebum	Staff_Skin	18590022	128
-ERR1461463	SAMEA4038889	qiita_sid_10172:10172.10025	Staff 10-C.Shoe.283	12/4/13	283	Shoe	Staff 10-C		anthropogenic environmental material	Staff_Surface	8139	127
-ERR1461464	SAMEA4038890	qiita_sid_10172:10172.10026	Staff 10-C.Personal Cell Phone.283	12/4/13	283	Personal Cell Phone	Staff 10-C		surface layer	Staff_Surface	15232155	128
-ERR1461465	SAMEA4038891	qiita_sid_10172:10172.10027	Staff 10-C.Hospital Pager.283	12/4/13	283	Hospital Pager	Staff 10-C		surface layer	Staff_Surface	13577603	129
-ERR1461466	SAMEA4038892	qiita_sid_10172:10172.10028	Staff 10-C.Shirt Hem.283	12/4/13	283	Shirt Hem	Staff 10-C		anthropogenic environmental material	Staff_Surface	16627278	128
-ERR1461467	SAMEA4038893	qiita_sid_10172:10172.10029	Staff 10-D.Hand.283	12/4/13	283	Hand	Staff 10-D		sebum	Staff_Skin	16972756	128
-ERR1461468	SAMEA4038894	qiita_sid_10172:10172.10030	Staff 10-D.Nose.283	12/4/13	283	Nose	Staff 10-D		sebum	Staff_Skin	7854289	128
-ERR1461469	SAMEA4038895	qiita_sid_10172:10172.10031	Staff 10-D.Shoe.283	12/4/13	283	Shoe	Staff 10-D		anthropogenic environmental material	Staff_Surface	14618583	128
-ERR1461470	SAMEA4038896	qiita_sid_10172:10172.10032	Staff 10-D.Personal Cell Phone.283	12/4/13	283	Personal Cell Phone	Staff 10-D		surface layer	Staff_Surface	24792056	127
-ERR1461471	SAMEA4038897	qiita_sid_10172:10172.10033	Staff 10-D.Hospital Pager.283	12/4/13	283	Hospital Pager	Staff 10-D		surface layer	Staff_Surface	16410139	127
-ERR1461472	SAMEA4038898	qiita_sid_10172:10172.10034	Staff 10-D.Shirt Hem.283	12/4/13	283	Shirt Hem	Staff 10-D		anthropogenic environmental material	Staff_Surface	16374937	127
-ERR1461473	SAMEA4038899	qiita_sid_10172:10172.10035	NA.BLANK.283	12/4/13	283	blank control			sterile water		12231116	127
-ERR1461474	SAMEA4038900	qiita_sid_10172:10172.10036	R9016.Hand.284	12/5/13	284	Hand	R9016		sebum	Patient_Skin	7895846	127
-ERR1461475	SAMEA4038901	qiita_sid_10172:10172.10037	R9016.Nose.284	12/5/13	284	Nose	R9016		sebum	Patient_Skin	20339911	128
-ERR1461476	SAMEA4038902	qiita_sid_10172:10172.10038	R9016.Axilla.284	12/5/13	284	Axilla	R9016		sebum	Patient_Skin	23010829	128
-ERR1461477	SAMEA4038903	qiita_sid_10172:10172.10039	R9016.Bedrail.284	12/5/13	284	Bedrail	R9016		surface layer	Room_Surface	7032239	127
-ERR1461478	SAMEA4038904	qiita_sid_10172:10172.10040	R9016.Glove from Glove Box.284	12/5/13	284	Glove from Glove Box	R9016		surface layer	Glove	6343980	127
-ERR1461479	SAMEA4038905	qiita_sid_10172:10172.10041	R9016.Floor.284	12/5/13	284	Floor	R9016		surface layer	Room_Surface	31551396	128
-ERR1461480	SAMEA4038906	qiita_sid_10172:10172.10042	R9016.Cold Tap Faucet Handle.284	12/5/13	284	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	16292119	127
-ERR1461481	SAMEA4038907	qiita_sid_10172:10172.10046	R10016.Bedrail.284	12/5/13	284	Bedrail	R10016		surface layer	Room_Surface	17458997	128
-ERR1461482	SAMEA4038908	qiita_sid_10172:10172.10849	Staff 09-C.Hand.311	1/1/14	311	Hand	Staff 09-C		sebum	Staff_Skin	19328081	128
-ERR1461483	SAMEA4038909	qiita_sid_10172:10172.10850	Staff 09-C.Nose.311	1/1/14	311	Nose	Staff 09-C		sebum	Staff_Skin	29752491	128
-ERR1461484	SAMEA4038910	qiita_sid_10172:10172.10851	Staff 09-C.Shoe.311	1/1/14	311	Shoe	Staff 09-C		anthropogenic environmental material	Staff_Surface	12132458	127
-ERR1461485	SAMEA4038911	qiita_sid_10172:10172.10852	Staff 09-C.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 09-C		surface layer	Staff_Surface	13072125	128
-ERR1461486	SAMEA4038912	qiita_sid_10172:10172.10853	Staff 09-C.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 09-C		surface layer	Staff_Surface	14171804	128
-ERR1461487	SAMEA4038913	qiita_sid_10172:10172.10854	Staff 09-C.Shirt Hem.311	1/1/14	311	Shirt Hem	Staff 09-C		anthropogenic environmental material	Staff_Surface	7690242	127
-ERR1461488	SAMEA4038914	qiita_sid_10172:10172.10855	Staff 09-D.Hand.311	1/1/14	311	Hand	Staff 09-D		sebum	Staff_Skin	8249157	127
-ERR1461489	SAMEA4038915	qiita_sid_10172:10172.10856	Staff 09-D.Nose.311	1/1/14	311	Nose	Staff 09-D		sebum	Staff_Skin	22064332	128
-ERR1461490	SAMEA4038916	qiita_sid_10172:10172.10857	Staff 09-D.Shoe.311	1/1/14	311	Shoe	Staff 09-D		anthropogenic environmental material	Staff_Surface	17359278	128
-ERR1461491	SAMEA4038917	qiita_sid_10172:10172.10858	Staff 09-D.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 09-D		surface layer	Staff_Surface	18213134	128
-ERR1461492	SAMEA4038918	qiita_sid_10172:10172.10859	Staff 09-D.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 09-D		surface layer	Staff_Surface	14944848	128
-ERR1461493	SAMEA4038919	qiita_sid_10172:10172.10860	Staff 09-D.Shirt Hem.311	1/1/14	311	Shirt Hem	Staff 09-D		anthropogenic environmental material	Staff_Surface	5882519	127
-ERR1461494	SAMEA4038920	qiita_sid_10172:10172.10912	Staff 10-B.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 10-B		surface layer	Staff_Surface	11369499	127
-ERR1461495	SAMEA4038921	qiita_sid_10172:10172.10913	Staff 10-B.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 10-B		surface layer	Staff_Surface	11368303	127
-ERR1461496	SAMEA4038922	qiita_sid_10172:10172.10919	Staff 10-C.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 10-C		surface layer	Staff_Surface	9524275	127
-ERR1461497	SAMEA4038923	qiita_sid_10172:10172.10920	Staff 10-C.Shirt Hem.311	1/1/14	311	Shirt Hem	Staff 10-C		anthropogenic environmental material	Staff_Surface	12617218	127
-ERR1461498	SAMEA4038924	qiita_sid_10172:10172.10921	Staff 10-D.Hand.311	1/1/14	311	Hand	Staff 10-D		sebum	Staff_Skin	8410860	127
-ERR1461499	SAMEA4038925	qiita_sid_10172:10172.10922	Staff 10-D.Nose.311	1/1/14	311	Nose	Staff 10-D		sebum	Staff_Skin	16098476	127
-ERR1461500	SAMEA4038926	qiita_sid_10172:10172.10923	Staff 10-D.Shoe.311	1/1/14	311	Shoe	Staff 10-D		anthropogenic environmental material	Staff_Surface	11939111	128
-ERR1461501	SAMEA4038927	qiita_sid_10172:10172.10924	Staff 10-D.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 10-D		surface layer	Staff_Surface	10880562	127
-ERR1461502	SAMEA4038928	qiita_sid_10172:10172.10931	R9016.Bedrail.312	1/2/14	312	Bedrail	R9016		surface layer	Room_Surface	12262570	128
-ERR1461503	SAMEA4038929	qiita_sid_10172:10172.10932	R9016.Glove from Glove Box.312	1/2/14	312	Glove from Glove Box	R9016		surface layer	Glove	18767347	128
-ERR1461504	SAMEA4038930	qiita_sid_10172:10172.10933	R9016.Floor.312	1/2/14	312	Floor	R9016		surface layer	Room_Surface	14917809	128
-ERR1461505	SAMEA4038931	qiita_sid_10172:10172.10934	R9016.Cold Tap Faucet Handle.312	1/2/14	312	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	11348134	128
-ERR1461506	SAMEA4038932	qiita_sid_10172:10172.10938	R10016.Bedrail.312	1/2/14	312	Bedrail	R10016		surface layer	Room_Surface	12568021	128
-ERR1461507	SAMEA4038933	qiita_sid_10172:10172.10939	R10016.Glove from Glove Box.312	1/2/14	312	Glove from Glove Box	R10016		surface layer	Glove	10589608	128
-ERR1461508	SAMEA4038934	qiita_sid_10172:10172.10940	R10016.Floor.312	1/2/14	312	Floor	R10016		surface layer	Room_Surface	14108037	128
-ERR1461509	SAMEA4038935	qiita_sid_10172:10172.10941	R10016.Cold Tap Faucet Handle.312	1/2/14	312	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	1764464	127
-ERR1461510	SAMEA4038936	qiita_sid_10172:10172.10942	NA.BLANK.312	1/2/14	312	blank control			sterile water		10913385	128
-ERR1461511	SAMEA4038937	qiita_sid_10172:10172.3025	S09.Countertop.66	5/1/13	66	Countertop	S09		surface layer	Station_Surface	11249424	127
-ERR1461512	SAMEA4038938	qiita_sid_10172:10172.3026	S09.Computer Mouse.66	5/1/13	66	Computer Mouse	S09		surface layer	Station_Surface	5436091	127
-ERR1461513	SAMEA4038939	qiita_sid_10172:10172.3027	S09.Station Phone.66	5/1/13	66	Station Phone	S09		surface layer	Station_Surface	6739000	128
-ERR1461514	SAMEA4038940	qiita_sid_10172:10172.3028	S09.Chair Armrest.66	5/1/13	66	Chair Armrest	S09		surface layer	Station_Surface	12418814	127
-ERR1461515	SAMEA4038941	qiita_sid_10172:10172.3029	S09.Corridor Floor.66	5/1/13	66	Corridor Floor	S09		surface layer	Station_Surface	8838281	128
-ERR1461516	SAMEA4038942	qiita_sid_10172:10172.3030	S09.Hot Tap Water Faucet Handle.66	5/1/13	66	Hot Tap Water Faucet Handle	S09		surface layer	Station_Surface	26104314	128
-ERR1461517	SAMEA4038943	qiita_sid_10172:10172.3031	S09.Cold Tap Water Faucet Handle.66	5/1/13	66	Cold Tap Water Faucet Handle	S09		surface layer	Station_Surface	25441742	128
-ERR1461518	SAMEA4038944	qiita_sid_10172:10172.3032	Staff 09-A.Hand.66	5/1/13	66	Hand	Staff 09-A		sebum	Staff_Skin	21235516	128
-ERR1461519	SAMEA4038945	qiita_sid_10172:10172.3033	Staff 09-A.Nose.66	5/1/13	66	Nose	Staff 09-A		sebum	Staff_Skin	20621128	128
-ERR1461520	SAMEA4038946	qiita_sid_10172:10172.3034	Staff 09-A.Shoe.66	5/1/13	66	Shoe	Staff 09-A		anthropogenic environmental material	Staff_Surface	2670093	129
-ERR1461521	SAMEA4038947	qiita_sid_10172:10172.3035	Staff 09-A.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-A		surface layer	Staff_Surface	10650047	127
-ERR1461522	SAMEA4038948	qiita_sid_10172:10172.3036	Staff 09-A.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-A		surface layer	Staff_Surface	20851181	128
-ERR1461523	SAMEA4038949	qiita_sid_10172:10172.3037	Staff 09-A.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-A		anthropogenic environmental material	Staff_Surface	10709336	128
-ERR1461524	SAMEA4038950	qiita_sid_10172:10172.3038	Staff 09-B.Hand.66	5/1/13	66	Hand	Staff 09-B		sebum	Staff_Skin	11789353	128
-ERR1461525	SAMEA4038951	qiita_sid_10172:10172.3041	Staff 09-B.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-B		surface layer	Staff_Surface	1777	126
-ERR1461526	SAMEA4038952	qiita_sid_10172:10172.3042	Staff 09-B.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-B		surface layer	Staff_Surface	2584	129
-ERR1461527	SAMEA4038953	qiita_sid_10172:10172.3043	Staff 09-B.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-B		anthropogenic environmental material	Staff_Surface	14000064	128
-ERR1461528	SAMEA4038954	qiita_sid_10172:10172.3044	Staff 09-C.Hand.66	5/1/13	66	Hand	Staff 09-C		sebum	Staff_Skin	14283058	128
-ERR1461529	SAMEA4038955	qiita_sid_10172:10172.3045	Staff 09-C.Nose.66	5/1/13	66	Nose	Staff 09-C		sebum	Staff_Skin	14351231	128
-ERR1461530	SAMEA4038956	qiita_sid_10172:10172.3046	Staff 09-C.Shoe.66	5/1/13	66	Shoe	Staff 09-C		anthropogenic environmental material	Staff_Surface	13366930	128
-ERR1461531	SAMEA4038957	qiita_sid_10172:10172.3047	Staff 09-C.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-C		surface layer	Staff_Surface	13584456	128
-ERR1461532	SAMEA4038958	qiita_sid_10172:10172.3048	Staff 09-C.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-C		surface layer	Staff_Surface	19132945	128
-ERR1461533	SAMEA4038959	qiita_sid_10172:10172.3049	Staff 09-C.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-C		anthropogenic environmental material	Staff_Surface	10110960	128
-ERR1461534	SAMEA4038960	qiita_sid_10172:10172.3050	Staff 09-D.Hand.66	5/1/13	66	Hand	Staff 09-D		sebum	Staff_Skin	7558749	128
-ERR1461535	SAMEA4038961	qiita_sid_10172:10172.3053	Staff 09-D.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-D		surface layer	Staff_Surface	16504513	128
-ERR1461536	SAMEA4038962	qiita_sid_10172:10172.3054	Staff 09-D.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-D		surface layer	Staff_Surface	25003352	127
-ERR1461537	SAMEA4038963	qiita_sid_10172:10172.3055	Staff 09-D.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-D		anthropogenic environmental material	Staff_Surface	3212	128
-ERR1461538	SAMEA4038964	qiita_sid_10172:10172.3091	S10.Countertop.66	5/1/13	66	Countertop	S10		surface layer	Station_Surface	3427	126
-ERR1461539	SAMEA4038965	qiita_sid_10172:10172.3092	S10.Computer Mouse.66	5/1/13	66	Computer Mouse	S10		surface layer	Station_Surface	19345005	128
-ERR1461540	SAMEA4038966	qiita_sid_10172:10172.3094	S10.Chair Armrest.66	5/1/13	66	Chair Armrest	S10		surface layer	Station_Surface	21640500	128
-ERR1461541	SAMEA4038967	qiita_sid_10172:10172.3095	S10.Corridor Floor.66	5/1/13	66	Corridor Floor	S10		surface layer	Station_Surface	19387273	127
-ERR1461542	SAMEA4038968	qiita_sid_10172:10172.3096	S10.Hot Tap Water Faucet Handle.66	5/1/13	66	Hot Tap Water Faucet Handle	S10		surface layer	Station_Surface	4709886	127
-ERR1461543	SAMEA4038969	qiita_sid_10172:10172.3097	S10.Cold Tap Water Faucet Handle.66	5/1/13	66	Cold Tap Water Faucet Handle	S10		surface layer	Station_Surface	19222259	128
-ERR1461544	SAMEA4038970	qiita_sid_10172:10172.3098	Staff 10-A.Hand.66	5/1/13	66	Hand	Staff 10-A		sebum	Staff_Skin	23705	127
-ERR1461545	SAMEA4038971	qiita_sid_10172:10172.3099	Staff 10-A.Nose.66	5/1/13	66	Nose	Staff 10-A		sebum	Staff_Skin	20224022	128
-ERR1461546	SAMEA4038972	qiita_sid_10172:10172.3100	Staff 10-A.Shoe.66	5/1/13	66	Shoe	Staff 10-A		anthropogenic environmental material	Staff_Surface	20846321	128
-ERR1461547	SAMEA4038973	qiita_sid_10172:10172.3101	Staff 10-A.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 10-A		surface layer	Staff_Surface	24196262	128
-ERR1461548	SAMEA4038974	qiita_sid_10172:10172.3103	Staff 10-A.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-A		anthropogenic environmental material	Staff_Surface	16407141	128
-ERR1461549	SAMEA4038975	qiita_sid_10172:10172.3104	Staff 10-B.Hand.66	5/1/13	66	Hand	Staff 10-B		sebum	Staff_Skin	20830622	127
-ERR1461550	SAMEA4038976	qiita_sid_10172:10172.3105	Staff 10-B.Nose.66	5/1/13	66	Nose	Staff 10-B		sebum	Staff_Skin	21081321	127
-ERR1461551	SAMEA4038977	qiita_sid_10172:10172.3106	Staff 10-B.Shoe.66	5/1/13	66	Shoe	Staff 10-B		anthropogenic environmental material	Staff_Surface	19858248	128
-ERR1461552	SAMEA4038978	qiita_sid_10172:10172.3107	Staff 10-B.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 10-B		surface layer	Staff_Surface	17374668	127
-ERR1461553	SAMEA4038979	qiita_sid_10172:10172.3109	Staff 10-B.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-B		anthropogenic environmental material	Staff_Surface	5389	128
-ERR1461554	SAMEA4038980	qiita_sid_10172:10172.3110	Staff 10-C.Hand.66	5/1/13	66	Hand	Staff 10-C		sebum	Staff_Skin	16815194	127
-ERR1461555	SAMEA4038981	qiita_sid_10172:10172.3111	Staff 10-C.Nose.66	5/1/13	66	Nose	Staff 10-C		sebum	Staff_Skin	23862007	128
-ERR1461556	SAMEA4038982	qiita_sid_10172:10172.3112	Staff 10-C.Shoe.66	5/1/13	66	Shoe	Staff 10-C		anthropogenic environmental material	Staff_Surface	29946996	127
-ERR1461557	SAMEA4038983	qiita_sid_10172:10172.3114	Staff 10-C.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 10-C		surface layer	Staff_Surface	21685843	128
-ERR1461558	SAMEA4038984	qiita_sid_10172:10172.3115	Staff 10-C.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-C		anthropogenic environmental material	Staff_Surface	20239128	128
-ERR1461559	SAMEA4038985	qiita_sid_10172:10172.3118	Staff 10-D.Shoe.66	5/1/13	66	Shoe	Staff 10-D		anthropogenic environmental material	Staff_Surface	15625911	127
-ERR1461560	SAMEA4038986	qiita_sid_10172:10172.3119	Staff 10-D.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 10-D		surface layer	Staff_Surface	20432570	128
-ERR1461561	SAMEA4038987	qiita_sid_10172:10172.3120	Staff 10-D.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 10-D		surface layer	Staff_Surface	19991819	128
-ERR1461562	SAMEA4038988	qiita_sid_10172:10172.3121	Staff 10-D.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-D		anthropogenic environmental material	Staff_Surface	2029339	128
-ERR1461563	SAMEA4038989	qiita_sid_10172:10172.3248	S09.Countertop.73	5/8/13	73	Countertop	S09		surface layer	Station_Surface	6027	128
-ERR1461564	SAMEA4038990	qiita_sid_10172:10172.3249	S09.Computer Mouse.73	5/8/13	73	Computer Mouse	S09		surface layer	Station_Surface	7346353	128
-ERR1461565	SAMEA4038991	qiita_sid_10172:10172.3250	S09.Station Phone.73	5/8/13	73	Station Phone	S09		surface layer	Station_Surface	24654217	128
-ERR1461566	SAMEA4038992	qiita_sid_10172:10172.3251	S09.Chair Armrest.73	5/8/13	73	Chair Armrest	S09		surface layer	Station_Surface	2169	127
-ERR1461567	SAMEA4038993	qiita_sid_10172:10172.3253	S09.Hot Tap Water Faucet Handle.73	5/8/13	73	Hot Tap Water Faucet Handle	S09		surface layer	Station_Surface	6250	127
-ERR1461568	SAMEA4038994	qiita_sid_10172:10172.3254	S09.Cold Tap Water Faucet Handle.73	5/8/13	73	Cold Tap Water Faucet Handle	S09		surface layer	Station_Surface	29564496	128
-ERR1461569	SAMEA4038995	qiita_sid_10172:10172.3255	Staff 09-A.Hand.73	5/8/13	73	Hand	Staff 09-A		sebum	Staff_Skin	20828150	128
-ERR1461570	SAMEA4038996	qiita_sid_10172:10172.3256	Staff 09-A.Nose.73	5/8/13	73	Nose	Staff 09-A		sebum	Staff_Skin	23789192	128
-ERR1461571	SAMEA4038997	qiita_sid_10172:10172.3257	Staff 09-A.Shoe.73	5/8/13	73	Shoe	Staff 09-A		anthropogenic environmental material	Staff_Surface	15134463	128
-ERR1461572	SAMEA4038998	qiita_sid_10172:10172.3258	Staff 09-A.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-A		surface layer	Staff_Surface	16768415	128
-ERR1461573	SAMEA4038999	qiita_sid_10172:10172.3259	Staff 09-A.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-A		surface layer	Staff_Surface	13434690	127
-ERR1461574	SAMEA4039000	qiita_sid_10172:10172.3260	Staff 09-A.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-A		anthropogenic environmental material	Staff_Surface	17685584	128
-ERR1461575	SAMEA4039001	qiita_sid_10172:10172.3261	Staff 09-B.Hand.73	5/8/13	73	Hand	Staff 09-B		sebum	Staff_Skin	6393187	127
-ERR1461576	SAMEA4039002	qiita_sid_10172:10172.3262	Staff 09-B.Nose.73	5/8/13	73	Nose	Staff 09-B		sebum	Staff_Skin	3030	126
-ERR1461577	SAMEA4039003	qiita_sid_10172:10172.3263	Staff 09-B.Shoe.73	5/8/13	73	Shoe	Staff 09-B		anthropogenic environmental material	Staff_Surface	13461050	128
-ERR1461578	SAMEA4039004	qiita_sid_10172:10172.3264	Staff 09-B.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-B		surface layer	Staff_Surface	9508966	127
-ERR1461579	SAMEA4039005	qiita_sid_10172:10172.3265	Staff 09-B.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-B		surface layer	Staff_Surface	27590153	127
-ERR1461580	SAMEA4039006	qiita_sid_10172:10172.3266	Staff 09-B.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-B		anthropogenic environmental material	Staff_Surface	23319324	128
-ERR1461581	SAMEA4039007	qiita_sid_10172:10172.3268	Staff 09-C.Nose.73	5/8/13	73	Nose	Staff 09-C		sebum	Staff_Skin	25584777	128
-ERR1461582	SAMEA4039008	qiita_sid_10172:10172.3269	Staff 09-C.Shoe.73	5/8/13	73	Shoe	Staff 09-C		anthropogenic environmental material	Staff_Surface	19161153	128
-ERR1461583	SAMEA4039009	qiita_sid_10172:10172.3270	Staff 09-C.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-C		surface layer	Staff_Surface	14417303	128
-ERR1461584	SAMEA4039010	qiita_sid_10172:10172.3271	Staff 09-C.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-C		surface layer	Staff_Surface	15925800	127
-ERR1461585	SAMEA4039011	qiita_sid_10172:10172.3272	Staff 09-C.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-C		anthropogenic environmental material	Staff_Surface	17144509	128
-ERR1461586	SAMEA4039012	qiita_sid_10172:10172.3273	Staff 09-D.Hand.73	5/8/13	73	Hand	Staff 09-D		sebum	Staff_Skin	20338141	127
-ERR1461587	SAMEA4039013	qiita_sid_10172:10172.3274	Staff 09-D.Nose.73	5/8/13	73	Nose	Staff 09-D		sebum	Staff_Skin	9923087	128
-ERR1461588	SAMEA4039014	qiita_sid_10172:10172.3275	Staff 09-D.Shoe.73	5/8/13	73	Shoe	Staff 09-D		anthropogenic environmental material	Staff_Surface	6273030	128
-ERR1461589	SAMEA4039015	qiita_sid_10172:10172.3276	Staff 09-D.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-D		surface layer	Staff_Surface	14472309	127
-ERR1461590	SAMEA4039016	qiita_sid_10172:10172.3277	Staff 09-D.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-D		surface layer	Staff_Surface	21098152	127
-ERR1461591	SAMEA4039017	qiita_sid_10172:10172.3278	Staff 09-D.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-D		anthropogenic environmental material	Staff_Surface	2168	127
-ERR1461592	SAMEA4039018	qiita_sid_10172:10172.3314	S10.Countertop.73	5/8/13	73	Countertop	S10		surface layer	Station_Surface	30801678	130
-ERR1461593	SAMEA4039019	qiita_sid_10172:10172.3315	S10.Computer Mouse.73	5/8/13	73	Computer Mouse	S10		surface layer	Station_Surface	21318317	128
-ERR1461594	SAMEA4039020	qiita_sid_10172:10172.3316	S10.Station Phone.73	5/8/13	73	Station Phone	S10		surface layer	Station_Surface	32331523	128
-ERR1461595	SAMEA4039021	qiita_sid_10172:10172.3317	S10.Chair Armrest.73	5/8/13	73	Chair Armrest	S10		surface layer	Station_Surface	4376036	128
-ERR1461596	SAMEA4039022	qiita_sid_10172:10172.3318	S10.Corridor Floor.73	5/8/13	73	Corridor Floor	S10		surface layer	Station_Surface	16781118	128
-ERR1461597	SAMEA4039023	qiita_sid_10172:10172.3319	S10.Hot Tap Water Faucet Handle.73	5/8/13	73	Hot Tap Water Faucet Handle	S10		surface layer	Station_Surface	10566689	128
-ERR1461598	SAMEA4039024	qiita_sid_10172:10172.3320	S10.Cold Tap Water Faucet Handle.73	5/8/13	73	Cold Tap Water Faucet Handle	S10		surface layer	Station_Surface	20202109	127
-ERR1461599	SAMEA4039025	qiita_sid_10172:10172.3321	Staff 10-A.Hand.73	5/8/13	73	Hand	Staff 10-A		sebum	Staff_Skin	47708616	129
-ERR1461600	SAMEA4039026	qiita_sid_10172:10172.3322	Staff 10-A.Nose.73	5/8/13	73	Nose	Staff 10-A		sebum	Staff_Skin	15065908	128
-ERR1461601	SAMEA4039027	qiita_sid_10172:10172.3323	Staff 10-A.Shoe.73	5/8/13	73	Shoe	Staff 10-A		anthropogenic environmental material	Staff_Surface	10578099	128
-ERR1461602	SAMEA4039028	qiita_sid_10172:10172.3324	Staff 10-A.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-A		surface layer	Staff_Surface	16053334	127
-ERR1461603	SAMEA4039029	qiita_sid_10172:10172.3325	Staff 10-A.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-A		surface layer	Staff_Surface	7351596	127
-ERR1461604	SAMEA4039030	qiita_sid_10172:10172.3326	Staff 10-A.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-A		anthropogenic environmental material	Staff_Surface	10688129	128
-ERR1461605	SAMEA4039031	qiita_sid_10172:10172.3327	Staff 10-B.Hand.73	5/8/13	73	Hand	Staff 10-B		sebum	Staff_Skin	10348432	128
-ERR1461606	SAMEA4039032	qiita_sid_10172:10172.3328	Staff 10-B.Nose.73	5/8/13	73	Nose	Staff 10-B		sebum	Staff_Skin	8694515	127
-ERR1461607	SAMEA4039033	qiita_sid_10172:10172.3329	Staff 10-B.Shoe.73	5/8/13	73	Shoe	Staff 10-B		anthropogenic environmental material	Staff_Surface	13922828	128
-ERR1461608	SAMEA4039034	qiita_sid_10172:10172.3330	Staff 10-B.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-B		surface layer	Staff_Surface	4659084	127
-ERR1461609	SAMEA4039035	qiita_sid_10172:10172.3331	Staff 10-B.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-B		surface layer	Staff_Surface	6942818	128
-ERR1461610	SAMEA4039036	qiita_sid_10172:10172.3332	Staff 10-B.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-B		anthropogenic environmental material	Staff_Surface	9789695	127
-ERR1461611	SAMEA4039037	qiita_sid_10172:10172.3333	Staff 10-C.Hand.73	5/8/13	73	Hand	Staff 10-C		sebum	Staff_Skin	15717152	131
-ERR1461612	SAMEA4039038	qiita_sid_10172:10172.3334	Staff 10-C.Nose.73	5/8/13	73	Nose	Staff 10-C		sebum	Staff_Skin	11346724	128
-ERR1461613	SAMEA4039039	qiita_sid_10172:10172.3335	Staff 10-C.Shoe.73	5/8/13	73	Shoe	Staff 10-C		anthropogenic environmental material	Staff_Surface	11372648	128
-ERR1461614	SAMEA4039040	qiita_sid_10172:10172.3336	Staff 10-C.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-C		surface layer	Staff_Surface	8499031	127
-ERR1461615	SAMEA4039041	qiita_sid_10172:10172.3337	Staff 10-C.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-C		surface layer	Staff_Surface	13465653	127
-ERR1461616	SAMEA4039042	qiita_sid_10172:10172.3338	Staff 10-C.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-C		anthropogenic environmental material	Staff_Surface	13465814	128
-ERR1461617	SAMEA4039043	qiita_sid_10172:10172.3339	Staff 10-D.Hand.73	5/8/13	73	Hand	Staff 10-D		sebum	Staff_Skin	14031774	128
-ERR1461618	SAMEA4039044	qiita_sid_10172:10172.3340	Staff 10-D.Nose.73	5/8/13	73	Nose	Staff 10-D		sebum	Staff_Skin	8952938	128
-ERR1461619	SAMEA4039045	qiita_sid_10172:10172.3341	Staff 10-D.Shoe.73	5/8/13	73	Shoe	Staff 10-D		anthropogenic environmental material	Staff_Surface	12522694	128
-ERR1461620	SAMEA4039046	qiita_sid_10172:10172.3342	Staff 10-D.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-D		surface layer	Staff_Surface	9456007	128
-ERR1461621	SAMEA4039047	qiita_sid_10172:10172.3343	Staff 10-D.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-D		surface layer	Staff_Surface	8200146	128
-ERR1461622	SAMEA4039048	qiita_sid_10172:10172.3344	Staff 10-D.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-D		anthropogenic environmental material	Staff_Surface	7337259	128
-ERR1461623	SAMEA4039049	qiita_sid_10172:10172.3471	S09.Countertop.80	5/15/13	80	Countertop	S09		surface layer	Station_Surface	9417643	128
-ERR1461624	SAMEA4039050	qiita_sid_10172:10172.3472	S09.Computer Mouse.80	5/15/13	80	Computer Mouse	S09		surface layer	Station_Surface	4181327	128
-ERR1461625	SAMEA4039051	qiita_sid_10172:10172.3473	S09.Station Phone.80	5/15/13	80	Station Phone	S09		surface layer	Station_Surface	8020993	127
-ERR1461626	SAMEA4039052	qiita_sid_10172:10172.3474	S09.Chair Armrest.80	5/15/13	80	Chair Armrest	S09		surface layer	Station_Surface	5258697	128
-ERR1461627	SAMEA4039053	qiita_sid_10172:10172.3475	S09.Corridor Floor.80	5/15/13	80	Corridor Floor	S09		surface layer	Station_Surface	883904	127
-ERR1461628	SAMEA4039054	qiita_sid_10172:10172.3476	S09.Hot Tap Water Faucet Handle.80	5/15/13	80	Hot Tap Water Faucet Handle	S09		surface layer	Station_Surface	3301923	127
-ERR1461629	SAMEA4039055	qiita_sid_10172:10172.3477	S09.Cold Tap Water Faucet Handle.80	5/15/13	80	Cold Tap Water Faucet Handle	S09		surface layer	Station_Surface	11463007	128
-ERR1461630	SAMEA4039056	qiita_sid_10172:10172.3478	Staff 09-A.Hand.80	5/15/13	80	Hand	Staff 09-A		sebum	Staff_Skin	15701357	128
-ERR1461631	SAMEA4039057	qiita_sid_10172:10172.3479	Staff 09-A.Nose.80	5/15/13	80	Nose	Staff 09-A		sebum	Staff_Skin	8572497	127
-ERR1461632	SAMEA4039058	qiita_sid_10172:10172.3480	Staff 09-A.Shoe.80	5/15/13	80	Shoe	Staff 09-A		anthropogenic environmental material	Staff_Surface	8446880	127
-ERR1461633	SAMEA4039059	qiita_sid_10172:10172.3481	Staff 09-A.Personal Cell Phone.80	5/15/13	80	Personal Cell Phone	Staff 09-A		surface layer	Staff_Surface	7109744	127
-ERR1461634	SAMEA4039060	qiita_sid_10172:10172.3482	Staff 09-A.Hospital Pager.80	5/15/13	80	Hospital Pager	Staff 09-A		surface layer	Staff_Surface	3436362	128
-ERR1461635	SAMEA4039061	qiita_sid_10172:10172.3483	Staff 09-A.Shirt Hem.80	5/15/13	80	Shirt Hem	Staff 09-A		anthropogenic environmental material	Staff_Surface	10148312	128
-ERR1461636	SAMEA4039062	qiita_sid_10172:10172.3484	Staff 09-B.Hand.80	5/15/13	80	Hand	Staff 09-B		sebum	Staff_Skin	6115870	128
-ERR1461637	SAMEA4039063	qiita_sid_10172:10172.3485	Staff 09-B.Nose.80	5/15/13	80	Nose	Staff 09-B		sebum	Staff_Skin	5794046	128
-ERR1461638	SAMEA4039064	qiita_sid_10172:10172.3486	Staff 09-B.Shoe.80	5/15/13	80	Shoe	Staff 09-B		anthropogenic environmental material	Staff_Surface	17702127	128
-ERR1461639	SAMEA4039065	qiita_sid_10172:10172.3487	Staff 09-B.Personal Cell Phone.80	5/15/13	80	Personal Cell Phone	Staff 09-B		surface layer	Staff_Surface	27710875	128
-ERR1461640	SAMEA4039066	qiita_sid_10172:10172.3488	Staff 09-B.Hospital Pager.80	5/15/13	80	Hospital Pager	Staff 09-B		surface layer	Staff_Surface	1160257	128
-ERR1461641	SAMEA4039067	qiita_sid_10172:10172.4238	R9016.Hand.102	6/6/13	102	Hand	R9016		sebum	Patient_Skin	13304502	128
-ERR1461642	SAMEA4039068	qiita_sid_10172:10172.4239	R9016.Nose.102	6/6/13	102	Nose	R9016		sebum	Patient_Skin	9766486	127
-ERR1461643	SAMEA4039069	qiita_sid_10172:10172.4240	R9016.Axilla.102	6/6/13	102	Axilla	R9016		sebum	Patient_Skin	19507810	128
-ERR1461644	SAMEA4039070	qiita_sid_10172:10172.4241	R9016.Bedrail.102	6/6/13	102	Bedrail	R9016		surface layer	Room_Surface	13663650	128
-ERR1461645	SAMEA4039071	qiita_sid_10172:10172.4243	R9016.Floor.102	6/6/13	102	Floor	R9016		surface layer	Room_Surface	15605339	128
-ERR1461646	SAMEA4039072	qiita_sid_10172:10172.4244	R9016.Cold Tap Faucet Handle.102	6/6/13	102	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	13962339	128
-ERR1461647	SAMEA4039073	qiita_sid_10172:10172.4245	R10016.Hand.102	6/6/13	102	Hand	R10016		sebum	Patient_Skin	18248092	128
-ERR1461648	SAMEA4039074	qiita_sid_10172:10172.4246	R10016.Nose.102	6/6/13	102	Nose	R10016		sebum	Patient_Skin	9325783	128
-ERR1461649	SAMEA4039075	qiita_sid_10172:10172.4247	R10016.Axilla.102	6/6/13	102	Axilla	R10016		sebum	Patient_Skin	3263547	128
-ERR1461650	SAMEA4039076	qiita_sid_10172:10172.4248	R10016.Bedrail.102	6/6/13	102	Bedrail	R10016		surface layer	Room_Surface	1033077	127
-ERR1461651	SAMEA4039077	qiita_sid_10172:10172.4249	R10016.Glove from Glove Box.102	6/6/13	102	Glove from Glove Box	R10016		surface layer	Glove	4364032	127
-ERR1461652	SAMEA4039078	qiita_sid_10172:10172.4250	R10016.Floor.102	6/6/13	102	Floor	R10016		surface layer	Room_Surface	16164790	128
-ERR1461653	SAMEA4039079	qiita_sid_10172:10172.4251	R10016.Cold Tap Faucet Handle.102	6/6/13	102	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	14302488	127
-ERR1461654	SAMEA4039080	qiita_sid_10172:10172.4252	NA.BLANK.102	6/6/13	102	blank control			sterile water		14344649	128
-ERR1461655	SAMEA4039081	qiita_sid_10172:10172.4260	R10016.Hand.103	6/7/13	103	Hand	R10016		sebum	Patient_Skin	12767464	128
-ERR1461656	SAMEA4039082	qiita_sid_10172:10172.4261	R10016.Nose.103	6/7/13	103	Nose	R10016		sebum	Patient_Skin	413658	127
-ERR1461657	SAMEA4039083	qiita_sid_10172:10172.4262	R10016.Axilla.103	6/7/13	103	Axilla	R10016		sebum	Patient_Skin	9676973	127
-ERR1461658	SAMEA4039084	qiita_sid_10172:10172.4263	R10016.Bedrail.103	6/7/13	103	Bedrail	R10016		surface layer	Room_Surface	12411695	128
-ERR1461659	SAMEA4039085	qiita_sid_10172:10172.4264	R10016.Glove from Glove Box.103	6/7/13	103	Glove from Glove Box	R10016		surface layer	Glove	13582230	128
-ERR1461660	SAMEA4039086	qiita_sid_10172:10172.4265	R10016.Floor.103	6/7/13	103	Floor	R10016		surface layer	Room_Surface	10538026	128
-ERR1461661	SAMEA4039087	qiita_sid_10172:10172.4266	R10016.Cold Tap Faucet Handle.103	6/7/13	103	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	14035505	128
-ERR1461662	SAMEA4039088	qiita_sid_10172:10172.4267	NA.BLANK.103	6/7/13	103	blank control			sterile water		13620821	128
-ERR1461663	SAMEA4039089	qiita_sid_10172:10172.4268	R9016.Hand.104	6/8/13	104	Hand	R9016		sebum	Patient_Skin	8541925	128
-ERR1461664	SAMEA4039090	qiita_sid_10172:10172.4269	R9016.Nose.104	6/8/13	104	Nose	R9016		sebum	Patient_Skin	14666112	128
-ERR1461665	SAMEA4039091	qiita_sid_10172:10172.4270	R9016.Axilla.104	6/8/13	104	Axilla	R9016		sebum	Patient_Skin	13433351	128
-ERR1461666	SAMEA4039092	qiita_sid_10172:10172.4271	R9016.Bedrail.104	6/8/13	104	Bedrail	R9016		surface layer	Room_Surface	11766469	128
-ERR1461667	SAMEA4039093	qiita_sid_10172:10172.4272	R9016.Glove from Glove Box.104	6/8/13	104	Glove from Glove Box	R9016		surface layer	Glove	13822988	128
-ERR1461668	SAMEA4039094	qiita_sid_10172:10172.4273	R9016.Floor.104	6/8/13	104	Floor	R9016		surface layer	Room_Surface	13139536	128
-ERR1461669	SAMEA4039095	qiita_sid_10172:10172.4274	R9016.Cold Tap Faucet Handle.104	6/8/13	104	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	13708747	128
-ERR1461670	SAMEA4039096	qiita_sid_10172:10172.4278	R10016.Bedrail.104	6/8/13	104	Bedrail	R10016		surface layer	Room_Surface	13950814	127
-ERR1461671	SAMEA4039097	qiita_sid_10172:10172.4279	R10016.Glove from Glove Box.104	6/8/13	104	Glove from Glove Box	R10016		surface layer	Glove	13984584	128
-ERR1461672	SAMEA4039098	qiita_sid_10172:10172.4281	R10016.Cold Tap Faucet Handle.104	6/8/13	104	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	15352685	128
-ERR1461673	SAMEA4039099	qiita_sid_10172:10172.4282	NA.BLANK.104	6/8/13	104	blank control			sterile water		12916717	128
-ERR1461674	SAMEA4039100	qiita_sid_10172:10172.4283	R9016.Hand.105	6/9/13	105	Hand	R9016		sebum	Patient_Skin	12180856	128
-ERR1461675	SAMEA4039101	qiita_sid_10172:10172.4284	R9016.Nose.105	6/9/13	105	Nose	R9016		sebum	Patient_Skin	12317104	128
-ERR1461676	SAMEA4039102	qiita_sid_10172:10172.4285	R9016.Axilla.105	6/9/13	105	Axilla	R9016		sebum	Patient_Skin	15649612	127
-ERR1461677	SAMEA4039103	qiita_sid_10172:10172.4286	R9016.Bedrail.105	6/9/13	105	Bedrail	R9016		surface layer	Room_Surface	15612392	128
-ERR1461678	SAMEA4039104	qiita_sid_10172:10172.4287	R9016.Glove from Glove Box.105	6/9/13	105	Glove from Glove Box	R9016		surface layer	Glove	12191339	128
-ERR1461679	SAMEA4039105	qiita_sid_10172:10172.4288	R9016.Floor.105	6/9/13	105	Floor	R9016		surface layer	Room_Surface	7993516	128
-ERR1461680	SAMEA4039106	qiita_sid_10172:10172.4293	R10016.Bedrail.105	6/9/13	105	Bedrail	R10016		surface layer	Room_Surface	10987615	127
-ERR1461681	SAMEA4039107	qiita_sid_10172:10172.4294	R10016.Glove from Glove Box.105	6/9/13	105	Glove from Glove Box	R10016		surface layer	Glove	17149380	128
-ERR1461682	SAMEA4039108	qiita_sid_10172:10172.4296	R10016.Cold Tap Faucet Handle.105	6/9/13	105	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	13110937	128
-ERR1461683	SAMEA4039109	qiita_sid_10172:10172.4297	NA.BLANK.105	6/9/13	105	blank control			sterile water		13910952	128
-ERR1461684	SAMEA4039110	qiita_sid_10172:10172.4298	R9016.Hand.106	6/10/13	106	Hand	R9016		sebum	Patient_Skin	202217	126
-ERR1461685	SAMEA4039111	qiita_sid_10172:10172.4299	R9016.Nose.106	6/10/13	106	Nose	R9016		sebum	Patient_Skin	13003427	128
-ERR1461686	SAMEA4039112	qiita_sid_10172:10172.4300	R9016.Axilla.106	6/10/13	106	Axilla	R9016		sebum	Patient_Skin	12047297	128
-ERR1461687	SAMEA4039113	qiita_sid_10172:10172.4301	R9016.Bedrail.106	6/10/13	106	Bedrail	R9016		surface layer	Room_Surface	12750455	128
-ERR1461688	SAMEA4039114	qiita_sid_10172:10172.4302	R9016.Glove from Glove Box.106	6/10/13	106	Glove from Glove Box	R9016		surface layer	Glove	19634357	127
-ERR1461689	SAMEA4039115	qiita_sid_10172:10172.4303	R9016.Floor.106	6/10/13	106	Floor	R9016		surface layer	Room_Surface	13173475	128
-ERR1461690	SAMEA4039116	qiita_sid_10172:10172.4304	R9016.Cold Tap Faucet Handle.106	6/10/13	106	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	13429311	128
-ERR1461691	SAMEA4039117	qiita_sid_10172:10172.4313	R9016.Hand.107	6/11/13	107	Hand	R9016		sebum	Patient_Skin	11540311	128
-ERR1461692	SAMEA4039118	qiita_sid_10172:10172.4314	R9016.Nose.107	6/11/13	107	Nose	R9016		sebum	Patient_Skin	14392630	128
-ERR1461693	SAMEA4039119	qiita_sid_10172:10172.4315	R9016.Axilla.107	6/11/13	107	Axilla	R9016		sebum	Patient_Skin	128631	127
-ERR1461694	SAMEA4039120	qiita_sid_10172:10172.4316	R9016.Bedrail.107	6/11/13	107	Bedrail	R9016		surface layer	Room_Surface	12388661	128
-ERR1461695	SAMEA4039121	qiita_sid_10172:10172.4317	R9016.Glove from Glove Box.107	6/11/13	107	Glove from Glove Box	R9016		surface layer	Glove	10809748	128
-ERR1461696	SAMEA4039122	qiita_sid_10172:10172.4318	R9016.Floor.107	6/11/13	107	Floor	R9016		surface layer	Room_Surface	253481	126
-ERR1461697	SAMEA4039123	qiita_sid_10172:10172.4319	R9016.Cold Tap Faucet Handle.107	6/11/13	107	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	11823430	128
-ERR1461698	SAMEA4039124	qiita_sid_10172:10172.4320	R10016.Hand.107	6/11/13	107	Hand	R10016		sebum	Patient_Skin	15496615	128
-ERR1461699	SAMEA4039125	qiita_sid_10172:10172.4321	R10016.Nose.107	6/11/13	107	Nose	R10016		sebum	Patient_Skin	12773409	128
-ERR1461700	SAMEA4039126	qiita_sid_10172:10172.4322	R10016.Axilla.107	6/11/13	107	Axilla	R10016		sebum	Patient_Skin	13606078	127
-ERR1461701	SAMEA4039127	qiita_sid_10172:10172.4323	R10016.Bedrail.107	6/11/13	107	Bedrail	R10016		surface layer	Room_Surface	13443166	128
-ERR1461702	SAMEA4039128	qiita_sid_10172:10172.4324	R10016.Glove from Glove Box.107	6/11/13	107	Glove from Glove Box	R10016		surface layer	Glove	13592444	128
-ERR1461703	SAMEA4039129	qiita_sid_10172:10172.4327	NA.BLANK.107	6/11/13	107	blank control			sterile water		10260475	128
-ERR1461704	SAMEA4039130	qiita_sid_10172:10172.4363	S09.Countertop.108	6/12/13	108	Countertop	S09		surface layer	Station_Surface	15274594	128
-ERR1461705	SAMEA4039131	qiita_sid_10172:10172.4364	S09.Computer Mouse.108	6/12/13	108	Computer Mouse	S09		surface layer	Station_Surface	11511081	128
-ERR1461706	SAMEA4039132	qiita_sid_10172:10172.4365	S09.Station Phone.108	6/12/13	108	Station Phone	S09		surface layer	Station_Surface	7867676	128
-ERR1461707	SAMEA4039133	qiita_sid_10172:10172.4366	S09.Chair Armrest.108	6/12/13	108	Chair Armrest	S09		surface layer	Station_Surface	10689847	127
-ERR1461708	SAMEA4039134	qiita_sid_10172:10172.4367	S09.Corridor Floor.108	6/12/13	108	Corridor Floor	S09		surface layer	Station_Surface	12091048	128
-ERR1461709	SAMEA4039135	qiita_sid_10172:10172.4368	S09.Hot Tap Water Faucet Handle.108	6/12/13	108	Hot Tap Water Faucet Handle	S09		surface layer	Station_Surface	12520983	128
-ERR1461710	SAMEA4039136	qiita_sid_10172:10172.4369	S09.Cold Tap Water Faucet Handle.108	6/12/13	108	Cold Tap Water Faucet Handle	S09		surface layer	Station_Surface	13794906	128
-ERR1461711	SAMEA4039137	qiita_sid_10172:10172.4370	Staff 09-A.Hand.108	6/12/13	108	Hand	Staff 09-A		sebum	Staff_Skin	12763858	128
-ERR1461712	SAMEA4039138	qiita_sid_10172:10172.4371	Staff 09-A.Nose.108	6/12/13	108	Nose	Staff 09-A		sebum	Staff_Skin	13612781	128
-ERR1461713	SAMEA4039139	qiita_sid_10172:10172.4372	Staff 09-A.Shoe.108	6/12/13	108	Shoe	Staff 09-A		anthropogenic environmental material	Staff_Surface	11742780	127
-ERR1461714	SAMEA4039140	qiita_sid_10172:10172.4373	Staff 09-A.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 09-A		surface layer	Staff_Surface	12401535	127
-ERR1461715	SAMEA4039141	qiita_sid_10172:10172.4374	Staff 09-A.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 09-A		surface layer	Staff_Surface	11929058	128
-ERR1461716	SAMEA4039142	qiita_sid_10172:10172.4375	Staff 09-A.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 09-A		anthropogenic environmental material	Staff_Surface	12293622	127
-ERR1461717	SAMEA4039143	qiita_sid_10172:10172.4376	Staff 09-B.Hand.108	6/12/13	108	Hand	Staff 09-B		sebum	Staff_Skin	14298967	128
-ERR1461718	SAMEA4039144	qiita_sid_10172:10172.4377	Staff 09-B.Nose.108	6/12/13	108	Nose	Staff 09-B		sebum	Staff_Skin	914572	127
-ERR1461719	SAMEA4039145	qiita_sid_10172:10172.4378	Staff 09-B.Shoe.108	6/12/13	108	Shoe	Staff 09-B		anthropogenic environmental material	Staff_Surface	393322	127
-ERR1461720	SAMEA4039146	qiita_sid_10172:10172.4379	Staff 09-B.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 09-B		surface layer	Staff_Surface	12441241	128
-ERR1461721	SAMEA4039147	qiita_sid_10172:10172.4380	Staff 09-B.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 09-B		surface layer	Staff_Surface	15610181	128
-ERR1461722	SAMEA4039148	qiita_sid_10172:10172.4381	Staff 09-B.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 09-B		anthropogenic environmental material	Staff_Surface	14592528	128
-ERR1461723	SAMEA4039149	qiita_sid_10172:10172.4383	Staff 09-C.Nose.108	6/12/13	108	Nose	Staff 09-C		sebum	Staff_Skin	20381796	128
-ERR1461724	SAMEA4039150	qiita_sid_10172:10172.4384	Staff 09-C.Shoe.108	6/12/13	108	Shoe	Staff 09-C		anthropogenic environmental material	Staff_Surface	19885178	128
-ERR1461725	SAMEA4039151	qiita_sid_10172:10172.4429	S10.Countertop.108	6/12/13	108	Countertop	S10		surface layer	Station_Surface	18519959	128
-ERR1461726	SAMEA4039152	qiita_sid_10172:10172.4430	S10.Computer Mouse.108	6/12/13	108	Computer Mouse	S10		surface layer	Station_Surface	13066761	128
-ERR1461727	SAMEA4039153	qiita_sid_10172:10172.4431	S10.Station Phone.108	6/12/13	108	Station Phone	S10		surface layer	Station_Surface	9198647	128
-ERR1461728	SAMEA4039154	qiita_sid_10172:10172.4432	S10.Chair Armrest.108	6/12/13	108	Chair Armrest	S10		surface layer	Station_Surface	14729071	128
-ERR1461729	SAMEA4039155	qiita_sid_10172:10172.4433	S10.Corridor Floor.108	6/12/13	108	Corridor Floor	S10		surface layer	Station_Surface	13232400	128
-ERR1461730	SAMEA4039156	qiita_sid_10172:10172.4434	S10.Hot Tap Water Faucet Handle.108	6/12/13	108	Hot Tap Water Faucet Handle	S10		surface layer	Station_Surface	12613252	128
-ERR1461731	SAMEA4039157	qiita_sid_10172:10172.4435	S10.Cold Tap Water Faucet Handle.108	6/12/13	108	Cold Tap Water Faucet Handle	S10		surface layer	Station_Surface	14317942	128
-ERR1461732	SAMEA4039158	qiita_sid_10172:10172.4436	Staff 10-A.Hand.108	6/12/13	108	Hand	Staff 10-A		sebum	Staff_Skin	14303030	128
-ERR1461733	SAMEA4039159	qiita_sid_10172:10172.4437	Staff 10-A.Nose.108	6/12/13	108	Nose	Staff 10-A		sebum	Staff_Skin	18253003	128
-ERR1461734	SAMEA4039160	qiita_sid_10172:10172.4438	Staff 10-A.Shoe.108	6/12/13	108	Shoe	Staff 10-A		anthropogenic environmental material	Staff_Surface	24739657	128
-ERR1461735	SAMEA4039161	qiita_sid_10172:10172.4439	Staff 10-A.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-A		surface layer	Staff_Surface	23065354	128
-ERR1461736	SAMEA4039162	qiita_sid_10172:10172.4440	Staff 10-A.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-A		surface layer	Staff_Surface	22568270	128
-ERR1461737	SAMEA4039163	qiita_sid_10172:10172.4441	Staff 10-A.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-A		anthropogenic environmental material	Staff_Surface	16927535	128
-ERR1461738	SAMEA4039164	qiita_sid_10172:10172.4442	Staff 10-B.Hand.108	6/12/13	108	Hand	Staff 10-B		sebum	Staff_Skin	19183822	128
-ERR1461739	SAMEA4039165	qiita_sid_10172:10172.4443	Staff 10-B.Nose.108	6/12/13	108	Nose	Staff 10-B		sebum	Staff_Skin	17525834	128
-ERR1461740	SAMEA4039166	qiita_sid_10172:10172.4444	Staff 10-B.Shoe.108	6/12/13	108	Shoe	Staff 10-B		anthropogenic environmental material	Staff_Surface	17145	128
-ERR1461741	SAMEA4039167	qiita_sid_10172:10172.4445	Staff 10-B.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-B		surface layer	Staff_Surface	24998791	127
-ERR1461742	SAMEA4039168	qiita_sid_10172:10172.4446	Staff 10-B.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-B		surface layer	Staff_Surface	26238014	128
-ERR1461743	SAMEA4039169	qiita_sid_10172:10172.4447	Staff 10-B.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-B		anthropogenic environmental material	Staff_Surface	13113672	128
-ERR1461744	SAMEA4039170	qiita_sid_10172:10172.4448	Staff 10-C.Hand.108	6/12/13	108	Hand	Staff 10-C		sebum	Staff_Skin	10400378	128
-ERR1461745	SAMEA4039171	qiita_sid_10172:10172.4449	Staff 10-C.Nose.108	6/12/13	108	Nose	Staff 10-C		sebum	Staff_Skin	13943719	128
-ERR1461746	SAMEA4039172	qiita_sid_10172:10172.4450	Staff 10-C.Shoe.108	6/12/13	108	Shoe	Staff 10-C		anthropogenic environmental material	Staff_Surface	14609604	128
-ERR1461747	SAMEA4039173	qiita_sid_10172:10172.4451	Staff 10-C.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-C		surface layer	Staff_Surface	14176083	128
-ERR1461748	SAMEA4039174	qiita_sid_10172:10172.4452	Staff 10-C.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-C		surface layer	Staff_Surface	17539097	128
-ERR1461749	SAMEA4039175	qiita_sid_10172:10172.4453	Staff 10-C.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-C		anthropogenic environmental material	Staff_Surface	21297660	128
-ERR1461750	SAMEA4039176	qiita_sid_10172:10172.4454	Staff 10-D.Hand.108	6/12/13	108	Hand	Staff 10-D		sebum	Staff_Skin	21186268	128
-ERR1461751	SAMEA4039177	qiita_sid_10172:10172.4455	Staff 10-D.Nose.108	6/12/13	108	Nose	Staff 10-D		sebum	Staff_Skin	23092624	128
-ERR1461752	SAMEA4039178	qiita_sid_10172:10172.4456	Staff 10-D.Shoe.108	6/12/13	108	Shoe	Staff 10-D		anthropogenic environmental material	Staff_Surface	28372747	128
-ERR1461753	SAMEA4039179	qiita_sid_10172:10172.4457	Staff 10-D.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-D		surface layer	Staff_Surface	27295022	128
-ERR1461754	SAMEA4039180	qiita_sid_10172:10172.4458	Staff 10-D.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-D		surface layer	Staff_Surface	22213398	128
-ERR1461755	SAMEA4039181	qiita_sid_10172:10172.4459	Staff 10-D.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-D		anthropogenic environmental material	Staff_Surface	21881048	128
-ERR1461756	SAMEA4039182	qiita_sid_10172:10172.4485	R10016.Axilla.110	6/14/13	110	Axilla	R10016		sebum	Patient_Skin	23229225	127
-ERR1461757	SAMEA4039183	qiita_sid_10172:10172.4486	R10016.Bedrail.110	6/14/13	110	Bedrail	R10016		surface layer	Room_Surface	23402570	127
-ERR1461758	SAMEA4039184	qiita_sid_10172:10172.4487	R10016.Glove from Glove Box.110	6/14/13	110	Glove from Glove Box	R10016		surface layer	Glove	27383758	128
-ERR1461759	SAMEA4039185	qiita_sid_10172:10172.4488	R10016.Floor.110	6/14/13	110	Floor	R10016		surface layer	Room_Surface	17463194	128
-ERR1461760	SAMEA4039186	qiita_sid_10172:10172.4489	R10016.Cold Tap Faucet Handle.110	6/14/13	110	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	20358506	127
-ERR1461761	SAMEA4039187	qiita_sid_10172:10172.4490	NA.BLANK.110	6/14/13	110	blank control			sterile water		17918967	128
-ERR1461762	SAMEA4039188	qiita_sid_10172:10172.4491	R9016.Hand.111	6/15/13	111	Hand	R9016		sebum	Patient_Skin	16117798	128
-ERR1461763	SAMEA4039189	qiita_sid_10172:10172.4492	R9016.Nose.111	6/15/13	111	Nose	R9016		sebum	Patient_Skin	21962572	127
-ERR1461764	SAMEA4039190	qiita_sid_10172:10172.4493	R9016.Axilla.111	6/15/13	111	Axilla	R9016		sebum	Patient_Skin	25295857	128
-ERR1461765	SAMEA4039191	qiita_sid_10172:10172.7510	Staff 09-D.Hand.206	9/18/13	206	Hand	Staff 09-D		sebum	Staff_Skin	20237435	128
-ERR1461766	SAMEA4039192	qiita_sid_10172:10172.7511	Staff 09-D.Nose.206	9/18/13	206	Nose	Staff 09-D		sebum	Staff_Skin	11424207	128
-ERR1461767	SAMEA4039193	qiita_sid_10172:10172.7512	Staff 09-D.Shoe.206	9/18/13	206	Shoe	Staff 09-D		anthropogenic environmental material	Staff_Surface	16212280	128
-ERR1461768	SAMEA4039194	qiita_sid_10172:10172.7514	Staff 09-D.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 09-D		surface layer	Staff_Surface	14781495	128
-ERR1461769	SAMEA4039195	qiita_sid_10172:10172.7515	Staff 09-D.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 09-D		anthropogenic environmental material	Staff_Surface	20632471	127
-ERR1461770	SAMEA4039196	qiita_sid_10172:10172.7526	R10015.Bedrail.206	9/18/13	206	Bedrail	R10015		surface layer	Room_Surface	14395070	128
-ERR1461771	SAMEA4039197	qiita_sid_10172:10172.7527	R10015.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10015		surface layer	Glove	14807237	128
-ERR1461772	SAMEA4039198	qiita_sid_10172:10172.7528	R10015.Floor.206	9/18/13	206	Floor	R10015		surface layer	Room_Surface	19166326	128
-ERR1461773	SAMEA4039199	qiita_sid_10172:10172.7529	R10015.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10015		surface layer	Room_Surface	19586286	128
-ERR1461774	SAMEA4039200	qiita_sid_10172:10172.7533	R10016.Bedrail.206	9/18/13	206	Bedrail	R10016		surface layer	Room_Surface	13134840	128
-ERR1461775	SAMEA4039201	qiita_sid_10172:10172.7534	R10016.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10016		surface layer	Glove	24641829	127
-ERR1461776	SAMEA4039202	qiita_sid_10172:10172.7535	R10016.Floor.206	9/18/13	206	Floor	R10016		surface layer	Room_Surface	15654878	128
-ERR1461777	SAMEA4039203	qiita_sid_10172:10172.7536	R10016.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	14464749	128
-ERR1461778	SAMEA4039204	qiita_sid_10172:10172.7540	R10017.Bedrail.206	9/18/13	206	Bedrail	R10017		surface layer	Room_Surface	16041246	127
-ERR1461779	SAMEA4039205	qiita_sid_10172:10172.7541	R10017.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10017		surface layer	Glove	18242962	128
-ERR1461780	SAMEA4039206	qiita_sid_10172:10172.7542	R10017.Floor.206	9/18/13	206	Floor	R10017		surface layer	Room_Surface	12394695	128
-ERR1461781	SAMEA4039207	qiita_sid_10172:10172.7543	R10017.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10017		surface layer	Room_Surface	16273445	128
-ERR1461782	SAMEA4039208	qiita_sid_10172:10172.7547	R10018.Bedrail.206	9/18/13	206	Bedrail	R10018		surface layer	Room_Surface	5052679	128
-ERR1461783	SAMEA4039209	qiita_sid_10172:10172.7548	R10018.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10018		surface layer	Glove	19033870	129
-ERR1461784	SAMEA4039210	qiita_sid_10172:10172.7549	R10018.Floor.206	9/18/13	206	Floor	R10018		surface layer	Room_Surface	13466704	128
-ERR1461785	SAMEA4039211	qiita_sid_10172:10172.7550	R10018.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10018		surface layer	Room_Surface	45313774	128
-ERR1461786	SAMEA4039212	qiita_sid_10172:10172.7551	S10.Countertop.206	9/18/13	206	Countertop	S10		surface layer	Station_Surface	32331460	127
-ERR1461787	SAMEA4039213	qiita_sid_10172:10172.7552	S10.Computer Mouse.206	9/18/13	206	Computer Mouse	S10		surface layer	Station_Surface	35958436	128
-ERR1461788	SAMEA4039214	qiita_sid_10172:10172.7554	S10.Chair Armrest.206	9/18/13	206	Chair Armrest	S10		surface layer	Station_Surface	24612932	127
-ERR1461789	SAMEA4039215	qiita_sid_10172:10172.7555	S10.Corridor Floor.206	9/18/13	206	Corridor Floor	S10		surface layer	Station_Surface	12845113	128
-ERR1461790	SAMEA4039216	qiita_sid_10172:10172.7556	S10.Hot Tap Water.206	9/18/13	206	Hot Tap Water	S10		water	Water	28507106	127
-ERR1461791	SAMEA4039217	qiita_sid_10172:10172.7557	S10.Cold Tap Water.206	9/18/13	206	Cold Tap Water	S10		water	Water	21376524	128
-ERR1461792	SAMEA4039218	qiita_sid_10172:10172.7558	Staff 10-A.Hand.206	9/18/13	206	Hand	Staff 10-A		sebum	Staff_Skin	21749968	128
-ERR1461793	SAMEA4039219	qiita_sid_10172:10172.7559	Staff 10-A.Nose.206	9/18/13	206	Nose	Staff 10-A		sebum	Staff_Skin	13118719	128
-ERR1461794	SAMEA4039220	qiita_sid_10172:10172.7560	Staff 10-A.Shoe.206	9/18/13	206	Shoe	Staff 10-A		anthropogenic environmental material	Staff_Surface	26393786	128
-ERR1461795	SAMEA4039221	qiita_sid_10172:10172.7561	Staff 10-A.Personal Cell Phone.206	9/18/13	206	Personal Cell Phone	Staff 10-A		surface layer	Staff_Surface	25119973	128
-ERR1461796	SAMEA4039222	qiita_sid_10172:10172.7562	Staff 10-A.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 10-A		surface layer	Staff_Surface	35317252	127
-ERR1461797	SAMEA4039223	qiita_sid_10172:10172.7563	Staff 10-A.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 10-A		anthropogenic environmental material	Staff_Surface	11907804	128
-ERR1461798	SAMEA4039224	qiita_sid_10172:10172.7564	Staff 10-B.Hand.206	9/18/13	206	Hand	Staff 10-B		sebum	Staff_Skin	41008363	127
-ERR1461799	SAMEA4039225	qiita_sid_10172:10172.7565	Staff 10-B.Nose.206	9/18/13	206	Nose	Staff 10-B		sebum	Staff_Skin	31712385	127
-ERR1461800	SAMEA4039226	qiita_sid_10172:10172.7566	Staff 10-B.Shoe.206	9/18/13	206	Shoe	Staff 10-B		anthropogenic environmental material	Staff_Surface	22204480	127
-ERR1461801	SAMEA4039227	qiita_sid_10172:10172.7567	Staff 10-B.Personal Cell Phone.206	9/18/13	206	Personal Cell Phone	Staff 10-B		surface layer	Staff_Surface	13675452	128
-ERR1461802	SAMEA4039228	qiita_sid_10172:10172.7568	Staff 10-B.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 10-B		surface layer	Staff_Surface	25198030	127
-ERR1461803	SAMEA4039229	qiita_sid_10172:10172.7569	Staff 10-B.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 10-B		anthropogenic environmental material	Staff_Surface	13493080	127
-ERR1461804	SAMEA4039230	qiita_sid_10172:10172.7570	Staff 10-C.Hand.206	9/18/13	206	Hand	Staff 10-C		sebum	Staff_Skin	23570791	128
-ERR1461805	SAMEA4039231	qiita_sid_10172:10172.7571	Staff 10-C.Nose.206	9/18/13	206	Nose	Staff 10-C		sebum	Staff_Skin	30050856	128
-ERR1461806	SAMEA4039232	qiita_sid_10172:10172.7572	Staff 10-C.Shoe.206	9/18/13	206	Shoe	Staff 10-C		anthropogenic environmental material	Staff_Surface	389631	128
-ERR1461807	SAMEA4039233	qiita_sid_10172:10172.7573	Staff 10-C.Personal Cell Phone.206	9/18/13	206	Personal Cell Phone	Staff 10-C		surface layer	Staff_Surface	30216946	128
-ERR1461808	SAMEA4039234	qiita_sid_10172:10172.7574	Staff 10-C.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 10-C		surface layer	Staff_Surface	23982227	128
-ERR1461809	SAMEA4039235	qiita_sid_10172:10172.7575	Staff 10-C.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 10-C		anthropogenic environmental material	Staff_Surface	19423858	128
-ERR1461810	SAMEA4039236	qiita_sid_10172:10172.7593	R10016.Bedrail.207	9/19/13	207	Bedrail	R10016		surface layer	Room_Surface	23749922	128
-ERR1461811	SAMEA4039237	qiita_sid_10172:10172.7594	R10016.Glove from Glove Box.207	9/19/13	207	Glove from Glove Box	R10016		surface layer	Glove	26215765	128
-ERR1461812	SAMEA4039238	qiita_sid_10172:10172.7595	R10016.Floor.207	9/19/13	207	Floor	R10016		surface layer	Room_Surface	35341698	129
-ERR1461813	SAMEA4039239	qiita_sid_10172:10172.7596	R10016.Cold Tap Faucet Handle.207	9/19/13	207	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	26987013	127
-ERR1461814	SAMEA4039240	qiita_sid_10172:10172.7597	NA.BLANK.207	9/19/13	207	blank control			sterile water		21760763	128
-ERR1461815	SAMEA4039241	qiita_sid_10172:10172.7601	R9016.Bedrail.208	9/20/13	208	Bedrail	R9016		surface layer	Room_Surface	23190863	128
-ERR1461816	SAMEA4039242	qiita_sid_10172:10172.7602	R9016.Glove from Glove Box.208	9/20/13	208	Glove from Glove Box	R9016		surface layer	Glove	28626611	128
-ERR1461817	SAMEA4039243	qiita_sid_10172:10172.7603	R9016.Floor.208	9/20/13	208	Floor	R9016		surface layer	Room_Surface	34769363	128
-ERR1461818	SAMEA4039244	qiita_sid_10172:10172.7604	R9016.Cold Tap Faucet Handle.208	9/20/13	208	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	30176047	127
-ERR1461819	SAMEA4039245	qiita_sid_10172:10172.7608	R10016.Bedrail.208	9/20/13	208	Bedrail	R10016		surface layer	Room_Surface	32645415	128
-ERR1461820	SAMEA4039246	qiita_sid_10172:10172.7609	R10016.Glove from Glove Box.208	9/20/13	208	Glove from Glove Box	R10016		surface layer	Glove	28393935	128
-ERR1461821	SAMEA4039247	qiita_sid_10172:10172.7610	R10016.Floor.208	9/20/13	208	Floor	R10016		surface layer	Room_Surface	27420340	128
-ERR1461822	SAMEA4039248	qiita_sid_10172:10172.7611	R10016.Cold Tap Faucet Handle.208	9/20/13	208	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	22951310	128
-ERR1461823	SAMEA4039249	qiita_sid_10172:10172.7612	NA.BLANK.208	9/20/13	208	blank control			sterile water		19897499	127
-ERR1461824	SAMEA4039250	qiita_sid_10172:10172.7623	R10016.Bedrail.209	9/21/13	209	Bedrail	R10016		surface layer	Room_Surface	18051424	128
-ERR1461825	SAMEA4039251	qiita_sid_10172:10172.7624	R10016.Glove from Glove Box.209	9/21/13	209	Glove from Glove Box	R10016		surface layer	Glove	24571761	128
-ERR1461826	SAMEA4039252	qiita_sid_10172:10172.7625	R10016.Floor.209	9/21/13	209	Floor	R10016		surface layer	Room_Surface	17434517	127
-ERR1461827	SAMEA4039253	qiita_sid_10172:10172.7626	R10016.Cold Tap Faucet Handle.209	9/21/13	209	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	23310978	128
-ERR1461828	SAMEA4039254	qiita_sid_10172:10172.7627	NA.BLANK.209	9/21/13	209	blank control			sterile water		21514371	127
-ERR1461829	SAMEA4039255	qiita_sid_10172:10172.7631	R9016.Bedrail.210	9/22/13	210	Bedrail	R9016		surface layer	Room_Surface	23896168	127
-ERR1461830	SAMEA4039256	qiita_sid_10172:10172.7632	R9016.Glove from Glove Box.210	9/22/13	210	Glove from Glove Box	R9016		surface layer	Glove	14666684	128
-ERR1461831	SAMEA4039257	qiita_sid_10172:10172.7633	R9016.Floor.210	9/22/13	210	Floor	R9016		surface layer	Room_Surface	23748139	128
-ERR1461832	SAMEA4039258	qiita_sid_10172:10172.7634	R9016.Cold Tap Faucet Handle.210	9/22/13	210	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	8619237	128
-ERR1461833	SAMEA4039259	qiita_sid_10172:10172.7638	R10016.Bedrail.210	9/22/13	210	Bedrail	R10016		surface layer	Room_Surface	6151621	128
-ERR1461834	SAMEA4039260	qiita_sid_10172:10172.7639	R10016.Glove from Glove Box.210	9/22/13	210	Glove from Glove Box	R10016		surface layer	Glove	20634898	128
-ERR1461835	SAMEA4039261	qiita_sid_10172:10172.7640	R10016.Floor.210	9/22/13	210	Floor	R10016		surface layer	Room_Surface	10181375	128
-ERR1461836	SAMEA4039262	qiita_sid_10172:10172.7641	R10016.Cold Tap Faucet Handle.210	9/22/13	210	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	46363555	128
-ERR1461837	SAMEA4039263	qiita_sid_10172:10172.7642	NA.BLANK.210	9/22/13	210	blank control			sterile water		14026439	128
-ERR1461838	SAMEA4039264	qiita_sid_10172:10172.7646	R9016.Bedrail.211	9/23/13	211	Bedrail	R9016		surface layer	Room_Surface	21138067	127
-ERR1461839	SAMEA4039265	qiita_sid_10172:10172.7647	R9016.Glove from Glove Box.211	9/23/13	211	Glove from Glove Box	R9016		surface layer	Glove	13265338	128
-ERR1461840	SAMEA4039266	qiita_sid_10172:10172.7648	R9016.Floor.211	9/23/13	211	Floor	R9016		surface layer	Room_Surface	25282512	128
-ERR1461841	SAMEA4039267	qiita_sid_10172:10172.7649	R9016.Cold Tap Faucet Handle.211	9/23/13	211	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	3548460	128
-ERR1461842	SAMEA4039268	qiita_sid_10172:10172.7653	R10016.Bedrail.211	9/23/13	211	Bedrail	R10016		surface layer	Room_Surface	1680710	128
-ERR1461843	SAMEA4039269	qiita_sid_10172:10172.7654	R10016.Glove from Glove Box.211	9/23/13	211	Glove from Glove Box	R10016		surface layer	Glove	17613102	128
-ERR1461844	SAMEA4039270	qiita_sid_10172:10172.7655	R10016.Floor.211	9/23/13	211	Floor	R10016		surface layer	Room_Surface	10626145	128
-ERR1461845	SAMEA4039271	qiita_sid_10172:10172.7656	R10016.Cold Tap Faucet Handle.211	9/23/13	211	Cold Tap Faucet Handle	R10016		surface layer	Room_Surface	21780217	127
-ERR1461846	SAMEA4039272	qiita_sid_10172:10172.7657	NA.BLANK.211	9/23/13	211	blank control			sterile water		12728530	128
-ERR1461847	SAMEA4039273	qiita_sid_10172:10172.7673	R9014.Hand.213	9/25/13	213	Hand	R9014		sebum	Patient_Skin	14214286	128
-ERR1461848	SAMEA4039274	qiita_sid_10172:10172.7674	R9014.Nose.213	9/25/13	213	Nose	R9014		sebum	Patient_Skin	26153918	128
-ERR1461849	SAMEA4039275	qiita_sid_10172:10172.7675	R9014.Axilla.213	9/25/13	213	Axilla	R9014		sebum	Patient_Skin	11310713	128
-ERR1461850	SAMEA4039276	qiita_sid_10172:10172.7676	R9014.Bedrail.213	9/25/13	213	Bedrail	R9014		surface layer	Room_Surface	38963408	128
-ERR1461851	SAMEA4039277	qiita_sid_10172:10172.7677	R9014.Glove from Glove Box.213	9/25/13	213	Glove from Glove Box	R9014		surface layer	Glove	2952064	128
-ERR1461852	SAMEA4039278	qiita_sid_10172:10172.7678	R9014.Floor.213	9/25/13	213	Floor	R9014		surface layer	Room_Surface	21689526	128
-ERR1461853	SAMEA4039279	qiita_sid_10172:10172.7679	R9014.Cold Tap Faucet Handle.213	9/25/13	213	Cold Tap Faucet Handle	R9014		surface layer	Room_Surface	2483406	128
-ERR1461854	SAMEA4039280	qiita_sid_10172:10172.7680	R9015.Hand.213	9/25/13	213	Hand	R9015		sebum	Patient_Skin	24545635	128
-ERR1461855	SAMEA4039281	qiita_sid_10172:10172.7681	R9015.Nose.213	9/25/13	213	Nose	R9015		sebum	Patient_Skin	11602254	128
-ERR1461856	SAMEA4039282	qiita_sid_10172:10172.7682	R9015.Axilla.213	9/25/13	213	Axilla	R9015		sebum	Patient_Skin	10638502	127
-ERR1461857	SAMEA4039283	qiita_sid_10172:10172.7683	R9015.Bedrail.213	9/25/13	213	Bedrail	R9015		surface layer	Room_Surface	18055219	128
-ERR1461858	SAMEA4039284	qiita_sid_10172:10172.7684	R9015.Glove from Glove Box.213	9/25/13	213	Glove from Glove Box	R9015		surface layer	Glove	6269947	128
-ERR1461859	SAMEA4039285	qiita_sid_10172:10172.7685	R9015.Floor.213	9/25/13	213	Floor	R9015		surface layer	Room_Surface	28568394	128
-ERR1461860	SAMEA4039286	qiita_sid_10172:10172.8107	R9016.Bedrail.226	10/8/13	226	Bedrail	R9016		surface layer	Room_Surface	17440693	128
-ERR1461861	SAMEA4039287	qiita_sid_10172:10172.8108	R9016.Glove from Glove Box.226	10/8/13	226	Glove from Glove Box	R9016		surface layer	Glove	21708373	128
-ERR1461862	SAMEA4039288	qiita_sid_10172:10172.8109	R9016.Floor.226	10/8/13	226	Floor	R9016		surface layer	Room_Surface	10500135	128
-ERR1461863	SAMEA4039289	qiita_sid_10172:10172.8110	R9016.Cold Tap Faucet Handle.226	10/8/13	226	Cold Tap Faucet Handle	R9016		surface layer	Room_Surface	21314258	128
-ERR1461864	SAMEA4039290	qiita_sid_10172:10172.8111	R10016.Hand.226	10/8/13	226	Hand	R10016		sebum	Patient_Skin	10335975	127
-ERR1461865	SAMEA4039291	qiita_sid_10172:10172.8112	R10016.Nose.226	10/8/13	226	Nose	R10016		sebum	Patient_Skin	11199032	128
-ERR1461866	SAMEA4039292	qiita_sid_10172:10172.8113	R10016.Axilla.226	10/8/13	226	Axilla	R10016		sebum	Patient_Skin	13969953	128
-ERR1461867	SAMEA4039293	qiita_sid_10172:10172.8114	R10016.Bedrail.226	10/8/13	226	Bedrail	R10016		surface layer	Room_Surface	21227606	128
-ERR1461868	SAMEA4039294	qiita_sid_10172:10172.8115	R10016.Glove from Glove Box.226	10/8/13	226	Glove from Glove Box	R10016		surface layer	Glove	12556682	127
-ERR1461869	SAMEA4039295	qiita_sid_10172:10172.8116	R10016.Floor.226	10/8/13	226	Floor	R10016		surface layer	Room_Surface	29504320	128
-ERR1461870	SAMEA4039296	qiita_sid_10172:10172.9936	R9018.Floor.283	12/4/13	283	Floor	R9018		surface layer	Room_Surface	13372243	128
-ERR1461871	SAMEA4039297	qiita_sid_10172:10172.9937	R9018.Cold Tap Faucet Handle.283	12/4/13	283	Cold Tap Faucet Handle	R9018		surface layer	Room_Surface	19864963	128
-ERR1461872	SAMEA4039298	qiita_sid_10172:10172.9938	S09.Countertop.283	12/4/13	283	Countertop	S09		surface layer	Station_Surface	22511597	128
-ERR1461873	SAMEA4039299	qiita_sid_10172:10172.9939	S09.Computer Mouse.283	12/4/13	283	Computer Mouse	S09		surface layer	Station_Surface	25050628	127
-ERR1461874	SAMEA4039300	qiita_sid_10172:10172.9940	S09.Station Phone.283	12/4/13	283	Station Phone	S09		surface layer	Station_Surface	7775877	128
-ERR1461875	SAMEA4039301	qiita_sid_10172:10172.9941	S09.Chair Armrest.283	12/4/13	283	Chair Armrest	S09		surface layer	Station_Surface	15646434	127
-ERR1461876	SAMEA4039302	qiita_sid_10172:10172.9942	S09.Corridor Floor.283	12/4/13	283	Corridor Floor	S09		surface layer	Station_Surface	24024190	128
-ERR1461877	SAMEA4039303	qiita_sid_10172:10172.9943	S09.Hot Tap Water.283	12/4/13	283	Hot Tap Water	S09		water	Water	10248098	128
-ERR1461878	SAMEA4039304	qiita_sid_10172:10172.9957	Staff 09-C.Hand.283	12/4/13	283	Hand	Staff 09-C		sebum	Staff_Skin	27163912	128
-ERR1461879	SAMEA4039305	qiita_sid_10172:10172.9958	Staff 09-C.Nose.283	12/4/13	283	Nose	Staff 09-C		sebum	Staff_Skin	19051707	128
-ERR1461880	SAMEA4039306	qiita_sid_10172:10172.9959	Staff 09-C.Shoe.283	12/4/13	283	Shoe	Staff 09-C		anthropogenic environmental material	Staff_Surface	15325321	128
-ERR1461881	SAMEA4039307	qiita_sid_10172:10172.9960	Staff 09-C.Personal Cell Phone.283	12/4/13	283	Personal Cell Phone	Staff 09-C		surface layer	Staff_Surface	23418181	128
-ERR1461882	SAMEA4039308	qiita_sid_10172:10172.9961	Staff 09-C.Hospital Pager.283	12/4/13	283	Hospital Pager	Staff 09-C		surface layer	Staff_Surface	16979237	128
-ERR1461883	SAMEA4039309	qiita_sid_10172:10172.9962	Staff 09-C.Shirt Hem.283	12/4/13	283	Shirt Hem	Staff 09-C		anthropogenic environmental material	Staff_Surface	19553742	128
-ERR1461884	SAMEA4039310	qiita_sid_10172:10172.9969	R10014.Hand.283	12/4/13	283	Hand	R10014		sebum	Patient_Skin	14736279	128
-ERR1461885	SAMEA4039311	qiita_sid_10172:10172.9970	R10014.Nose.283	12/4/13	283	Nose	R10014		sebum	Patient_Skin	15107787	128
-ERR1461886	SAMEA4039312	qiita_sid_10172:10172.9971	R10014.Axilla.283	12/4/13	283	Axilla	R10014		sebum	Patient_Skin	16857040	128
-ERR1461887	SAMEA4039313	qiita_sid_10172:10172.9972	R10014.Bedrail.283	12/4/13	283	Bedrail	R10014		surface layer	Room_Surface	18552067	128
-ERR1461888	SAMEA4039314	qiita_sid_10172:10172.9973	R10014.Glove from Glove Box.283	12/4/13	283	Glove from Glove Box	R10014		surface layer	Glove	19749063	128
-ERR1461889	SAMEA4039315	qiita_sid_10172:10172.9974	R10014.Floor.283	12/4/13	283	Floor	R10014		surface layer	Room_Surface	25400299	127
-ERR1461890	SAMEA4039316	qiita_sid_10172:10172.9975	R10014.Cold Tap Faucet Handle.283	12/4/13	283	Cold Tap Faucet Handle	R10014		surface layer	Room_Surface	12624355	127
-ERR1461891	SAMEA4039317	qiita_sid_10172:10172.9979	R10015.Bedrail.283	12/4/13	283	Bedrail	R10015		surface layer	Room_Surface	15876458	127
-ERR1461892	SAMEA4039318	qiita_sid_10172:10172.9980	R10015.Glove from Glove Box.283	12/4/13	283	Glove from Glove Box	R10015		surface layer	Glove	24679024	127
-ERR1461893	SAMEA4039319	qiita_sid_10172:10172.9981	R10015.Floor.283	12/4/13	283	Floor	R10015		surface layer	Room_Surface	23061746	127
-ERR1461894	SAMEA4039320	qiita_sid_10172:10172.9982	R10015.Cold Tap Faucet Handle.283	12/4/13	283	Cold Tap Faucet Handle	R10015		surface layer	Room_Surface	24903620	128
+ERR1461461	SAMEA4038887	qiita_sid_10172:10172.10023	Staff 10-C.Hand.283	12/4/13	283	Hand	Staff 10-C	otherRun	sebum	Staff_Skin	23217513	128
+ERR1461462	SAMEA4038888	qiita_sid_10172:10172.10024	Staff 10-C.Nose.283	12/4/13	283	Nose	Staff 10-C	otherRun	sebum	Staff_Skin	18590022	128
+ERR1461463	SAMEA4038889	qiita_sid_10172:10172.10025	Staff 10-C.Shoe.283	12/4/13	283	Shoe	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	8139	127
+ERR1461464	SAMEA4038890	qiita_sid_10172:10172.10026	Staff 10-C.Personal Cell Phone.283	12/4/13	283	Personal Cell Phone	Staff 10-C	otherRun	surface layer	Staff_Surface	15232155	128
+ERR1461465	SAMEA4038891	qiita_sid_10172:10172.10027	Staff 10-C.Hospital Pager.283	12/4/13	283	Hospital Pager	Staff 10-C	otherRun	surface layer	Staff_Surface	13577603	129
+ERR1461466	SAMEA4038892	qiita_sid_10172:10172.10028	Staff 10-C.Shirt Hem.283	12/4/13	283	Shirt Hem	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	16627278	128
+ERR1461467	SAMEA4038893	qiita_sid_10172:10172.10029	Staff 10-D.Hand.283	12/4/13	283	Hand	Staff 10-D	otherRun	sebum	Staff_Skin	16972756	128
+ERR1461468	SAMEA4038894	qiita_sid_10172:10172.10030	Staff 10-D.Nose.283	12/4/13	283	Nose	Staff 10-D	otherRun	sebum	Staff_Skin	7854289	128
+ERR1461469	SAMEA4038895	qiita_sid_10172:10172.10031	Staff 10-D.Shoe.283	12/4/13	283	Shoe	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	14618583	128
+ERR1461470	SAMEA4038896	qiita_sid_10172:10172.10032	Staff 10-D.Personal Cell Phone.283	12/4/13	283	Personal Cell Phone	Staff 10-D	otherRun	surface layer	Staff_Surface	24792056	127
+ERR1461471	SAMEA4038897	qiita_sid_10172:10172.10033	Staff 10-D.Hospital Pager.283	12/4/13	283	Hospital Pager	Staff 10-D	otherRun	surface layer	Staff_Surface	16410139	127
+ERR1461472	SAMEA4038898	qiita_sid_10172:10172.10034	Staff 10-D.Shirt Hem.283	12/4/13	283	Shirt Hem	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	16374937	127
+ERR1461473	SAMEA4038899	qiita_sid_10172:10172.10035	NA.BLANK.283	12/4/13	283	blank control		otherRun	sterile water		12231116	127
+ERR1461474	SAMEA4038900	qiita_sid_10172:10172.10036	R9016.Hand.284	12/5/13	284	Hand	R9016	otherRun	sebum	Patient_Skin	7895846	127
+ERR1461475	SAMEA4038901	qiita_sid_10172:10172.10037	R9016.Nose.284	12/5/13	284	Nose	R9016	otherRun	sebum	Patient_Skin	20339911	128
+ERR1461476	SAMEA4038902	qiita_sid_10172:10172.10038	R9016.Axilla.284	12/5/13	284	Axilla	R9016	otherRun	sebum	Patient_Skin	23010829	128
+ERR1461477	SAMEA4038903	qiita_sid_10172:10172.10039	R9016.Bedrail.284	12/5/13	284	Bedrail	R9016	otherRun	surface layer	Room_Surface	7032239	127
+ERR1461478	SAMEA4038904	qiita_sid_10172:10172.10040	R9016.Glove from Glove Box.284	12/5/13	284	Glove from Glove Box	R9016	otherRun	surface layer	Glove	6343980	127
+ERR1461479	SAMEA4038905	qiita_sid_10172:10172.10041	R9016.Floor.284	12/5/13	284	Floor	R9016	otherRun	surface layer	Room_Surface	31551396	128
+ERR1461480	SAMEA4038906	qiita_sid_10172:10172.10042	R9016.Cold Tap Faucet Handle.284	12/5/13	284	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	16292119	127
+ERR1461481	SAMEA4038907	qiita_sid_10172:10172.10046	R10016.Bedrail.284	12/5/13	284	Bedrail	R10016	otherRun	surface layer	Room_Surface	17458997	128
+ERR1461482	SAMEA4038908	qiita_sid_10172:10172.10849	Staff 09-C.Hand.311	1/1/14	311	Hand	Staff 09-C	otherRun	sebum	Staff_Skin	19328081	128
+ERR1461483	SAMEA4038909	qiita_sid_10172:10172.10850	Staff 09-C.Nose.311	1/1/14	311	Nose	Staff 09-C	otherRun	sebum	Staff_Skin	29752491	128
+ERR1461484	SAMEA4038910	qiita_sid_10172:10172.10851	Staff 09-C.Shoe.311	1/1/14	311	Shoe	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	12132458	127
+ERR1461485	SAMEA4038911	qiita_sid_10172:10172.10852	Staff 09-C.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 09-C	otherRun	surface layer	Staff_Surface	13072125	128
+ERR1461486	SAMEA4038912	qiita_sid_10172:10172.10853	Staff 09-C.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 09-C	otherRun	surface layer	Staff_Surface	14171804	128
+ERR1461487	SAMEA4038913	qiita_sid_10172:10172.10854	Staff 09-C.Shirt Hem.311	1/1/14	311	Shirt Hem	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	7690242	127
+ERR1461488	SAMEA4038914	qiita_sid_10172:10172.10855	Staff 09-D.Hand.311	1/1/14	311	Hand	Staff 09-D	otherRun	sebum	Staff_Skin	8249157	127
+ERR1461489	SAMEA4038915	qiita_sid_10172:10172.10856	Staff 09-D.Nose.311	1/1/14	311	Nose	Staff 09-D	otherRun	sebum	Staff_Skin	22064332	128
+ERR1461490	SAMEA4038916	qiita_sid_10172:10172.10857	Staff 09-D.Shoe.311	1/1/14	311	Shoe	Staff 09-D	otherRun	anthropogenic environmental material	Staff_Surface	17359278	128
+ERR1461491	SAMEA4038917	qiita_sid_10172:10172.10858	Staff 09-D.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 09-D	otherRun	surface layer	Staff_Surface	18213134	128
+ERR1461492	SAMEA4038918	qiita_sid_10172:10172.10859	Staff 09-D.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 09-D	otherRun	surface layer	Staff_Surface	14944848	128
+ERR1461493	SAMEA4038919	qiita_sid_10172:10172.10860	Staff 09-D.Shirt Hem.311	1/1/14	311	Shirt Hem	Staff 09-D	otherRun	anthropogenic environmental material	Staff_Surface	5882519	127
+ERR1461494	SAMEA4038920	qiita_sid_10172:10172.10912	Staff 10-B.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 10-B	otherRun	surface layer	Staff_Surface	11369499	127
+ERR1461495	SAMEA4038921	qiita_sid_10172:10172.10913	Staff 10-B.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 10-B	otherRun	surface layer	Staff_Surface	11368303	127
+ERR1461496	SAMEA4038922	qiita_sid_10172:10172.10919	Staff 10-C.Hospital Pager.311	1/1/14	311	Hospital Pager	Staff 10-C	otherRun	surface layer	Staff_Surface	9524275	127
+ERR1461497	SAMEA4038923	qiita_sid_10172:10172.10920	Staff 10-C.Shirt Hem.311	1/1/14	311	Shirt Hem	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	12617218	127
+ERR1461498	SAMEA4038924	qiita_sid_10172:10172.10921	Staff 10-D.Hand.311	1/1/14	311	Hand	Staff 10-D	otherRun	sebum	Staff_Skin	8410860	127
+ERR1461499	SAMEA4038925	qiita_sid_10172:10172.10922	Staff 10-D.Nose.311	1/1/14	311	Nose	Staff 10-D	otherRun	sebum	Staff_Skin	16098476	127
+ERR1461500	SAMEA4038926	qiita_sid_10172:10172.10923	Staff 10-D.Shoe.311	1/1/14	311	Shoe	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	11939111	128
+ERR1461501	SAMEA4038927	qiita_sid_10172:10172.10924	Staff 10-D.Personal Cell Phone.311	1/1/14	311	Personal Cell Phone	Staff 10-D	otherRun	surface layer	Staff_Surface	10880562	127
+ERR1461502	SAMEA4038928	qiita_sid_10172:10172.10931	R9016.Bedrail.312	1/2/14	312	Bedrail	R9016	otherRun	surface layer	Room_Surface	12262570	128
+ERR1461503	SAMEA4038929	qiita_sid_10172:10172.10932	R9016.Glove from Glove Box.312	1/2/14	312	Glove from Glove Box	R9016	otherRun	surface layer	Glove	18767347	128
+ERR1461504	SAMEA4038930	qiita_sid_10172:10172.10933	R9016.Floor.312	1/2/14	312	Floor	R9016	otherRun	surface layer	Room_Surface	14917809	128
+ERR1461505	SAMEA4038931	qiita_sid_10172:10172.10934	R9016.Cold Tap Faucet Handle.312	1/2/14	312	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	11348134	128
+ERR1461506	SAMEA4038932	qiita_sid_10172:10172.10938	R10016.Bedrail.312	1/2/14	312	Bedrail	R10016	otherRun	surface layer	Room_Surface	12568021	128
+ERR1461507	SAMEA4038933	qiita_sid_10172:10172.10939	R10016.Glove from Glove Box.312	1/2/14	312	Glove from Glove Box	R10016	otherRun	surface layer	Glove	10589608	128
+ERR1461508	SAMEA4038934	qiita_sid_10172:10172.10940	R10016.Floor.312	1/2/14	312	Floor	R10016	otherRun	surface layer	Room_Surface	14108037	128
+ERR1461509	SAMEA4038935	qiita_sid_10172:10172.10941	R10016.Cold Tap Faucet Handle.312	1/2/14	312	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	1764464	127
+ERR1461510	SAMEA4038936	qiita_sid_10172:10172.10942	NA.BLANK.312	1/2/14	312	blank control		otherRun	sterile water		10913385	128
+ERR1461511	SAMEA4038937	qiita_sid_10172:10172.3025	S09.Countertop.66	5/1/13	66	Countertop	S09	otherRun	surface layer	Station_Surface	11249424	127
+ERR1461512	SAMEA4038938	qiita_sid_10172:10172.3026	S09.Computer Mouse.66	5/1/13	66	Computer Mouse	S09	otherRun	surface layer	Station_Surface	5436091	127
+ERR1461513	SAMEA4038939	qiita_sid_10172:10172.3027	S09.Station Phone.66	5/1/13	66	Station Phone	S09	otherRun	surface layer	Station_Surface	6739000	128
+ERR1461514	SAMEA4038940	qiita_sid_10172:10172.3028	S09.Chair Armrest.66	5/1/13	66	Chair Armrest	S09	otherRun	surface layer	Station_Surface	12418814	127
+ERR1461515	SAMEA4038941	qiita_sid_10172:10172.3029	S09.Corridor Floor.66	5/1/13	66	Corridor Floor	S09	otherRun	surface layer	Station_Surface	8838281	128
+ERR1461516	SAMEA4038942	qiita_sid_10172:10172.3030	S09.Hot Tap Water Faucet Handle.66	5/1/13	66	Hot Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	26104314	128
+ERR1461517	SAMEA4038943	qiita_sid_10172:10172.3031	S09.Cold Tap Water Faucet Handle.66	5/1/13	66	Cold Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	25441742	128
+ERR1461518	SAMEA4038944	qiita_sid_10172:10172.3032	Staff 09-A.Hand.66	5/1/13	66	Hand	Staff 09-A	otherRun	sebum	Staff_Skin	21235516	128
+ERR1461519	SAMEA4038945	qiita_sid_10172:10172.3033	Staff 09-A.Nose.66	5/1/13	66	Nose	Staff 09-A	otherRun	sebum	Staff_Skin	20621128	128
+ERR1461520	SAMEA4038946	qiita_sid_10172:10172.3034	Staff 09-A.Shoe.66	5/1/13	66	Shoe	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	2670093	129
+ERR1461521	SAMEA4038947	qiita_sid_10172:10172.3035	Staff 09-A.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-A	otherRun	surface layer	Staff_Surface	10650047	127
+ERR1461522	SAMEA4038948	qiita_sid_10172:10172.3036	Staff 09-A.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-A	otherRun	surface layer	Staff_Surface	20851181	128
+ERR1461523	SAMEA4038949	qiita_sid_10172:10172.3037	Staff 09-A.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	10709336	128
+ERR1461524	SAMEA4038950	qiita_sid_10172:10172.3038	Staff 09-B.Hand.66	5/1/13	66	Hand	Staff 09-B	otherRun	sebum	Staff_Skin	11789353	128
+ERR1461525	SAMEA4038951	qiita_sid_10172:10172.3041	Staff 09-B.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-B	otherRun	surface layer	Staff_Surface	1777	126
+ERR1461526	SAMEA4038952	qiita_sid_10172:10172.3042	Staff 09-B.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-B	otherRun	surface layer	Staff_Surface	2584	129
+ERR1461527	SAMEA4038953	qiita_sid_10172:10172.3043	Staff 09-B.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-B	otherRun	anthropogenic environmental material	Staff_Surface	14000064	128
+ERR1461528	SAMEA4038954	qiita_sid_10172:10172.3044	Staff 09-C.Hand.66	5/1/13	66	Hand	Staff 09-C	otherRun	sebum	Staff_Skin	14283058	128
+ERR1461529	SAMEA4038955	qiita_sid_10172:10172.3045	Staff 09-C.Nose.66	5/1/13	66	Nose	Staff 09-C	otherRun	sebum	Staff_Skin	14351231	128
+ERR1461530	SAMEA4038956	qiita_sid_10172:10172.3046	Staff 09-C.Shoe.66	5/1/13	66	Shoe	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	13366930	128
+ERR1461531	SAMEA4038957	qiita_sid_10172:10172.3047	Staff 09-C.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-C	otherRun	surface layer	Staff_Surface	13584456	128
+ERR1461532	SAMEA4038958	qiita_sid_10172:10172.3048	Staff 09-C.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-C	otherRun	surface layer	Staff_Surface	19132945	128
+ERR1461533	SAMEA4038959	qiita_sid_10172:10172.3049	Staff 09-C.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	10110960	128
+ERR1461534	SAMEA4038960	qiita_sid_10172:10172.3050	Staff 09-D.Hand.66	5/1/13	66	Hand	Staff 09-D	otherRun	sebum	Staff_Skin	7558749	128
+ERR1461535	SAMEA4038961	qiita_sid_10172:10172.3053	Staff 09-D.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 09-D	otherRun	surface layer	Staff_Surface	16504513	128
+ERR1461536	SAMEA4038962	qiita_sid_10172:10172.3054	Staff 09-D.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 09-D	otherRun	surface layer	Staff_Surface	25003352	127
+ERR1461537	SAMEA4038963	qiita_sid_10172:10172.3055	Staff 09-D.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 09-D	otherRun	anthropogenic environmental material	Staff_Surface	3212	128
+ERR1461538	SAMEA4038964	qiita_sid_10172:10172.3091	S10.Countertop.66	5/1/13	66	Countertop	S10	otherRun	surface layer	Station_Surface	3427	126
+ERR1461539	SAMEA4038965	qiita_sid_10172:10172.3092	S10.Computer Mouse.66	5/1/13	66	Computer Mouse	S10	otherRun	surface layer	Station_Surface	19345005	128
+ERR1461540	SAMEA4038966	qiita_sid_10172:10172.3094	S10.Chair Armrest.66	5/1/13	66	Chair Armrest	S10	otherRun	surface layer	Station_Surface	21640500	128
+ERR1461541	SAMEA4038967	qiita_sid_10172:10172.3095	S10.Corridor Floor.66	5/1/13	66	Corridor Floor	S10	otherRun	surface layer	Station_Surface	19387273	127
+ERR1461542	SAMEA4038968	qiita_sid_10172:10172.3096	S10.Hot Tap Water Faucet Handle.66	5/1/13	66	Hot Tap Water Faucet Handle	S10	otherRun	surface layer	Station_Surface	4709886	127
+ERR1461543	SAMEA4038969	qiita_sid_10172:10172.3097	S10.Cold Tap Water Faucet Handle.66	5/1/13	66	Cold Tap Water Faucet Handle	S10	otherRun	surface layer	Station_Surface	19222259	128
+ERR1461544	SAMEA4038970	qiita_sid_10172:10172.3098	Staff 10-A.Hand.66	5/1/13	66	Hand	Staff 10-A	otherRun	sebum	Staff_Skin	23705	127
+ERR1461545	SAMEA4038971	qiita_sid_10172:10172.3099	Staff 10-A.Nose.66	5/1/13	66	Nose	Staff 10-A	otherRun	sebum	Staff_Skin	20224022	128
+ERR1461546	SAMEA4038972	qiita_sid_10172:10172.3100	Staff 10-A.Shoe.66	5/1/13	66	Shoe	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	20846321	128
+ERR1461547	SAMEA4038973	qiita_sid_10172:10172.3101	Staff 10-A.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 10-A	otherRun	surface layer	Staff_Surface	24196262	128
+ERR1461548	SAMEA4038974	qiita_sid_10172:10172.3103	Staff 10-A.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	16407141	128
+ERR1461549	SAMEA4038975	qiita_sid_10172:10172.3104	Staff 10-B.Hand.66	5/1/13	66	Hand	Staff 10-B	otherRun	sebum	Staff_Skin	20830622	127
+ERR1461550	SAMEA4038976	qiita_sid_10172:10172.3105	Staff 10-B.Nose.66	5/1/13	66	Nose	Staff 10-B	otherRun	sebum	Staff_Skin	21081321	127
+ERR1461551	SAMEA4038977	qiita_sid_10172:10172.3106	Staff 10-B.Shoe.66	5/1/13	66	Shoe	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	19858248	128
+ERR1461552	SAMEA4038978	qiita_sid_10172:10172.3107	Staff 10-B.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 10-B	otherRun	surface layer	Staff_Surface	17374668	127
+ERR1461553	SAMEA4038979	qiita_sid_10172:10172.3109	Staff 10-B.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	5389	128
+ERR1461554	SAMEA4038980	qiita_sid_10172:10172.3110	Staff 10-C.Hand.66	5/1/13	66	Hand	Staff 10-C	otherRun	sebum	Staff_Skin	16815194	127
+ERR1461555	SAMEA4038981	qiita_sid_10172:10172.3111	Staff 10-C.Nose.66	5/1/13	66	Nose	Staff 10-C	otherRun	sebum	Staff_Skin	23862007	128
+ERR1461556	SAMEA4038982	qiita_sid_10172:10172.3112	Staff 10-C.Shoe.66	5/1/13	66	Shoe	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	29946996	127
+ERR1461557	SAMEA4038983	qiita_sid_10172:10172.3114	Staff 10-C.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 10-C	otherRun	surface layer	Staff_Surface	21685843	128
+ERR1461558	SAMEA4038984	qiita_sid_10172:10172.3115	Staff 10-C.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	20239128	128
+ERR1461559	SAMEA4038985	qiita_sid_10172:10172.3118	Staff 10-D.Shoe.66	5/1/13	66	Shoe	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	15625911	127
+ERR1461560	SAMEA4038986	qiita_sid_10172:10172.3119	Staff 10-D.Personal Cell Phone.66	5/1/13	66	Personal Cell Phone	Staff 10-D	otherRun	surface layer	Staff_Surface	20432570	128
+ERR1461561	SAMEA4038987	qiita_sid_10172:10172.3120	Staff 10-D.Hospital Pager.66	5/1/13	66	Hospital Pager	Staff 10-D	otherRun	surface layer	Staff_Surface	19991819	128
+ERR1461562	SAMEA4038988	qiita_sid_10172:10172.3121	Staff 10-D.Shirt Hem.66	5/1/13	66	Shirt Hem	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	2029339	128
+ERR1461563	SAMEA4038989	qiita_sid_10172:10172.3248	S09.Countertop.73	5/8/13	73	Countertop	S09	otherRun	surface layer	Station_Surface	6027	128
+ERR1461564	SAMEA4038990	qiita_sid_10172:10172.3249	S09.Computer Mouse.73	5/8/13	73	Computer Mouse	S09	otherRun	surface layer	Station_Surface	7346353	128
+ERR1461565	SAMEA4038991	qiita_sid_10172:10172.3250	S09.Station Phone.73	5/8/13	73	Station Phone	S09	otherRun	surface layer	Station_Surface	24654217	128
+ERR1461566	SAMEA4038992	qiita_sid_10172:10172.3251	S09.Chair Armrest.73	5/8/13	73	Chair Armrest	S09	otherRun	surface layer	Station_Surface	2169	127
+ERR1461567	SAMEA4038993	qiita_sid_10172:10172.3253	S09.Hot Tap Water Faucet Handle.73	5/8/13	73	Hot Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	6250	127
+ERR1461568	SAMEA4038994	qiita_sid_10172:10172.3254	S09.Cold Tap Water Faucet Handle.73	5/8/13	73	Cold Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	29564496	128
+ERR1461569	SAMEA4038995	qiita_sid_10172:10172.3255	Staff 09-A.Hand.73	5/8/13	73	Hand	Staff 09-A	otherRun	sebum	Staff_Skin	20828150	128
+ERR1461570	SAMEA4038996	qiita_sid_10172:10172.3256	Staff 09-A.Nose.73	5/8/13	73	Nose	Staff 09-A	otherRun	sebum	Staff_Skin	23789192	128
+ERR1461571	SAMEA4038997	qiita_sid_10172:10172.3257	Staff 09-A.Shoe.73	5/8/13	73	Shoe	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	15134463	128
+ERR1461572	SAMEA4038998	qiita_sid_10172:10172.3258	Staff 09-A.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-A	otherRun	surface layer	Staff_Surface	16768415	128
+ERR1461573	SAMEA4038999	qiita_sid_10172:10172.3259	Staff 09-A.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-A	otherRun	surface layer	Staff_Surface	13434690	127
+ERR1461574	SAMEA4039000	qiita_sid_10172:10172.3260	Staff 09-A.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	17685584	128
+ERR1461575	SAMEA4039001	qiita_sid_10172:10172.3261	Staff 09-B.Hand.73	5/8/13	73	Hand	Staff 09-B	otherRun	sebum	Staff_Skin	6393187	127
+ERR1461576	SAMEA4039002	qiita_sid_10172:10172.3262	Staff 09-B.Nose.73	5/8/13	73	Nose	Staff 09-B	otherRun	sebum	Staff_Skin	3030	126
+ERR1461577	SAMEA4039003	qiita_sid_10172:10172.3263	Staff 09-B.Shoe.73	5/8/13	73	Shoe	Staff 09-B	otherRun	anthropogenic environmental material	Staff_Surface	13461050	128
+ERR1461578	SAMEA4039004	qiita_sid_10172:10172.3264	Staff 09-B.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-B	otherRun	surface layer	Staff_Surface	9508966	127
+ERR1461579	SAMEA4039005	qiita_sid_10172:10172.3265	Staff 09-B.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-B	otherRun	surface layer	Staff_Surface	27590153	127
+ERR1461580	SAMEA4039006	qiita_sid_10172:10172.3266	Staff 09-B.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-B	otherRun	anthropogenic environmental material	Staff_Surface	23319324	128
+ERR1461581	SAMEA4039007	qiita_sid_10172:10172.3268	Staff 09-C.Nose.73	5/8/13	73	Nose	Staff 09-C	otherRun	sebum	Staff_Skin	25584777	128
+ERR1461582	SAMEA4039008	qiita_sid_10172:10172.3269	Staff 09-C.Shoe.73	5/8/13	73	Shoe	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	19161153	128
+ERR1461583	SAMEA4039009	qiita_sid_10172:10172.3270	Staff 09-C.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-C	otherRun	surface layer	Staff_Surface	14417303	128
+ERR1461584	SAMEA4039010	qiita_sid_10172:10172.3271	Staff 09-C.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-C	otherRun	surface layer	Staff_Surface	15925800	127
+ERR1461585	SAMEA4039011	qiita_sid_10172:10172.3272	Staff 09-C.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	17144509	128
+ERR1461586	SAMEA4039012	qiita_sid_10172:10172.3273	Staff 09-D.Hand.73	5/8/13	73	Hand	Staff 09-D	otherRun	sebum	Staff_Skin	20338141	127
+ERR1461587	SAMEA4039013	qiita_sid_10172:10172.3274	Staff 09-D.Nose.73	5/8/13	73	Nose	Staff 09-D	otherRun	sebum	Staff_Skin	9923087	128
+ERR1461588	SAMEA4039014	qiita_sid_10172:10172.3275	Staff 09-D.Shoe.73	5/8/13	73	Shoe	Staff 09-D	otherRun	anthropogenic environmental material	Staff_Surface	6273030	128
+ERR1461589	SAMEA4039015	qiita_sid_10172:10172.3276	Staff 09-D.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 09-D	otherRun	surface layer	Staff_Surface	14472309	127
+ERR1461590	SAMEA4039016	qiita_sid_10172:10172.3277	Staff 09-D.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 09-D	otherRun	surface layer	Staff_Surface	21098152	127
+ERR1461591	SAMEA4039017	qiita_sid_10172:10172.3278	Staff 09-D.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 09-D	otherRun	anthropogenic environmental material	Staff_Surface	2168	127
+ERR1461592	SAMEA4039018	qiita_sid_10172:10172.3314	S10.Countertop.73	5/8/13	73	Countertop	S10	otherRun	surface layer	Station_Surface	30801678	130
+ERR1461593	SAMEA4039019	qiita_sid_10172:10172.3315	S10.Computer Mouse.73	5/8/13	73	Computer Mouse	S10	otherRun	surface layer	Station_Surface	21318317	128
+ERR1461594	SAMEA4039020	qiita_sid_10172:10172.3316	S10.Station Phone.73	5/8/13	73	Station Phone	S10	otherRun	surface layer	Station_Surface	32331523	128
+ERR1461595	SAMEA4039021	qiita_sid_10172:10172.3317	S10.Chair Armrest.73	5/8/13	73	Chair Armrest	S10	otherRun	surface layer	Station_Surface	4376036	128
+ERR1461596	SAMEA4039022	qiita_sid_10172:10172.3318	S10.Corridor Floor.73	5/8/13	73	Corridor Floor	S10	otherRun	surface layer	Station_Surface	16781118	128
+ERR1461597	SAMEA4039023	qiita_sid_10172:10172.3319	S10.Hot Tap Water Faucet Handle.73	5/8/13	73	Hot Tap Water Faucet Handle	S10	otherRun	surface layer	Station_Surface	10566689	128
+ERR1461598	SAMEA4039024	qiita_sid_10172:10172.3320	S10.Cold Tap Water Faucet Handle.73	5/8/13	73	Cold Tap Water Faucet Handle	S10	otherRun	surface layer	Station_Surface	20202109	127
+ERR1461599	SAMEA4039025	qiita_sid_10172:10172.3321	Staff 10-A.Hand.73	5/8/13	73	Hand	Staff 10-A	otherRun	sebum	Staff_Skin	47708616	129
+ERR1461600	SAMEA4039026	qiita_sid_10172:10172.3322	Staff 10-A.Nose.73	5/8/13	73	Nose	Staff 10-A	otherRun	sebum	Staff_Skin	15065908	128
+ERR1461601	SAMEA4039027	qiita_sid_10172:10172.3323	Staff 10-A.Shoe.73	5/8/13	73	Shoe	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	10578099	128
+ERR1461602	SAMEA4039028	qiita_sid_10172:10172.3324	Staff 10-A.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-A	otherRun	surface layer	Staff_Surface	16053334	127
+ERR1461603	SAMEA4039029	qiita_sid_10172:10172.3325	Staff 10-A.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-A	otherRun	surface layer	Staff_Surface	7351596	127
+ERR1461604	SAMEA4039030	qiita_sid_10172:10172.3326	Staff 10-A.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	10688129	128
+ERR1461605	SAMEA4039031	qiita_sid_10172:10172.3327	Staff 10-B.Hand.73	5/8/13	73	Hand	Staff 10-B	otherRun	sebum	Staff_Skin	10348432	128
+ERR1461606	SAMEA4039032	qiita_sid_10172:10172.3328	Staff 10-B.Nose.73	5/8/13	73	Nose	Staff 10-B	otherRun	sebum	Staff_Skin	8694515	127
+ERR1461607	SAMEA4039033	qiita_sid_10172:10172.3329	Staff 10-B.Shoe.73	5/8/13	73	Shoe	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	13922828	128
+ERR1461608	SAMEA4039034	qiita_sid_10172:10172.3330	Staff 10-B.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-B	otherRun	surface layer	Staff_Surface	4659084	127
+ERR1461609	SAMEA4039035	qiita_sid_10172:10172.3331	Staff 10-B.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-B	otherRun	surface layer	Staff_Surface	6942818	128
+ERR1461610	SAMEA4039036	qiita_sid_10172:10172.3332	Staff 10-B.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	9789695	127
+ERR1461611	SAMEA4039037	qiita_sid_10172:10172.3333	Staff 10-C.Hand.73	5/8/13	73	Hand	Staff 10-C	otherRun	sebum	Staff_Skin	15717152	131
+ERR1461612	SAMEA4039038	qiita_sid_10172:10172.3334	Staff 10-C.Nose.73	5/8/13	73	Nose	Staff 10-C	otherRun	sebum	Staff_Skin	11346724	128
+ERR1461613	SAMEA4039039	qiita_sid_10172:10172.3335	Staff 10-C.Shoe.73	5/8/13	73	Shoe	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	11372648	128
+ERR1461614	SAMEA4039040	qiita_sid_10172:10172.3336	Staff 10-C.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-C	otherRun	surface layer	Staff_Surface	8499031	127
+ERR1461615	SAMEA4039041	qiita_sid_10172:10172.3337	Staff 10-C.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-C	otherRun	surface layer	Staff_Surface	13465653	127
+ERR1461616	SAMEA4039042	qiita_sid_10172:10172.3338	Staff 10-C.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	13465814	128
+ERR1461617	SAMEA4039043	qiita_sid_10172:10172.3339	Staff 10-D.Hand.73	5/8/13	73	Hand	Staff 10-D	otherRun	sebum	Staff_Skin	14031774	128
+ERR1461618	SAMEA4039044	qiita_sid_10172:10172.3340	Staff 10-D.Nose.73	5/8/13	73	Nose	Staff 10-D	otherRun	sebum	Staff_Skin	8952938	128
+ERR1461619	SAMEA4039045	qiita_sid_10172:10172.3341	Staff 10-D.Shoe.73	5/8/13	73	Shoe	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	12522694	128
+ERR1461620	SAMEA4039046	qiita_sid_10172:10172.3342	Staff 10-D.Personal Cell Phone.73	5/8/13	73	Personal Cell Phone	Staff 10-D	otherRun	surface layer	Staff_Surface	9456007	128
+ERR1461621	SAMEA4039047	qiita_sid_10172:10172.3343	Staff 10-D.Hospital Pager.73	5/8/13	73	Hospital Pager	Staff 10-D	otherRun	surface layer	Staff_Surface	8200146	128
+ERR1461622	SAMEA4039048	qiita_sid_10172:10172.3344	Staff 10-D.Shirt Hem.73	5/8/13	73	Shirt Hem	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	7337259	128
+ERR1461623	SAMEA4039049	qiita_sid_10172:10172.3471	S09.Countertop.80	5/15/13	80	Countertop	S09	otherRun	surface layer	Station_Surface	9417643	128
+ERR1461624	SAMEA4039050	qiita_sid_10172:10172.3472	S09.Computer Mouse.80	5/15/13	80	Computer Mouse	S09	otherRun	surface layer	Station_Surface	4181327	128
+ERR1461625	SAMEA4039051	qiita_sid_10172:10172.3473	S09.Station Phone.80	5/15/13	80	Station Phone	S09	otherRun	surface layer	Station_Surface	8020993	127
+ERR1461626	SAMEA4039052	qiita_sid_10172:10172.3474	S09.Chair Armrest.80	5/15/13	80	Chair Armrest	S09	otherRun	surface layer	Station_Surface	5258697	128
+ERR1461627	SAMEA4039053	qiita_sid_10172:10172.3475	S09.Corridor Floor.80	5/15/13	80	Corridor Floor	S09	otherRun	surface layer	Station_Surface	883904	127
+ERR1461628	SAMEA4039054	qiita_sid_10172:10172.3476	S09.Hot Tap Water Faucet Handle.80	5/15/13	80	Hot Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	3301923	127
+ERR1461629	SAMEA4039055	qiita_sid_10172:10172.3477	S09.Cold Tap Water Faucet Handle.80	5/15/13	80	Cold Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	11463007	128
+ERR1461630	SAMEA4039056	qiita_sid_10172:10172.3478	Staff 09-A.Hand.80	5/15/13	80	Hand	Staff 09-A	otherRun	sebum	Staff_Skin	15701357	128
+ERR1461631	SAMEA4039057	qiita_sid_10172:10172.3479	Staff 09-A.Nose.80	5/15/13	80	Nose	Staff 09-A	otherRun	sebum	Staff_Skin	8572497	127
+ERR1461632	SAMEA4039058	qiita_sid_10172:10172.3480	Staff 09-A.Shoe.80	5/15/13	80	Shoe	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	8446880	127
+ERR1461633	SAMEA4039059	qiita_sid_10172:10172.3481	Staff 09-A.Personal Cell Phone.80	5/15/13	80	Personal Cell Phone	Staff 09-A	otherRun	surface layer	Staff_Surface	7109744	127
+ERR1461634	SAMEA4039060	qiita_sid_10172:10172.3482	Staff 09-A.Hospital Pager.80	5/15/13	80	Hospital Pager	Staff 09-A	otherRun	surface layer	Staff_Surface	3436362	128
+ERR1461635	SAMEA4039061	qiita_sid_10172:10172.3483	Staff 09-A.Shirt Hem.80	5/15/13	80	Shirt Hem	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	10148312	128
+ERR1461636	SAMEA4039062	qiita_sid_10172:10172.3484	Staff 09-B.Hand.80	5/15/13	80	Hand	Staff 09-B	otherRun	sebum	Staff_Skin	6115870	128
+ERR1461637	SAMEA4039063	qiita_sid_10172:10172.3485	Staff 09-B.Nose.80	5/15/13	80	Nose	Staff 09-B	otherRun	sebum	Staff_Skin	5794046	128
+ERR1461638	SAMEA4039064	qiita_sid_10172:10172.3486	Staff 09-B.Shoe.80	5/15/13	80	Shoe	Staff 09-B	otherRun	anthropogenic environmental material	Staff_Surface	17702127	128
+ERR1461639	SAMEA4039065	qiita_sid_10172:10172.3487	Staff 09-B.Personal Cell Phone.80	5/15/13	80	Personal Cell Phone	Staff 09-B	otherRun	surface layer	Staff_Surface	27710875	128
+ERR1461640	SAMEA4039066	qiita_sid_10172:10172.3488	Staff 09-B.Hospital Pager.80	5/15/13	80	Hospital Pager	Staff 09-B	otherRun	surface layer	Staff_Surface	1160257	128
+ERR1461641	SAMEA4039067	qiita_sid_10172:10172.4238	R9016.Hand.102	6/6/13	102	Hand	R9016	otherRun	sebum	Patient_Skin	13304502	128
+ERR1461642	SAMEA4039068	qiita_sid_10172:10172.4239	R9016.Nose.102	6/6/13	102	Nose	R9016	otherRun	sebum	Patient_Skin	9766486	127
+ERR1461643	SAMEA4039069	qiita_sid_10172:10172.4240	R9016.Axilla.102	6/6/13	102	Axilla	R9016	otherRun	sebum	Patient_Skin	19507810	128
+ERR1461644	SAMEA4039070	qiita_sid_10172:10172.4241	R9016.Bedrail.102	6/6/13	102	Bedrail	R9016	otherRun	surface layer	Room_Surface	13663650	128
+ERR1461645	SAMEA4039071	qiita_sid_10172:10172.4243	R9016.Floor.102	6/6/13	102	Floor	R9016	otherRun	surface layer	Room_Surface	15605339	128
+ERR1461646	SAMEA4039072	qiita_sid_10172:10172.4244	R9016.Cold Tap Faucet Handle.102	6/6/13	102	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	13962339	128
+ERR1461647	SAMEA4039073	qiita_sid_10172:10172.4245	R10016.Hand.102	6/6/13	102	Hand	R10016	otherRun	sebum	Patient_Skin	18248092	128
+ERR1461648	SAMEA4039074	qiita_sid_10172:10172.4246	R10016.Nose.102	6/6/13	102	Nose	R10016	otherRun	sebum	Patient_Skin	9325783	128
+ERR1461649	SAMEA4039075	qiita_sid_10172:10172.4247	R10016.Axilla.102	6/6/13	102	Axilla	R10016	otherRun	sebum	Patient_Skin	3263547	128
+ERR1461650	SAMEA4039076	qiita_sid_10172:10172.4248	R10016.Bedrail.102	6/6/13	102	Bedrail	R10016	otherRun	surface layer	Room_Surface	1033077	127
+ERR1461651	SAMEA4039077	qiita_sid_10172:10172.4249	R10016.Glove from Glove Box.102	6/6/13	102	Glove from Glove Box	R10016	otherRun	surface layer	Glove	4364032	127
+ERR1461652	SAMEA4039078	qiita_sid_10172:10172.4250	R10016.Floor.102	6/6/13	102	Floor	R10016	otherRun	surface layer	Room_Surface	16164790	128
+ERR1461653	SAMEA4039079	qiita_sid_10172:10172.4251	R10016.Cold Tap Faucet Handle.102	6/6/13	102	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	14302488	127
+ERR1461654	SAMEA4039080	qiita_sid_10172:10172.4252	NA.BLANK.102	6/6/13	102	blank control		otherRun	sterile water		14344649	128
+ERR1461655	SAMEA4039081	qiita_sid_10172:10172.4260	R10016.Hand.103	6/7/13	103	Hand	R10016	otherRun	sebum	Patient_Skin	12767464	128
+ERR1461656	SAMEA4039082	qiita_sid_10172:10172.4261	R10016.Nose.103	6/7/13	103	Nose	R10016	otherRun	sebum	Patient_Skin	413658	127
+ERR1461657	SAMEA4039083	qiita_sid_10172:10172.4262	R10016.Axilla.103	6/7/13	103	Axilla	R10016	otherRun	sebum	Patient_Skin	9676973	127
+ERR1461658	SAMEA4039084	qiita_sid_10172:10172.4263	R10016.Bedrail.103	6/7/13	103	Bedrail	R10016	otherRun	surface layer	Room_Surface	12411695	128
+ERR1461659	SAMEA4039085	qiita_sid_10172:10172.4264	R10016.Glove from Glove Box.103	6/7/13	103	Glove from Glove Box	R10016	otherRun	surface layer	Glove	13582230	128
+ERR1461660	SAMEA4039086	qiita_sid_10172:10172.4265	R10016.Floor.103	6/7/13	103	Floor	R10016	otherRun	surface layer	Room_Surface	10538026	128
+ERR1461661	SAMEA4039087	qiita_sid_10172:10172.4266	R10016.Cold Tap Faucet Handle.103	6/7/13	103	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	14035505	128
+ERR1461662	SAMEA4039088	qiita_sid_10172:10172.4267	NA.BLANK.103	6/7/13	103	blank control		otherRun	sterile water		13620821	128
+ERR1461663	SAMEA4039089	qiita_sid_10172:10172.4268	R9016.Hand.104	6/8/13	104	Hand	R9016	otherRun	sebum	Patient_Skin	8541925	128
+ERR1461664	SAMEA4039090	qiita_sid_10172:10172.4269	R9016.Nose.104	6/8/13	104	Nose	R9016	otherRun	sebum	Patient_Skin	14666112	128
+ERR1461665	SAMEA4039091	qiita_sid_10172:10172.4270	R9016.Axilla.104	6/8/13	104	Axilla	R9016	otherRun	sebum	Patient_Skin	13433351	128
+ERR1461666	SAMEA4039092	qiita_sid_10172:10172.4271	R9016.Bedrail.104	6/8/13	104	Bedrail	R9016	otherRun	surface layer	Room_Surface	11766469	128
+ERR1461667	SAMEA4039093	qiita_sid_10172:10172.4272	R9016.Glove from Glove Box.104	6/8/13	104	Glove from Glove Box	R9016	otherRun	surface layer	Glove	13822988	128
+ERR1461668	SAMEA4039094	qiita_sid_10172:10172.4273	R9016.Floor.104	6/8/13	104	Floor	R9016	otherRun	surface layer	Room_Surface	13139536	128
+ERR1461669	SAMEA4039095	qiita_sid_10172:10172.4274	R9016.Cold Tap Faucet Handle.104	6/8/13	104	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	13708747	128
+ERR1461670	SAMEA4039096	qiita_sid_10172:10172.4278	R10016.Bedrail.104	6/8/13	104	Bedrail	R10016	otherRun	surface layer	Room_Surface	13950814	127
+ERR1461671	SAMEA4039097	qiita_sid_10172:10172.4279	R10016.Glove from Glove Box.104	6/8/13	104	Glove from Glove Box	R10016	otherRun	surface layer	Glove	13984584	128
+ERR1461672	SAMEA4039098	qiita_sid_10172:10172.4281	R10016.Cold Tap Faucet Handle.104	6/8/13	104	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	15352685	128
+ERR1461673	SAMEA4039099	qiita_sid_10172:10172.4282	NA.BLANK.104	6/8/13	104	blank control		otherRun	sterile water		12916717	128
+ERR1461674	SAMEA4039100	qiita_sid_10172:10172.4283	R9016.Hand.105	6/9/13	105	Hand	R9016	otherRun	sebum	Patient_Skin	12180856	128
+ERR1461675	SAMEA4039101	qiita_sid_10172:10172.4284	R9016.Nose.105	6/9/13	105	Nose	R9016	otherRun	sebum	Patient_Skin	12317104	128
+ERR1461676	SAMEA4039102	qiita_sid_10172:10172.4285	R9016.Axilla.105	6/9/13	105	Axilla	R9016	otherRun	sebum	Patient_Skin	15649612	127
+ERR1461677	SAMEA4039103	qiita_sid_10172:10172.4286	R9016.Bedrail.105	6/9/13	105	Bedrail	R9016	otherRun	surface layer	Room_Surface	15612392	128
+ERR1461678	SAMEA4039104	qiita_sid_10172:10172.4287	R9016.Glove from Glove Box.105	6/9/13	105	Glove from Glove Box	R9016	otherRun	surface layer	Glove	12191339	128
+ERR1461679	SAMEA4039105	qiita_sid_10172:10172.4288	R9016.Floor.105	6/9/13	105	Floor	R9016	otherRun	surface layer	Room_Surface	7993516	128
+ERR1461680	SAMEA4039106	qiita_sid_10172:10172.4293	R10016.Bedrail.105	6/9/13	105	Bedrail	R10016	otherRun	surface layer	Room_Surface	10987615	127
+ERR1461681	SAMEA4039107	qiita_sid_10172:10172.4294	R10016.Glove from Glove Box.105	6/9/13	105	Glove from Glove Box	R10016	otherRun	surface layer	Glove	17149380	128
+ERR1461682	SAMEA4039108	qiita_sid_10172:10172.4296	R10016.Cold Tap Faucet Handle.105	6/9/13	105	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	13110937	128
+ERR1461683	SAMEA4039109	qiita_sid_10172:10172.4297	NA.BLANK.105	6/9/13	105	blank control		otherRun	sterile water		13910952	128
+ERR1461684	SAMEA4039110	qiita_sid_10172:10172.4298	R9016.Hand.106	6/10/13	106	Hand	R9016	otherRun	sebum	Patient_Skin	202217	126
+ERR1461685	SAMEA4039111	qiita_sid_10172:10172.4299	R9016.Nose.106	6/10/13	106	Nose	R9016	otherRun	sebum	Patient_Skin	13003427	128
+ERR1461686	SAMEA4039112	qiita_sid_10172:10172.4300	R9016.Axilla.106	6/10/13	106	Axilla	R9016	otherRun	sebum	Patient_Skin	12047297	128
+ERR1461687	SAMEA4039113	qiita_sid_10172:10172.4301	R9016.Bedrail.106	6/10/13	106	Bedrail	R9016	otherRun	surface layer	Room_Surface	12750455	128
+ERR1461688	SAMEA4039114	qiita_sid_10172:10172.4302	R9016.Glove from Glove Box.106	6/10/13	106	Glove from Glove Box	R9016	otherRun	surface layer	Glove	19634357	127
+ERR1461689	SAMEA4039115	qiita_sid_10172:10172.4303	R9016.Floor.106	6/10/13	106	Floor	R9016	otherRun	surface layer	Room_Surface	13173475	128
+ERR1461690	SAMEA4039116	qiita_sid_10172:10172.4304	R9016.Cold Tap Faucet Handle.106	6/10/13	106	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	13429311	128
+ERR1461691	SAMEA4039117	qiita_sid_10172:10172.4313	R9016.Hand.107	6/11/13	107	Hand	R9016	otherRun	sebum	Patient_Skin	11540311	128
+ERR1461692	SAMEA4039118	qiita_sid_10172:10172.4314	R9016.Nose.107	6/11/13	107	Nose	R9016	otherRun	sebum	Patient_Skin	14392630	128
+ERR1461693	SAMEA4039119	qiita_sid_10172:10172.4315	R9016.Axilla.107	6/11/13	107	Axilla	R9016	otherRun	sebum	Patient_Skin	128631	127
+ERR1461694	SAMEA4039120	qiita_sid_10172:10172.4316	R9016.Bedrail.107	6/11/13	107	Bedrail	R9016	otherRun	surface layer	Room_Surface	12388661	128
+ERR1461695	SAMEA4039121	qiita_sid_10172:10172.4317	R9016.Glove from Glove Box.107	6/11/13	107	Glove from Glove Box	R9016	otherRun	surface layer	Glove	10809748	128
+ERR1461696	SAMEA4039122	qiita_sid_10172:10172.4318	R9016.Floor.107	6/11/13	107	Floor	R9016	otherRun	surface layer	Room_Surface	253481	126
+ERR1461697	SAMEA4039123	qiita_sid_10172:10172.4319	R9016.Cold Tap Faucet Handle.107	6/11/13	107	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	11823430	128
+ERR1461698	SAMEA4039124	qiita_sid_10172:10172.4320	R10016.Hand.107	6/11/13	107	Hand	R10016	otherRun	sebum	Patient_Skin	15496615	128
+ERR1461699	SAMEA4039125	qiita_sid_10172:10172.4321	R10016.Nose.107	6/11/13	107	Nose	R10016	otherRun	sebum	Patient_Skin	12773409	128
+ERR1461700	SAMEA4039126	qiita_sid_10172:10172.4322	R10016.Axilla.107	6/11/13	107	Axilla	R10016	otherRun	sebum	Patient_Skin	13606078	127
+ERR1461701	SAMEA4039127	qiita_sid_10172:10172.4323	R10016.Bedrail.107	6/11/13	107	Bedrail	R10016	otherRun	surface layer	Room_Surface	13443166	128
+ERR1461702	SAMEA4039128	qiita_sid_10172:10172.4324	R10016.Glove from Glove Box.107	6/11/13	107	Glove from Glove Box	R10016	otherRun	surface layer	Glove	13592444	128
+ERR1461703	SAMEA4039129	qiita_sid_10172:10172.4327	NA.BLANK.107	6/11/13	107	blank control		otherRun	sterile water		10260475	128
+ERR1461704	SAMEA4039130	qiita_sid_10172:10172.4363	S09.Countertop.108	6/12/13	108	Countertop	S09	otherRun	surface layer	Station_Surface	15274594	128
+ERR1461705	SAMEA4039131	qiita_sid_10172:10172.4364	S09.Computer Mouse.108	6/12/13	108	Computer Mouse	S09	otherRun	surface layer	Station_Surface	11511081	128
+ERR1461706	SAMEA4039132	qiita_sid_10172:10172.4365	S09.Station Phone.108	6/12/13	108	Station Phone	S09	otherRun	surface layer	Station_Surface	7867676	128
+ERR1461707	SAMEA4039133	qiita_sid_10172:10172.4366	S09.Chair Armrest.108	6/12/13	108	Chair Armrest	S09	otherRun	surface layer	Station_Surface	10689847	127
+ERR1461708	SAMEA4039134	qiita_sid_10172:10172.4367	S09.Corridor Floor.108	6/12/13	108	Corridor Floor	S09	otherRun	surface layer	Station_Surface	12091048	128
+ERR1461709	SAMEA4039135	qiita_sid_10172:10172.4368	S09.Hot Tap Water Faucet Handle.108	6/12/13	108	Hot Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	12520983	128
+ERR1461710	SAMEA4039136	qiita_sid_10172:10172.4369	S09.Cold Tap Water Faucet Handle.108	6/12/13	108	Cold Tap Water Faucet Handle	S09	otherRun	surface layer	Station_Surface	13794906	128
+ERR1461711	SAMEA4039137	qiita_sid_10172:10172.4370	Staff 09-A.Hand.108	6/12/13	108	Hand	Staff 09-A	otherRun	sebum	Staff_Skin	12763858	128
+ERR1461712	SAMEA4039138	qiita_sid_10172:10172.4371	Staff 09-A.Nose.108	6/12/13	108	Nose	Staff 09-A	otherRun	sebum	Staff_Skin	13612781	128
+ERR1461713	SAMEA4039139	qiita_sid_10172:10172.4372	Staff 09-A.Shoe.108	6/12/13	108	Shoe	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	11742780	127
+ERR1461714	SAMEA4039140	qiita_sid_10172:10172.4373	Staff 09-A.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 09-A	otherRun	surface layer	Staff_Surface	12401535	127
+ERR1461715	SAMEA4039141	qiita_sid_10172:10172.4374	Staff 09-A.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 09-A	otherRun	surface layer	Staff_Surface	11929058	128
+ERR1461716	SAMEA4039142	qiita_sid_10172:10172.4375	Staff 09-A.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 09-A	otherRun	anthropogenic environmental material	Staff_Surface	12293622	127
+ERR1461717	SAMEA4039143	qiita_sid_10172:10172.4376	Staff 09-B.Hand.108	6/12/13	108	Hand	Staff 09-B	otherRun	sebum	Staff_Skin	14298967	128
+ERR1461718	SAMEA4039144	qiita_sid_10172:10172.4377	Staff 09-B.Nose.108	6/12/13	108	Nose	Staff 09-B	otherRun	sebum	Staff_Skin	914572	127
+ERR1461719	SAMEA4039145	qiita_sid_10172:10172.4378	Staff 09-B.Shoe.108	6/12/13	108	Shoe	Staff 09-B	otherRun	anthropogenic environmental material	Staff_Surface	393322	127
+ERR1461720	SAMEA4039146	qiita_sid_10172:10172.4379	Staff 09-B.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 09-B	otherRun	surface layer	Staff_Surface	12441241	128
+ERR1461721	SAMEA4039147	qiita_sid_10172:10172.4380	Staff 09-B.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 09-B	otherRun	surface layer	Staff_Surface	15610181	128
+ERR1461722	SAMEA4039148	qiita_sid_10172:10172.4381	Staff 09-B.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 09-B	otherRun	anthropogenic environmental material	Staff_Surface	14592528	128
+ERR1461723	SAMEA4039149	qiita_sid_10172:10172.4383	Staff 09-C.Nose.108	6/12/13	108	Nose	Staff 09-C	otherRun	sebum	Staff_Skin	20381796	128
+ERR1461724	SAMEA4039150	qiita_sid_10172:10172.4384	Staff 09-C.Shoe.108	6/12/13	108	Shoe	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	19885178	128
+ERR1461725	SAMEA4039151	qiita_sid_10172:10172.4429	S10.Countertop.108	6/12/13	108	Countertop	S10	otherRun	surface layer	Station_Surface	18519959	128
+ERR1461726	SAMEA4039152	qiita_sid_10172:10172.4430	S10.Computer Mouse.108	6/12/13	108	Computer Mouse	S10	otherRun	surface layer	Station_Surface	13066761	128
+ERR1461727	SAMEA4039153	qiita_sid_10172:10172.4431	S10.Station Phone.108	6/12/13	108	Station Phone	S10	otherRun	surface layer	Station_Surface	9198647	128
+ERR1461728	SAMEA4039154	qiita_sid_10172:10172.4432	S10.Chair Armrest.108	6/12/13	108	Chair Armrest	S10	otherRun	surface layer	Station_Surface	14729071	128
+ERR1461729	SAMEA4039155	qiita_sid_10172:10172.4433	S10.Corridor Floor.108	6/12/13	108	Corridor Floor	S10	otherRun	surface layer	Station_Surface	13232400	128
+ERR1461730	SAMEA4039156	qiita_sid_10172:10172.4434	S10.Hot Tap Water Faucet Handle.108	6/12/13	108	Hot Tap Water Faucet Handle	S10	otherRun	surface layer	Station_Surface	12613252	128
+ERR1461731	SAMEA4039157	qiita_sid_10172:10172.4435	S10.Cold Tap Water Faucet Handle.108	6/12/13	108	Cold Tap Water Faucet Handle	S10	otherRun	surface layer	Station_Surface	14317942	128
+ERR1461732	SAMEA4039158	qiita_sid_10172:10172.4436	Staff 10-A.Hand.108	6/12/13	108	Hand	Staff 10-A	otherRun	sebum	Staff_Skin	14303030	128
+ERR1461733	SAMEA4039159	qiita_sid_10172:10172.4437	Staff 10-A.Nose.108	6/12/13	108	Nose	Staff 10-A	otherRun	sebum	Staff_Skin	18253003	128
+ERR1461734	SAMEA4039160	qiita_sid_10172:10172.4438	Staff 10-A.Shoe.108	6/12/13	108	Shoe	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	24739657	128
+ERR1461735	SAMEA4039161	qiita_sid_10172:10172.4439	Staff 10-A.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-A	otherRun	surface layer	Staff_Surface	23065354	128
+ERR1461736	SAMEA4039162	qiita_sid_10172:10172.4440	Staff 10-A.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-A	otherRun	surface layer	Staff_Surface	22568270	128
+ERR1461737	SAMEA4039163	qiita_sid_10172:10172.4441	Staff 10-A.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	16927535	128
+ERR1461738	SAMEA4039164	qiita_sid_10172:10172.4442	Staff 10-B.Hand.108	6/12/13	108	Hand	Staff 10-B	otherRun	sebum	Staff_Skin	19183822	128
+ERR1461739	SAMEA4039165	qiita_sid_10172:10172.4443	Staff 10-B.Nose.108	6/12/13	108	Nose	Staff 10-B	otherRun	sebum	Staff_Skin	17525834	128
+ERR1461740	SAMEA4039166	qiita_sid_10172:10172.4444	Staff 10-B.Shoe.108	6/12/13	108	Shoe	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	17145	128
+ERR1461741	SAMEA4039167	qiita_sid_10172:10172.4445	Staff 10-B.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-B	otherRun	surface layer	Staff_Surface	24998791	127
+ERR1461742	SAMEA4039168	qiita_sid_10172:10172.4446	Staff 10-B.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-B	otherRun	surface layer	Staff_Surface	26238014	128
+ERR1461743	SAMEA4039169	qiita_sid_10172:10172.4447	Staff 10-B.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	13113672	128
+ERR1461744	SAMEA4039170	qiita_sid_10172:10172.4448	Staff 10-C.Hand.108	6/12/13	108	Hand	Staff 10-C	otherRun	sebum	Staff_Skin	10400378	128
+ERR1461745	SAMEA4039171	qiita_sid_10172:10172.4449	Staff 10-C.Nose.108	6/12/13	108	Nose	Staff 10-C	otherRun	sebum	Staff_Skin	13943719	128
+ERR1461746	SAMEA4039172	qiita_sid_10172:10172.4450	Staff 10-C.Shoe.108	6/12/13	108	Shoe	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	14609604	128
+ERR1461747	SAMEA4039173	qiita_sid_10172:10172.4451	Staff 10-C.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-C	otherRun	surface layer	Staff_Surface	14176083	128
+ERR1461748	SAMEA4039174	qiita_sid_10172:10172.4452	Staff 10-C.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-C	otherRun	surface layer	Staff_Surface	17539097	128
+ERR1461749	SAMEA4039175	qiita_sid_10172:10172.4453	Staff 10-C.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	21297660	128
+ERR1461750	SAMEA4039176	qiita_sid_10172:10172.4454	Staff 10-D.Hand.108	6/12/13	108	Hand	Staff 10-D	otherRun	sebum	Staff_Skin	21186268	128
+ERR1461751	SAMEA4039177	qiita_sid_10172:10172.4455	Staff 10-D.Nose.108	6/12/13	108	Nose	Staff 10-D	otherRun	sebum	Staff_Skin	23092624	128
+ERR1461752	SAMEA4039178	qiita_sid_10172:10172.4456	Staff 10-D.Shoe.108	6/12/13	108	Shoe	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	28372747	128
+ERR1461753	SAMEA4039179	qiita_sid_10172:10172.4457	Staff 10-D.Personal Cell Phone.108	6/12/13	108	Personal Cell Phone	Staff 10-D	otherRun	surface layer	Staff_Surface	27295022	128
+ERR1461754	SAMEA4039180	qiita_sid_10172:10172.4458	Staff 10-D.Hospital Pager.108	6/12/13	108	Hospital Pager	Staff 10-D	otherRun	surface layer	Staff_Surface	22213398	128
+ERR1461755	SAMEA4039181	qiita_sid_10172:10172.4459	Staff 10-D.Shirt Hem.108	6/12/13	108	Shirt Hem	Staff 10-D	otherRun	anthropogenic environmental material	Staff_Surface	21881048	128
+ERR1461756	SAMEA4039182	qiita_sid_10172:10172.4485	R10016.Axilla.110	6/14/13	110	Axilla	R10016	otherRun	sebum	Patient_Skin	23229225	127
+ERR1461757	SAMEA4039183	qiita_sid_10172:10172.4486	R10016.Bedrail.110	6/14/13	110	Bedrail	R10016	otherRun	surface layer	Room_Surface	23402570	127
+ERR1461758	SAMEA4039184	qiita_sid_10172:10172.4487	R10016.Glove from Glove Box.110	6/14/13	110	Glove from Glove Box	R10016	otherRun	surface layer	Glove	27383758	128
+ERR1461759	SAMEA4039185	qiita_sid_10172:10172.4488	R10016.Floor.110	6/14/13	110	Floor	R10016	otherRun	surface layer	Room_Surface	17463194	128
+ERR1461760	SAMEA4039186	qiita_sid_10172:10172.4489	R10016.Cold Tap Faucet Handle.110	6/14/13	110	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	20358506	127
+ERR1461761	SAMEA4039187	qiita_sid_10172:10172.4490	NA.BLANK.110	6/14/13	110	blank control		otherRun	sterile water		17918967	128
+ERR1461762	SAMEA4039188	qiita_sid_10172:10172.4491	R9016.Hand.111	6/15/13	111	Hand	R9016	otherRun	sebum	Patient_Skin	16117798	128
+ERR1461763	SAMEA4039189	qiita_sid_10172:10172.4492	R9016.Nose.111	6/15/13	111	Nose	R9016	otherRun	sebum	Patient_Skin	21962572	127
+ERR1461764	SAMEA4039190	qiita_sid_10172:10172.4493	R9016.Axilla.111	6/15/13	111	Axilla	R9016	otherRun	sebum	Patient_Skin	25295857	128
+ERR1461765	SAMEA4039191	qiita_sid_10172:10172.7510	Staff 09-D.Hand.206	9/18/13	206	Hand	Staff 09-D	otherRun	sebum	Staff_Skin	20237435	128
+ERR1461766	SAMEA4039192	qiita_sid_10172:10172.7511	Staff 09-D.Nose.206	9/18/13	206	Nose	Staff 09-D	otherRun	sebum	Staff_Skin	11424207	128
+ERR1461767	SAMEA4039193	qiita_sid_10172:10172.7512	Staff 09-D.Shoe.206	9/18/13	206	Shoe	Staff 09-D	otherRun	anthropogenic environmental material	Staff_Surface	16212280	128
+ERR1461768	SAMEA4039194	qiita_sid_10172:10172.7514	Staff 09-D.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 09-D	otherRun	surface layer	Staff_Surface	14781495	128
+ERR1461769	SAMEA4039195	qiita_sid_10172:10172.7515	Staff 09-D.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 09-D	otherRun	anthropogenic environmental material	Staff_Surface	20632471	127
+ERR1461770	SAMEA4039196	qiita_sid_10172:10172.7526	R10015.Bedrail.206	9/18/13	206	Bedrail	R10015	otherRun	surface layer	Room_Surface	14395070	128
+ERR1461771	SAMEA4039197	qiita_sid_10172:10172.7527	R10015.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10015	otherRun	surface layer	Glove	14807237	128
+ERR1461772	SAMEA4039198	qiita_sid_10172:10172.7528	R10015.Floor.206	9/18/13	206	Floor	R10015	otherRun	surface layer	Room_Surface	19166326	128
+ERR1461773	SAMEA4039199	qiita_sid_10172:10172.7529	R10015.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10015	otherRun	surface layer	Room_Surface	19586286	128
+ERR1461774	SAMEA4039200	qiita_sid_10172:10172.7533	R10016.Bedrail.206	9/18/13	206	Bedrail	R10016	otherRun	surface layer	Room_Surface	13134840	128
+ERR1461775	SAMEA4039201	qiita_sid_10172:10172.7534	R10016.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10016	otherRun	surface layer	Glove	24641829	127
+ERR1461776	SAMEA4039202	qiita_sid_10172:10172.7535	R10016.Floor.206	9/18/13	206	Floor	R10016	otherRun	surface layer	Room_Surface	15654878	128
+ERR1461777	SAMEA4039203	qiita_sid_10172:10172.7536	R10016.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	14464749	128
+ERR1461778	SAMEA4039204	qiita_sid_10172:10172.7540	R10017.Bedrail.206	9/18/13	206	Bedrail	R10017	otherRun	surface layer	Room_Surface	16041246	127
+ERR1461779	SAMEA4039205	qiita_sid_10172:10172.7541	R10017.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10017	otherRun	surface layer	Glove	18242962	128
+ERR1461780	SAMEA4039206	qiita_sid_10172:10172.7542	R10017.Floor.206	9/18/13	206	Floor	R10017	otherRun	surface layer	Room_Surface	12394695	128
+ERR1461781	SAMEA4039207	qiita_sid_10172:10172.7543	R10017.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10017	otherRun	surface layer	Room_Surface	16273445	128
+ERR1461782	SAMEA4039208	qiita_sid_10172:10172.7547	R10018.Bedrail.206	9/18/13	206	Bedrail	R10018	otherRun	surface layer	Room_Surface	5052679	128
+ERR1461783	SAMEA4039209	qiita_sid_10172:10172.7548	R10018.Glove from Glove Box.206	9/18/13	206	Glove from Glove Box	R10018	otherRun	surface layer	Glove	19033870	129
+ERR1461784	SAMEA4039210	qiita_sid_10172:10172.7549	R10018.Floor.206	9/18/13	206	Floor	R10018	otherRun	surface layer	Room_Surface	13466704	128
+ERR1461785	SAMEA4039211	qiita_sid_10172:10172.7550	R10018.Cold Tap Faucet Handle.206	9/18/13	206	Cold Tap Faucet Handle	R10018	otherRun	surface layer	Room_Surface	45313774	128
+ERR1461786	SAMEA4039212	qiita_sid_10172:10172.7551	S10.Countertop.206	9/18/13	206	Countertop	S10	otherRun	surface layer	Station_Surface	32331460	127
+ERR1461787	SAMEA4039213	qiita_sid_10172:10172.7552	S10.Computer Mouse.206	9/18/13	206	Computer Mouse	S10	otherRun	surface layer	Station_Surface	35958436	128
+ERR1461788	SAMEA4039214	qiita_sid_10172:10172.7554	S10.Chair Armrest.206	9/18/13	206	Chair Armrest	S10	otherRun	surface layer	Station_Surface	24612932	127
+ERR1461789	SAMEA4039215	qiita_sid_10172:10172.7555	S10.Corridor Floor.206	9/18/13	206	Corridor Floor	S10	otherRun	surface layer	Station_Surface	12845113	128
+ERR1461790	SAMEA4039216	qiita_sid_10172:10172.7556	S10.Hot Tap Water.206	9/18/13	206	Hot Tap Water	S10	otherRun	water	Water	28507106	127
+ERR1461791	SAMEA4039217	qiita_sid_10172:10172.7557	S10.Cold Tap Water.206	9/18/13	206	Cold Tap Water	S10	otherRun	water	Water	21376524	128
+ERR1461792	SAMEA4039218	qiita_sid_10172:10172.7558	Staff 10-A.Hand.206	9/18/13	206	Hand	Staff 10-A	otherRun	sebum	Staff_Skin	21749968	128
+ERR1461793	SAMEA4039219	qiita_sid_10172:10172.7559	Staff 10-A.Nose.206	9/18/13	206	Nose	Staff 10-A	otherRun	sebum	Staff_Skin	13118719	128
+ERR1461794	SAMEA4039220	qiita_sid_10172:10172.7560	Staff 10-A.Shoe.206	9/18/13	206	Shoe	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	26393786	128
+ERR1461795	SAMEA4039221	qiita_sid_10172:10172.7561	Staff 10-A.Personal Cell Phone.206	9/18/13	206	Personal Cell Phone	Staff 10-A	otherRun	surface layer	Staff_Surface	25119973	128
+ERR1461796	SAMEA4039222	qiita_sid_10172:10172.7562	Staff 10-A.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 10-A	otherRun	surface layer	Staff_Surface	35317252	127
+ERR1461797	SAMEA4039223	qiita_sid_10172:10172.7563	Staff 10-A.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 10-A	otherRun	anthropogenic environmental material	Staff_Surface	11907804	128
+ERR1461798	SAMEA4039224	qiita_sid_10172:10172.7564	Staff 10-B.Hand.206	9/18/13	206	Hand	Staff 10-B	otherRun	sebum	Staff_Skin	41008363	127
+ERR1461799	SAMEA4039225	qiita_sid_10172:10172.7565	Staff 10-B.Nose.206	9/18/13	206	Nose	Staff 10-B	otherRun	sebum	Staff_Skin	31712385	127
+ERR1461800	SAMEA4039226	qiita_sid_10172:10172.7566	Staff 10-B.Shoe.206	9/18/13	206	Shoe	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	22204480	127
+ERR1461801	SAMEA4039227	qiita_sid_10172:10172.7567	Staff 10-B.Personal Cell Phone.206	9/18/13	206	Personal Cell Phone	Staff 10-B	otherRun	surface layer	Staff_Surface	13675452	128
+ERR1461802	SAMEA4039228	qiita_sid_10172:10172.7568	Staff 10-B.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 10-B	otherRun	surface layer	Staff_Surface	25198030	127
+ERR1461803	SAMEA4039229	qiita_sid_10172:10172.7569	Staff 10-B.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 10-B	otherRun	anthropogenic environmental material	Staff_Surface	13493080	127
+ERR1461804	SAMEA4039230	qiita_sid_10172:10172.7570	Staff 10-C.Hand.206	9/18/13	206	Hand	Staff 10-C	otherRun	sebum	Staff_Skin	23570791	128
+ERR1461805	SAMEA4039231	qiita_sid_10172:10172.7571	Staff 10-C.Nose.206	9/18/13	206	Nose	Staff 10-C	otherRun	sebum	Staff_Skin	30050856	128
+ERR1461806	SAMEA4039232	qiita_sid_10172:10172.7572	Staff 10-C.Shoe.206	9/18/13	206	Shoe	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	389631	128
+ERR1461807	SAMEA4039233	qiita_sid_10172:10172.7573	Staff 10-C.Personal Cell Phone.206	9/18/13	206	Personal Cell Phone	Staff 10-C	otherRun	surface layer	Staff_Surface	30216946	128
+ERR1461808	SAMEA4039234	qiita_sid_10172:10172.7574	Staff 10-C.Hospital Pager.206	9/18/13	206	Hospital Pager	Staff 10-C	otherRun	surface layer	Staff_Surface	23982227	128
+ERR1461809	SAMEA4039235	qiita_sid_10172:10172.7575	Staff 10-C.Shirt Hem.206	9/18/13	206	Shirt Hem	Staff 10-C	otherRun	anthropogenic environmental material	Staff_Surface	19423858	128
+ERR1461810	SAMEA4039236	qiita_sid_10172:10172.7593	R10016.Bedrail.207	9/19/13	207	Bedrail	R10016	otherRun	surface layer	Room_Surface	23749922	128
+ERR1461811	SAMEA4039237	qiita_sid_10172:10172.7594	R10016.Glove from Glove Box.207	9/19/13	207	Glove from Glove Box	R10016	otherRun	surface layer	Glove	26215765	128
+ERR1461812	SAMEA4039238	qiita_sid_10172:10172.7595	R10016.Floor.207	9/19/13	207	Floor	R10016	otherRun	surface layer	Room_Surface	35341698	129
+ERR1461813	SAMEA4039239	qiita_sid_10172:10172.7596	R10016.Cold Tap Faucet Handle.207	9/19/13	207	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	26987013	127
+ERR1461814	SAMEA4039240	qiita_sid_10172:10172.7597	NA.BLANK.207	9/19/13	207	blank control		otherRun	sterile water		21760763	128
+ERR1461815	SAMEA4039241	qiita_sid_10172:10172.7601	R9016.Bedrail.208	9/20/13	208	Bedrail	R9016	otherRun	surface layer	Room_Surface	23190863	128
+ERR1461816	SAMEA4039242	qiita_sid_10172:10172.7602	R9016.Glove from Glove Box.208	9/20/13	208	Glove from Glove Box	R9016	otherRun	surface layer	Glove	28626611	128
+ERR1461817	SAMEA4039243	qiita_sid_10172:10172.7603	R9016.Floor.208	9/20/13	208	Floor	R9016	otherRun	surface layer	Room_Surface	34769363	128
+ERR1461818	SAMEA4039244	qiita_sid_10172:10172.7604	R9016.Cold Tap Faucet Handle.208	9/20/13	208	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	30176047	127
+ERR1461819	SAMEA4039245	qiita_sid_10172:10172.7608	R10016.Bedrail.208	9/20/13	208	Bedrail	R10016	otherRun	surface layer	Room_Surface	32645415	128
+ERR1461820	SAMEA4039246	qiita_sid_10172:10172.7609	R10016.Glove from Glove Box.208	9/20/13	208	Glove from Glove Box	R10016	otherRun	surface layer	Glove	28393935	128
+ERR1461821	SAMEA4039247	qiita_sid_10172:10172.7610	R10016.Floor.208	9/20/13	208	Floor	R10016	otherRun	surface layer	Room_Surface	27420340	128
+ERR1461822	SAMEA4039248	qiita_sid_10172:10172.7611	R10016.Cold Tap Faucet Handle.208	9/20/13	208	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	22951310	128
+ERR1461823	SAMEA4039249	qiita_sid_10172:10172.7612	NA.BLANK.208	9/20/13	208	blank control		otherRun	sterile water		19897499	127
+ERR1461824	SAMEA4039250	qiita_sid_10172:10172.7623	R10016.Bedrail.209	9/21/13	209	Bedrail	R10016	otherRun	surface layer	Room_Surface	18051424	128
+ERR1461825	SAMEA4039251	qiita_sid_10172:10172.7624	R10016.Glove from Glove Box.209	9/21/13	209	Glove from Glove Box	R10016	otherRun	surface layer	Glove	24571761	128
+ERR1461826	SAMEA4039252	qiita_sid_10172:10172.7625	R10016.Floor.209	9/21/13	209	Floor	R10016	otherRun	surface layer	Room_Surface	17434517	127
+ERR1461827	SAMEA4039253	qiita_sid_10172:10172.7626	R10016.Cold Tap Faucet Handle.209	9/21/13	209	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	23310978	128
+ERR1461828	SAMEA4039254	qiita_sid_10172:10172.7627	NA.BLANK.209	9/21/13	209	blank control		otherRun	sterile water		21514371	127
+ERR1461829	SAMEA4039255	qiita_sid_10172:10172.7631	R9016.Bedrail.210	9/22/13	210	Bedrail	R9016	otherRun	surface layer	Room_Surface	23896168	127
+ERR1461830	SAMEA4039256	qiita_sid_10172:10172.7632	R9016.Glove from Glove Box.210	9/22/13	210	Glove from Glove Box	R9016	otherRun	surface layer	Glove	14666684	128
+ERR1461831	SAMEA4039257	qiita_sid_10172:10172.7633	R9016.Floor.210	9/22/13	210	Floor	R9016	otherRun	surface layer	Room_Surface	23748139	128
+ERR1461832	SAMEA4039258	qiita_sid_10172:10172.7634	R9016.Cold Tap Faucet Handle.210	9/22/13	210	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	8619237	128
+ERR1461833	SAMEA4039259	qiita_sid_10172:10172.7638	R10016.Bedrail.210	9/22/13	210	Bedrail	R10016	otherRun	surface layer	Room_Surface	6151621	128
+ERR1461834	SAMEA4039260	qiita_sid_10172:10172.7639	R10016.Glove from Glove Box.210	9/22/13	210	Glove from Glove Box	R10016	otherRun	surface layer	Glove	20634898	128
+ERR1461835	SAMEA4039261	qiita_sid_10172:10172.7640	R10016.Floor.210	9/22/13	210	Floor	R10016	otherRun	surface layer	Room_Surface	10181375	128
+ERR1461836	SAMEA4039262	qiita_sid_10172:10172.7641	R10016.Cold Tap Faucet Handle.210	9/22/13	210	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	46363555	128
+ERR1461837	SAMEA4039263	qiita_sid_10172:10172.7642	NA.BLANK.210	9/22/13	210	blank control		otherRun	sterile water		14026439	128
+ERR1461838	SAMEA4039264	qiita_sid_10172:10172.7646	R9016.Bedrail.211	9/23/13	211	Bedrail	R9016	otherRun	surface layer	Room_Surface	21138067	127
+ERR1461839	SAMEA4039265	qiita_sid_10172:10172.7647	R9016.Glove from Glove Box.211	9/23/13	211	Glove from Glove Box	R9016	otherRun	surface layer	Glove	13265338	128
+ERR1461840	SAMEA4039266	qiita_sid_10172:10172.7648	R9016.Floor.211	9/23/13	211	Floor	R9016	otherRun	surface layer	Room_Surface	25282512	128
+ERR1461841	SAMEA4039267	qiita_sid_10172:10172.7649	R9016.Cold Tap Faucet Handle.211	9/23/13	211	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	3548460	128
+ERR1461842	SAMEA4039268	qiita_sid_10172:10172.7653	R10016.Bedrail.211	9/23/13	211	Bedrail	R10016	otherRun	surface layer	Room_Surface	1680710	128
+ERR1461843	SAMEA4039269	qiita_sid_10172:10172.7654	R10016.Glove from Glove Box.211	9/23/13	211	Glove from Glove Box	R10016	otherRun	surface layer	Glove	17613102	128
+ERR1461844	SAMEA4039270	qiita_sid_10172:10172.7655	R10016.Floor.211	9/23/13	211	Floor	R10016	otherRun	surface layer	Room_Surface	10626145	128
+ERR1461845	SAMEA4039271	qiita_sid_10172:10172.7656	R10016.Cold Tap Faucet Handle.211	9/23/13	211	Cold Tap Faucet Handle	R10016	otherRun	surface layer	Room_Surface	21780217	127
+ERR1461846	SAMEA4039272	qiita_sid_10172:10172.7657	NA.BLANK.211	9/23/13	211	blank control		otherRun	sterile water		12728530	128
+ERR1461847	SAMEA4039273	qiita_sid_10172:10172.7673	R9014.Hand.213	9/25/13	213	Hand	R9014	otherRun	sebum	Patient_Skin	14214286	128
+ERR1461848	SAMEA4039274	qiita_sid_10172:10172.7674	R9014.Nose.213	9/25/13	213	Nose	R9014	otherRun	sebum	Patient_Skin	26153918	128
+ERR1461849	SAMEA4039275	qiita_sid_10172:10172.7675	R9014.Axilla.213	9/25/13	213	Axilla	R9014	otherRun	sebum	Patient_Skin	11310713	128
+ERR1461850	SAMEA4039276	qiita_sid_10172:10172.7676	R9014.Bedrail.213	9/25/13	213	Bedrail	R9014	otherRun	surface layer	Room_Surface	38963408	128
+ERR1461851	SAMEA4039277	qiita_sid_10172:10172.7677	R9014.Glove from Glove Box.213	9/25/13	213	Glove from Glove Box	R9014	otherRun	surface layer	Glove	2952064	128
+ERR1461852	SAMEA4039278	qiita_sid_10172:10172.7678	R9014.Floor.213	9/25/13	213	Floor	R9014	otherRun	surface layer	Room_Surface	21689526	128
+ERR1461853	SAMEA4039279	qiita_sid_10172:10172.7679	R9014.Cold Tap Faucet Handle.213	9/25/13	213	Cold Tap Faucet Handle	R9014	otherRun	surface layer	Room_Surface	2483406	128
+ERR1461854	SAMEA4039280	qiita_sid_10172:10172.7680	R9015.Hand.213	9/25/13	213	Hand	R9015	otherRun	sebum	Patient_Skin	24545635	128
+ERR1461855	SAMEA4039281	qiita_sid_10172:10172.7681	R9015.Nose.213	9/25/13	213	Nose	R9015	otherRun	sebum	Patient_Skin	11602254	128
+ERR1461856	SAMEA4039282	qiita_sid_10172:10172.7682	R9015.Axilla.213	9/25/13	213	Axilla	R9015	otherRun	sebum	Patient_Skin	10638502	127
+ERR1461857	SAMEA4039283	qiita_sid_10172:10172.7683	R9015.Bedrail.213	9/25/13	213	Bedrail	R9015	otherRun	surface layer	Room_Surface	18055219	128
+ERR1461858	SAMEA4039284	qiita_sid_10172:10172.7684	R9015.Glove from Glove Box.213	9/25/13	213	Glove from Glove Box	R9015	otherRun	surface layer	Glove	6269947	128
+ERR1461859	SAMEA4039285	qiita_sid_10172:10172.7685	R9015.Floor.213	9/25/13	213	Floor	R9015	otherRun	surface layer	Room_Surface	28568394	128
+ERR1461860	SAMEA4039286	qiita_sid_10172:10172.8107	R9016.Bedrail.226	10/8/13	226	Bedrail	R9016	otherRun	surface layer	Room_Surface	17440693	128
+ERR1461861	SAMEA4039287	qiita_sid_10172:10172.8108	R9016.Glove from Glove Box.226	10/8/13	226	Glove from Glove Box	R9016	otherRun	surface layer	Glove	21708373	128
+ERR1461862	SAMEA4039288	qiita_sid_10172:10172.8109	R9016.Floor.226	10/8/13	226	Floor	R9016	otherRun	surface layer	Room_Surface	10500135	128
+ERR1461863	SAMEA4039289	qiita_sid_10172:10172.8110	R9016.Cold Tap Faucet Handle.226	10/8/13	226	Cold Tap Faucet Handle	R9016	otherRun	surface layer	Room_Surface	21314258	128
+ERR1461864	SAMEA4039290	qiita_sid_10172:10172.8111	R10016.Hand.226	10/8/13	226	Hand	R10016	otherRun	sebum	Patient_Skin	10335975	127
+ERR1461865	SAMEA4039291	qiita_sid_10172:10172.8112	R10016.Nose.226	10/8/13	226	Nose	R10016	otherRun	sebum	Patient_Skin	11199032	128
+ERR1461866	SAMEA4039292	qiita_sid_10172:10172.8113	R10016.Axilla.226	10/8/13	226	Axilla	R10016	otherRun	sebum	Patient_Skin	13969953	128
+ERR1461867	SAMEA4039293	qiita_sid_10172:10172.8114	R10016.Bedrail.226	10/8/13	226	Bedrail	R10016	otherRun	surface layer	Room_Surface	21227606	128
+ERR1461868	SAMEA4039294	qiita_sid_10172:10172.8115	R10016.Glove from Glove Box.226	10/8/13	226	Glove from Glove Box	R10016	otherRun	surface layer	Glove	12556682	127
+ERR1461869	SAMEA4039295	qiita_sid_10172:10172.8116	R10016.Floor.226	10/8/13	226	Floor	R10016	otherRun	surface layer	Room_Surface	29504320	128
+ERR1461870	SAMEA4039296	qiita_sid_10172:10172.9936	R9018.Floor.283	12/4/13	283	Floor	R9018	otherRun	surface layer	Room_Surface	13372243	128
+ERR1461871	SAMEA4039297	qiita_sid_10172:10172.9937	R9018.Cold Tap Faucet Handle.283	12/4/13	283	Cold Tap Faucet Handle	R9018	otherRun	surface layer	Room_Surface	19864963	128
+ERR1461872	SAMEA4039298	qiita_sid_10172:10172.9938	S09.Countertop.283	12/4/13	283	Countertop	S09	otherRun	surface layer	Station_Surface	22511597	128
+ERR1461873	SAMEA4039299	qiita_sid_10172:10172.9939	S09.Computer Mouse.283	12/4/13	283	Computer Mouse	S09	otherRun	surface layer	Station_Surface	25050628	127
+ERR1461874	SAMEA4039300	qiita_sid_10172:10172.9940	S09.Station Phone.283	12/4/13	283	Station Phone	S09	otherRun	surface layer	Station_Surface	7775877	128
+ERR1461875	SAMEA4039301	qiita_sid_10172:10172.9941	S09.Chair Armrest.283	12/4/13	283	Chair Armrest	S09	otherRun	surface layer	Station_Surface	15646434	127
+ERR1461876	SAMEA4039302	qiita_sid_10172:10172.9942	S09.Corridor Floor.283	12/4/13	283	Corridor Floor	S09	otherRun	surface layer	Station_Surface	24024190	128
+ERR1461877	SAMEA4039303	qiita_sid_10172:10172.9943	S09.Hot Tap Water.283	12/4/13	283	Hot Tap Water	S09	otherRun	water	Water	10248098	128
+ERR1461878	SAMEA4039304	qiita_sid_10172:10172.9957	Staff 09-C.Hand.283	12/4/13	283	Hand	Staff 09-C	otherRun	sebum	Staff_Skin	27163912	128
+ERR1461879	SAMEA4039305	qiita_sid_10172:10172.9958	Staff 09-C.Nose.283	12/4/13	283	Nose	Staff 09-C	otherRun	sebum	Staff_Skin	19051707	128
+ERR1461880	SAMEA4039306	qiita_sid_10172:10172.9959	Staff 09-C.Shoe.283	12/4/13	283	Shoe	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	15325321	128
+ERR1461881	SAMEA4039307	qiita_sid_10172:10172.9960	Staff 09-C.Personal Cell Phone.283	12/4/13	283	Personal Cell Phone	Staff 09-C	otherRun	surface layer	Staff_Surface	23418181	128
+ERR1461882	SAMEA4039308	qiita_sid_10172:10172.9961	Staff 09-C.Hospital Pager.283	12/4/13	283	Hospital Pager	Staff 09-C	otherRun	surface layer	Staff_Surface	16979237	128
+ERR1461883	SAMEA4039309	qiita_sid_10172:10172.9962	Staff 09-C.Shirt Hem.283	12/4/13	283	Shirt Hem	Staff 09-C	otherRun	anthropogenic environmental material	Staff_Surface	19553742	128
+ERR1461884	SAMEA4039310	qiita_sid_10172:10172.9969	R10014.Hand.283	12/4/13	283	Hand	R10014	otherRun	sebum	Patient_Skin	14736279	128
+ERR1461885	SAMEA4039311	qiita_sid_10172:10172.9970	R10014.Nose.283	12/4/13	283	Nose	R10014	otherRun	sebum	Patient_Skin	15107787	128
+ERR1461886	SAMEA4039312	qiita_sid_10172:10172.9971	R10014.Axilla.283	12/4/13	283	Axilla	R10014	otherRun	sebum	Patient_Skin	16857040	128
+ERR1461887	SAMEA4039313	qiita_sid_10172:10172.9972	R10014.Bedrail.283	12/4/13	283	Bedrail	R10014	otherRun	surface layer	Room_Surface	18552067	128
+ERR1461888	SAMEA4039314	qiita_sid_10172:10172.9973	R10014.Glove from Glove Box.283	12/4/13	283	Glove from Glove Box	R10014	otherRun	surface layer	Glove	19749063	128
+ERR1461889	SAMEA4039315	qiita_sid_10172:10172.9974	R10014.Floor.283	12/4/13	283	Floor	R10014	otherRun	surface layer	Room_Surface	25400299	127
+ERR1461890	SAMEA4039316	qiita_sid_10172:10172.9975	R10014.Cold Tap Faucet Handle.283	12/4/13	283	Cold Tap Faucet Handle	R10014	otherRun	surface layer	Room_Surface	12624355	127
+ERR1461891	SAMEA4039317	qiita_sid_10172:10172.9979	R10015.Bedrail.283	12/4/13	283	Bedrail	R10015	otherRun	surface layer	Room_Surface	15876458	127
+ERR1461892	SAMEA4039318	qiita_sid_10172:10172.9980	R10015.Glove from Glove Box.283	12/4/13	283	Glove from Glove Box	R10015	otherRun	surface layer	Glove	24679024	127
+ERR1461893	SAMEA4039319	qiita_sid_10172:10172.9981	R10015.Floor.283	12/4/13	283	Floor	R10015	otherRun	surface layer	Room_Surface	23061746	127
+ERR1461894	SAMEA4039320	qiita_sid_10172:10172.9982	R10015.Cold Tap Faucet Handle.283	12/4/13	283	Cold Tap Faucet Handle	R10015	otherRun	surface layer	Room_Surface	24903620	128
 ERR1461895	SAMEA4039321	qiita_sid_10172:10172.1	NA.BLANK.-81	12/5/12	-81	blank control		HiSeq2_7	sterile water		26255356	130
 ERR1461896	SAMEA4039322	qiita_sid_10172:10172.10047	R10016.Glove from Glove Box.284	12/5/13	284	Glove from Glove Box	R10016	HiSeq2_7	surface layer	Glove	9434225	128
 ERR1461897	SAMEA4039323	qiita_sid_10172:10172.10048	R10016.Floor.284	12/5/13	284	Floor	R10016	HiSeq2_7	surface layer	Room_Surface	24391467	130

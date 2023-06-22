@@ -108,6 +108,12 @@ df = merge(data, ds3, by=0)
 df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat", "Bases", "AvgSpotLen")]
 ```
 
+Give a value to the blank run prefix.
+```{r}
+blankVals = df2$run_prefix..exp. == ""
+df2$run_prefix..exp.[blankVals] = "otherRun"
+```
+
 ```{r}
 write.table(file = file.path(outDir, "PRJEB14474_SraRunTable_reduced.txt"), 
             df2, quote=F, row.names = F, sep="\t")

@@ -38,9 +38,6 @@ For filtering, I think I will split them by sequencing batch. I don't fully unde
 
 Does run_prefix have any relationship with AvgSpotLen?
 ```{r}
-blankVals = data$run_prefix..exp. == ""
-data$run_prefix..exp.[blankVals] = "otherRun"
-
 ggplot(data, aes(x=run_prefix..exp., y=AvgSpotLen, fill=run_prefix..exp.)) +
   geom_boxplot() + 
   geom_jitter(height=0, width=.2)
@@ -58,6 +55,10 @@ df = data.frame(FilterBatchID=names(ds), hours=8, cores=1, mem="32GB", nSamples,
 df
 write.table(df, file=file.path(outDir, "filterBatches.txt"), sep="\t", row.names=F, quote=F)
 ```
+
+Edit these files manually as needed to make sure each job is assigned enough resources.
+
+If running in a simple loop (not referencing these other columns), you can loop over the batch names: `r paste(df$FilterBatchID, collapse=" ")`
 
 Ben Callahan comments [here]() that in his own experience:
 
