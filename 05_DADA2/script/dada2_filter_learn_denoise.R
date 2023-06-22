@@ -26,7 +26,7 @@ message("Processing reads with run prefix: ", batchID)
 
 #### Find metadata ####
 
-metaFile = "../02_review_metadata_PRJEB14474/output/PRJEB14474_SraRunTable_reduced.txt"
+metaFile = "../../02_review_metadata_PRJEB14474/output/PRJEB14474_SraRunTable_reduced.txt"
 meta = read.delim2(metaFile)
 # row.names(data) = data$ID
 message("Read metadata from: ", metaFile)
@@ -59,10 +59,10 @@ if (sum(thisBatch) > length(gzFiles)) warning("Some metadata rows in this batch 
 
 #### direct output ####
 
-tmpDir = file.path("temp", batchID)
+tmpDir = file.path("../temp", batchID)
 suppressWarnings(dir.create(tmpDir, recursive = T))
 
-outDir = file.path("output", paste0("batch-", batchID))
+outDir = file.path("../output", paste0("batch-", batchID))
 suppressWarnings(dir.create(outDir, recursive = T))
 
 #### QC ####
@@ -135,7 +135,8 @@ message("Moving forward with ", ncol(seqtab.nochim), " ASVs.")
 # a data set with <100 reads, is still removed.
 minCount = ceiling(nrow(seqtab.nochim) * .01)
 keepASV = colSums(seqtab.nochim) > minCount
-seqtab.filtered = seqtab.nochim[,keepASV]
+# this dataframe may only have one columns, so use "drop=FALSE" to keep it from converting to to a vector.
+seqtab.filtered = seqtab.nochim[,keepASV, drop=FALSE]
 
 message("Dropped ", ncol(seqtab.nochim) - ncol(seqtab.filtered), " scarce ASVs.")
 
@@ -186,6 +187,7 @@ asvFile = file.path(outDir, paste0("asv-", batchID, ".txt"))
 write.table(x=cbind(ID=row.names(seqtab.filtered), seqtab.filtered), 
             file=asvFile, quote=F, sep="\t", row.names = F)
 
+saveRDS(seqtab.filtered, file.path(tmpDir, paste0("asv-", batchID, ".RDS")))
 
 
 #### tracking ####
