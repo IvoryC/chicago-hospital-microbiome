@@ -81,10 +81,10 @@ names(filtFiles) = ids
 truncLen=120
 message("Using a truncation length of: ", truncLen)
 
-filterTable <- filterAndTrim(gzFiles, filtFiles, truncLen=truncLen,
+filterTableAll <- filterAndTrim(gzFiles, filtFiles, truncLen=truncLen,
                          maxN=0, maxEE=2, truncQ=2, rm.phix=TRUE,
                          compress=TRUE, multithread=TRUE)
-row.names(filterTable) = ids
+row.names(filterTableAll) = ids
 
 filterTableFile = file.path(tmpDir, "filterTable.txt")
 write.table(filterTable, filterTableFile, quote=F, sep="\t")
@@ -95,7 +95,7 @@ message("Out of ", length(ids), " input files, ",
 passedFilter = row.names(filterTable)[filterTable[,"reads.out"] > 0]
 gzFiles = gzFiles[passedFilter]
 filtFiles = filtFiles[passedFilter]
-filterTable = filterTable[passedFilter,]
+filterTable = filterTableAll[passedFilter,]
 ids = passedFilter
 message("Proceding with ", length(passedFilter), " files.")
 
@@ -119,31 +119,22 @@ dadaAs <- dada(filtFiles, err=errorModel, multithread=TRUE)
 
 seqtab = makeSequenceTable(dadaAs)
 
-#### remove chimeras ####
-
-seqtab.nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=TRUE, verbose=TRUE)
-
-perChim = round(1 - sum(seqtab.nochim)/sum(seqtab), 1)
-message("About ", perChim * 100, "% of the sequences were the \"chimera\" ASVs.")
-
-message("Moving forward with ", ncol(seqtab.nochim), " ASVs.")
-
 #### filter scarce ASV ####
 
 # use ceiling() because minSamples should never be less than 1, even if you have less than 100 samples
-minSamples = ceiling(nrow(seqtab.nochim) * .02)
+minSamples = ceiling(nrow(seqtab) * .02)
 
 # If you only have 1 sample, then minSamples is greater than 0 but less than 1
 # We don't want to require greater than the sample size.
-minSamples = min(c(minSamples, nrow(seqtab.nochim)*.5 )) 
-message("With ", nrow(seqtab.nochim), " samples, I want to see a given ASV in at least ", minSamples, " samples, or I don't believe it.")
+minSamples = min(c(minSamples, nrow(seqtab)*.5 )) 
+message("With ", nrow(seqtab), " samples, I want to see a given ASV in at least ", minSamples, " samples, or I don't believe it.")
 
 minProportion = 0.002
 message("For me to really think I see an ASV in a sample, it needs to make up at least ", minProportion * 100, "% of the reads in that sample.")
 
-seqProportions = seqtab.nochim
-for (i in 1:nrow(seqtab.nochim) ) {
-  rowIn = seqtab.nochim[i,]
+seqProportions = seqtab
+for (i in 1:nrow(seqtab) ) {
+  rowIn = seqtab[i,]
   sampleTotal = sum(rowIn)
   if (sampleTotal==0) proportion = rep(0, length(rowIn))
   proportion = rowIn / sampleTotal
@@ -152,9 +143,9 @@ for (i in 1:nrow(seqtab.nochim) ) {
 }
 keepASV = colSums(seqProportions, na.rm=T) > minSamples
 
-message("Of the ", ncol(seqtab.nochim), " ASVs I looked at, ", sum(keepASV), " ASVs met this criteria.")
+message("Of the ", ncol(seqtab), " ASVs I looked at, ", sum(keepASV), " ASVs met this criteria.")
 # use "drop=FALSE" to prevent a single-sample set being converted to a vector
-seqtab.filtered = seqtab.nochim[,keepASV, drop=FALSE]
+seqtab.filtered = seqtab[,keepASV, drop=FALSE]
 
 # png(file.path(outDir, "asv-total-abundance.png"))
 # 
@@ -171,22 +162,6 @@ seqtab.filtered = seqtab.nochim[,keepASV, drop=FALSE]
 # 
 # dev.off()
 
-
-
-#### change ASV to ids ####
-
-if (batchID=="ALL") {
-  
-  asvID = paste0("ASV.", 1:ncol(seqtab.filtered))
-  asv.id.table = data.frame(asvID=asvID, ASV=colnames(seqtab.filtered))
-  colnames(seqtab.filtered) = asvID
-  
-  asv.id.File = file.path(outDir, paste0("asv-id-seq", batchID, ".txt"))
-  write.table(x=asv.id.table, file=asv.id.File, quote=F, sep="\t", row.names = F)
-  message("ASV ids and full sequences were written to: ", asv.id.File)
-  
-}
-
 #### save output ####
 
 asvFile = file.path(outDir, paste0("asv-", batchID, ".txt"))
@@ -198,22 +173,30 @@ saveRDS(seqtab.filtered, file.path(tmpDir, paste0("asv-", batchID, ".RDS")))
 
 #### tracking ####
 
-track <- cbind(reads.raw = filterTable[,"reads.in"], 
-               reads.filter.removed = filterTable[,"reads.in"] - filterTable[,"reads.out"],
-               reads.afterFilter = filterTable[,"reads.out"],
-               reads.RemovedByDADA2 = filterTable[,"reads.out"] - sapply(dadaAs, function(x) sum(getUniques(x))),
-               reads.Counted = sapply(dadaAs, function(x) sum(getUniques(x))), 
+track1 <- cbind(ID=ids,
+               reads.dada2.counted = sapply(dadaAs, function(x) sum(getUniques(x))), 
                uniqueSeqs=sapply(dadaAs, function(x) length(x$pval)), 
                nASV=apply(seqtab, 1, function(x) sum(x > 0)),
-               chimericASVs = sapply(dadaAs, function(dd2) sum( ! dd2$sequence %in% colnames(seqtab.nochim))),
-               nASV.nochim = apply(seqtab.nochim, 1, function(x) sum(x > 0)),
-               reads.counted.nochim = rowSums(seqtab.nochim),
-               scarceASVs = apply(seqtab.filtered, 1, function(x) sum(x > 0)) - apply(seqtab.nochim, 1, function(x) sum(x > 0)),
-               nASV.final = apply(seqtab.filtered, 1, function(x) sum(x > 0)),
-               reads.counted.final = rowSums(seqtab.filtered))
+               nASV.part1 = apply(seqtab.filtered, 1, function(x) sum(x > 0)),
+               reads.counted.part1 = rowSums(seqtab.filtered))
+
+# bring back records of samples that had all reads removed.
+track2 = merge(filterTableAll, track1, by.x=0, by.y="ID")
+
+# when showing reads removed, show a negative number.
+track3 = cbind(ID=track2$ID,
+               reads.raw=track2$reads.in,
+               reads.filter.removed = track2$reads.in - track2$reads.out,
+               reads.afterFilter = track2$reads.out,
+               reads.RemovedByDADA2 = track2$reads.dada2.counted - track2$reads.out,
+               track2$reads.dada2.counted,
+               track2$uniqueSeqs, 
+               track2$nASV,
+               scarceASVs = track2$nASV.part1 - track2$nASV,
+               track2$nASV.part1 )
 head(track)
 trackFile = file.path(outDir, "trackReadCounts.txt")
-write.table(cbind(ID=ids, track), 
+write.table(track, 
             file=trackFile, 
             sep="\t", quote=F, row.names = F)
 
