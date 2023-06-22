@@ -130,25 +130,31 @@ message("Moving forward with ", ncol(seqtab.nochim), " ASVs.")
 
 #### filter scarce ASV ####
 
-# an ASV have **more than** 1 read in 1% of samples or an equivalent number of total reads.
-# using ceiling and requiring > not just >= means that a count of 1 in 1 in 
-# a data set with <100 reads, is still removed.
-minCount = ceiling(nrow(seqtab.nochim) * .01)
-keepASV = colSums(seqtab.nochim) > minCount
-# this dataframe may only have one columns, so use "drop=FALSE" to keep it from converting to to a vector.
+# use ceiling() because minSamples should never be less than 1, even if you have less than 100 samples
+minSamples = ceiling(nrow(seqtab.nochim) * .02)
+
+# If you only have 1 sample, then minSamples is greater than 0 but less than 1
+# We don't want to require greater than the sample size.
+minSamples = min(c(minSamples, nrow(seqtab.nochim)*.5 )) 
+message("With ", nrow(seqtab.nochim), " samples, I want to see a given ASV in at least ", minSamples, " samples, or I don't believe it.")
+
+minProportion = 0.002
+message("For me to really think I see an ASV in a sample, it needs to make up at least ", minProportion * 100, "% of the reads in that sample.")
+
+seqProportions = seqtab.nochim
+for (i in 1:nrow(seqtab.nochim) ) {
+  rowIn = seqtab.nochim[i,]
+  sampleTotal = sum(rowIn)
+  if (sampleTotal==0) proportion = rep(0, length(rowIn))
+  proportion = rowIn / sampleTotal
+  seeIt = ifelse(proportion > minProportion, 1, 0)
+  seqProportions[i, ] = seeIt
+}
+keepASV = colSums(seqProportions, na.rm=T) > minSamples
+
+message("Of the ", ncol(seqtab.nochim), " ASVs I looked at, ", sum(keepASV), " ASVs met this criteria.")
+# use "drop=FALSE" to prevent a single-sample set being converted to a vector
 seqtab.filtered = seqtab.nochim[,keepASV, drop=FALSE]
-
-message("Dropped ", ncol(seqtab.nochim) - ncol(seqtab.filtered), " scarce ASVs.")
-
-message("All ASVs: ", ncol(seqtab))
-message("non-chimeric ASVs: ", ncol(seqtab.nochim))
-message("ASVs after 1% filter (proceeding): ", ncol(seqtab.filtered))
-message("ASVs removed by 1% filter (proceeding): ", sum(colSums(seqtab.nochim) < ceiling(nrow(seqtab.nochim) * .01) ))
-message("ASVs removed by 2% filter (hypothetical): ", sum(colSums(seqtab.nochim) < ceiling(nrow(seqtab.nochim) * .02) ))
-message("ASVs removed by 3% filter (hypothetical): ", sum(colSums(seqtab.nochim) < ceiling(nrow(seqtab.nochim) * .03) ))
-message("ASVs removed by 4% filter (hypothetical): ", sum(colSums(seqtab.nochim) < ceiling(nrow(seqtab.nochim) * .04) ))
-message("ASVs removed by 5% filter (hypothetical): ", sum(colSums(seqtab.nochim) < ceiling(nrow(seqtab.nochim) * .05) ))
-
 
 # png(file.path(outDir, "asv-total-abundance.png"))
 # 
