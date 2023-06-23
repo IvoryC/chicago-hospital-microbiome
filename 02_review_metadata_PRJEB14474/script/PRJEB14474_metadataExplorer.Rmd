@@ -21,13 +21,13 @@ library(ggrepel)
 ```
 
 ```{r}
-data = read.delim2("../01_download_metadata/PRJEB14474_SraRunTable.txt")
+data = read.delim2("../../data/NOT_IN_GIT/meta/PRJEB14474_SraRunTable.txt")
 row.names(data) = data$ID
 ```
 
 Save any output to this folder:
 ```{r}
-outDir = "output"
+outDir = "../output"
 suppressWarnings(dir.create(outDir))
 ```
 

@@ -18,15 +18,16 @@ suppressWarnings(dir.create(outDir, recursive = T))
 
 #### metadata ####
 
-metaFile = "../../02_review_metadata_PRJEB14474/output/PRJEB14474_SraRunTable_reduced.txt"
+metaReduced = dir("../..", pattern="metadata_PRJEB14474", full.names = T, include.dirs = T)
+metaFile = file.path(metaReduced, "output", "PRJEB14474_SraRunTable_reduced.txt")
 meta = read.delim2(metaFile)
 row.names(meta) = meta$ID
-# row.names(data) = data$ID
 message("Read metadata from: ", metaFile)
 
 #### taxa data ####
 
-taxaFile = "../../06_assign_ASV_taxonomy/output/asvTaxaTable.txt"
+assignTax = dir("../..", pattern="assign_ASV_taxonomy")
+taxaFile = file.path(assignTax, "output", "asvTaxaTable.txt")
 taxa = read.delim2(taxaFile, row.names = "asvID")
 # drop the ASV column
 taxaLim = taxa[,grep("ASV", names(taxa), invert = T, value = T)]
@@ -34,7 +35,8 @@ taxaMat = as.matrix(taxaLim)
 
 #### counts ####
 
-countsFile = "../../05_DADA2/output/asv-counts.txt"
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
 counts = read.delim2(countsFile, row.names = 1)
 dim(counts)
 

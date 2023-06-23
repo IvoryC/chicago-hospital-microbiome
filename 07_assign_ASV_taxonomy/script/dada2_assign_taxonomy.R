@@ -10,14 +10,12 @@ library(dada2); packageVersion("dada2")
 
 #### direct output ####
 
-outDir = "output"
+outDir = "../output"
 suppressWarnings(dir.create(outDir, recursive = T))
 
 #### find ASV file ####
 
-# asvFile = file.path(dir("..", pattern="DADA2$", full.names = T),
-#                     "output", "asv.txt")
-inputModule = dir("..", pattern="DADA2$", full.names = T)
+inputModule = dir("../..", pattern="DADA2_part2", full.names = T)
 asvFile = dir(inputModule, pattern="asv-id-sequence.txt", full.names = T, recursive = T)
 
 asv.id.table = read.delim2(asvFile)

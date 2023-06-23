@@ -8,5 +8,3 @@ do
 	echo $BATCH
 	Rscript ./dada2_filter_learn_denoise.R $BATCH &> ../log/${BATCH}.log
 done
-
-Rscript ./merge_DADA2_tables.R
