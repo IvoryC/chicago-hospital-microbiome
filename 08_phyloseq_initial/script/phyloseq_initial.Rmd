@@ -1,47 +1,69 @@
+---
+title: "transfer to phyloseq"
+output: html_document
+date: "2023-06-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 
 # Initial look via Phyloseq
 
+```{r}
 library(phyloseq); packageVersion("phyloseq")
 ## [1] ‘1.44.0’
 library(Biostrings); packageVersion("Biostrings")
 ## [1] ‘2.68.1’
 library(ggplot2); packageVersion("ggplot2")
 ## [1] ‘3.4.2’
+```
+
 
 #### direct output ####
 
+```{r}
 tmpDir = "../temp"
 suppressWarnings(dir.create(tmpDir, recursive = T))
 
 outDir = "../output"
 suppressWarnings(dir.create(outDir, recursive = T))
+```
 
 #### metadata ####
 
+```{r}
 metaReduced = dir("../..", pattern="metadata_PRJEB14474", full.names = T, include.dirs = T)
 metaFile = file.path(metaReduced, "output", "PRJEB14474_SraRunTable_reduced.txt")
 meta = read.delim2(metaFile)
 row.names(meta) = meta$ID
 message("Read metadata from: ", metaFile)
+```
 
 #### taxa data ####
 
-assignTax = dir("../..", pattern="assign_ASV_taxonomy")
+```{r}
+assignTax = dir("../..", pattern="assign_ASV_taxonomy", full.names = T, include.dirs = T)
 taxaFile = file.path(assignTax, "output", "asvTaxaTable.txt")
 taxa = read.delim2(taxaFile, row.names = "asvID")
 # drop the ASV column
 taxaLim = taxa[,grep("ASV", names(taxa), invert = T, value = T)]
 taxaMat = as.matrix(taxaLim)
+```
 
 #### counts ####
 
+```{r}
 DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
 countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
 counts = read.delim2(countsFile, row.names = 1)
 dim(counts)
+```
 
 #### trim down data ####
 
+```{r}
 sampleTypesOfInt = c("blank control", "Hand", "Axilla", "Cold Tap Water", "Hot Tap Water", "Countertop")
 meta = meta[meta$SAMPLE_TYPE %in% sampleTypesOfInt,]
 counts = counts[meta$ID,]
@@ -53,44 +75,65 @@ splitTsortLim = lapply(splitTsort, function(df) {n = min(c(nrow(df), 10)); df[1:
 counts = do.call(rbind, splitTsortLim)
 # fix row names
 row.names(counts) = sapply(strsplit(row.names(counts), split=".", fixed=T), "[[", 2)
+```
 
-# This is just a sanity check, only keep the 100 most abundance taxa,
+
+
+This is just a sanity check, only keep the 100 most abundance taxa,
+```{r}
 counts = counts[,order(colSums(counts), decreasing = T)]
 counts = counts[, 1:100]
+```
 
-# only keep rows/columns that have at least one read.
+Only keep rows/columns that have at least one read.
+```{r}
 counts = counts[rowSums(counts) > 0,]
-
 dim(counts)
+```
 
-# match up other tables
+
+match up other tables
+```{r}
 meta = meta[row.names(counts),]
 taxaMat = taxaMat[names(counts),]
+```
+
 
 #### Phyloseq ####
 
+The biggest challenge is getting the data into the phyloseq object format. Its important for rownames and column names to match up between the components.
+```{r}
 ps <- phyloseq(otu_table(counts, taxa_are_rows=FALSE), 
                sample_data(meta), 
                tax_table(taxaMat))
+```
 
-# works, but not very valuable.
+
+Richness - works, but not very valuable.
+```{r}
 plot_richness(ps, x="study_day", measures=c("Shannon", "Simpson"), color="SAMPLE_TYPE") + facet_wrap("surcat")
-
-ggsave(file.path(outDir, "richness.png"))
+# ggsave(file.path(outDir, "richness.png"))
+```
 
 ### ordination
-# Transform data to proportions as appropriate for Bray-Curtis distances
+
+Transform data to proportions as appropriate for Bray-Curtis distances
+```{r}
 ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
 ord.nmds.bray <- ordinate(ps.prop, method="NMDS", distance="bray")
 po = plot_ordination(ps.prop, ord.nmds.bray, color="SAMPLE_TYPE", title="Bray NMDS")
 po
+```
 
-ggsave(po, filename = file.path(outDir, "ordination.png"))
+```{r}
+# ggsave(po, filename = file.path(outDir, "ordination.png"))
 # po + geom_text(aes(label=ID), nudge_y = .02, nudge_x = -5)
-# wow, sample ERR1459412 really stands out.  ...it only has a few reads.
+# #wow, sample ERR1459412 really stands out.  ...it only has a few reads.
+# #...or rather, it did, before I filtered out things like that. :)
+```
 
-
-# barplot
+barplot
+```{r}
 top20 <- names(counts)[1:20]
 ps.top20 <- transform_sample_counts(ps, function(OTU) OTU/sum(OTU))
 ps.top20 <- prune_taxa(top20, ps.top20)
@@ -98,12 +141,7 @@ pb = plot_bar(ps.top20, x="ID", fill="Family") + facet_wrap(~SAMPLE_TYPE, scales
 pb
 
 ggsave(file.path(outDir, "barplot_family.png"), pb)
-
-
-
-
-
-
+```
 
 
 #### END ####
@@ -111,5 +149,3 @@ ggsave(file.path(outDir, "barplot_family.png"), pb)
 sessionInfo()
 
 message("Done!")
-
-
