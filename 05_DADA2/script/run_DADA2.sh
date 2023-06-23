@@ -9,4 +9,4 @@ do
 	Rscript ./dada2_filter_learn_denoise.R $BATCH &> ../log/${BATCH}.log
 done
 
-./merge_DADA2_tables.R
+Rscript ./merge_DADA2_tables.R
