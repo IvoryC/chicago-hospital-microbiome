@@ -46,13 +46,17 @@ colnames(bigtab) = asvID
 
 ####  save the data table #### 
 asv.out.File = file.path("../output", paste0("asv-counts.txt"))
-write.table(x=bigtab, file=asv.out.File, quote=F, sep="\t", row.names = F)
+write.table(x=cbind(ID=row.names(bigtab), bigtab), 
+            file=asv.out.File, quote=F, sep="\t", row.names = F)
 message("ASV counts table with ", nrow(bigtab), " samples and ", ncol(bigtab), " ASV ids was written to: ", asv.out.File)
+
+saveRDS(bigtab, file.path("../output", paste0("asv-counts.RDS")))
 
 ####  save the table linking asv id to sequence #### 
 asv.id.File = file.path("../output", paste0("asv-id-sequence.txt"))
 write.table(x=asv.id.table, file=asv.id.File, quote=F, sep="\t", row.names = F)
 message("ASV ids and full sequences were written to: ", asv.id.File)
+
 
 #### tracking #### 
 
@@ -78,7 +82,6 @@ track$reads.part2 = rowSums(bigtab)
 trackFile = file.path("../output", paste0("trackReadCounts.txt"))
 write.table(x=track, file=trackFile, quote=F, sep="\t", row.names = F)
 message("Updated read count tracking table was saved to: ", trackFile)
-
 
 # END
 
