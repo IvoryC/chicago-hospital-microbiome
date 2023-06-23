@@ -119,6 +119,9 @@ dadaAs <- dada(filtFiles, err=errorModel, multithread=TRUE)
 
 seqtab = makeSequenceTable(dadaAs)
 
+# in the single sample case, row names were not applied.
+if (is.null(row.names(seqtab))) row.names(seqtab) = ids
+
 #### filter scarce ASV ####
 
 # use ceiling() because minSamples should never be less than 1, even if you have less than 100 samples
@@ -173,15 +176,21 @@ saveRDS(seqtab.filtered, file.path(tmpDir, paste0("asv-", batchID, ".RDS")))
 
 #### tracking ####
 
-n.reads.dada2.counted = ifelse(nrow(seqtab) == 1,
-                               sum(getUniques(dadaAs)),
-                               sapply(dadaAs, function(x) sum(getUniques(x))))
-track1 <- data.frame(ID=ids,
-               reads.dada2.counted = n.reads.dada2.counted, 
-               uniqueSeqs=sapply(dadaAs, function(x) length(x$pval)), 
-               nASV=apply(seqtab, 1, function(x) sum(x > 0)),
-               nASV.part1 = apply(seqtab.filtered, 1, function(x) sum(x > 0)),
-               reads.counted.part1 = rowSums(seqtab.filtered))
+if (nrow(seqtab)==1){
+  track1 <- data.frame(ID=ids,
+                       reads.dada2.counted = sum(getUniques(dadaAs)), 
+                       uniqueSeqs=length(dadaAs$pval), 
+                       nASV=sum(seqtab > 0),
+                       nASV.part1 = sum(seqtab.filtered > 0),
+                       reads.counted.part1 = rowSums(seqtab.filtered))
+}else{
+  track1 <- data.frame(ID=ids,
+                       reads.dada2.counted = sapply(dadaAs, function(x) sum(getUniques(x))), 
+                       uniqueSeqs=sapply(dadaAs, function(x) length(x$pval)), 
+                       nASV=apply(seqtab, 1, function(x) sum(x > 0)),
+                       nASV.part1 = apply(seqtab.filtered, 1, function(x) sum(x > 0)),
+                       reads.counted.part1 = rowSums(seqtab.filtered))
+}
 
 # bring back records of samples that had all reads removed.
 filterTableAll2 = data.frame(ID=row.names(filterTableAll),
