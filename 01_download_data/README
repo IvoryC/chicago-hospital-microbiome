@@ -17,3 +17,18 @@ Use a simple loop to download each file. See "download_start.sh".  If you are lu
 In my case, the download worked for several files before hitting an error, and I had to restart the process several times, adjusting my script to not re-download files that were already present. And I ultimately decided to split the 3,079-file download into more manageable batches in subfolders.
 
 The sequence data itself is not part of this reposiotry. If re-running this pipeline, make sure that scripts that read sequence data are set to look wherever you have downloaded the data, and accomodate any subdirectory structure you have implemented.
+
+### Taxonomic Reference
+
+The silva reference data is assumed to be in a "tax" folder in the home dir.
+
+"~/tax/silva_nr99_v138.1_train_set.fa.gz
+"~/tax/silva_species_assignment_v138.1.fa.gz"
+
+These files can be downloaded here: https://zenodo.org/record/4587955
+
+These were used based on the DADA2 tutorial. See:
+
+https://benjjneb.github.io/dada2/tutorial.html > Assign Taxonomy
+
+https://benjjneb.github.io/dada2/training.html
