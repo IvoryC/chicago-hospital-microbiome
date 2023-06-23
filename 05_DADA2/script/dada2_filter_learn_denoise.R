@@ -87,12 +87,12 @@ filterTableAll <- filterAndTrim(gzFiles, filtFiles, truncLen=truncLen,
 row.names(filterTableAll) = ids
 
 filterTableFile = file.path(tmpDir, "filterTable.txt")
-write.table(filterTable, filterTableFile, quote=F, sep="\t")
+write.table(filterTableAll, filterTableFile, quote=F, sep="\t")
 message("Out of ", length(ids), " input files, ", 
-        sum(filterTable[,"reads.out"] == 0), 
+        sum(filterTableAll[,"reads.out"] == 0), 
         " had 0 reads pass the filter. See file ", filterTableFile)
 
-passedFilter = row.names(filterTable)[filterTable[,"reads.out"] > 0]
+passedFilter = row.names(filterTableAll)[filterTableAll[,"reads.out"] > 0]
 gzFiles = gzFiles[passedFilter]
 filtFiles = filtFiles[passedFilter]
 filterTable = filterTableAll[passedFilter,]
@@ -173,30 +173,35 @@ saveRDS(seqtab.filtered, file.path(tmpDir, paste0("asv-", batchID, ".RDS")))
 
 #### tracking ####
 
-track1 <- cbind(ID=ids,
-               reads.dada2.counted = sapply(dadaAs, function(x) sum(getUniques(x))), 
+n.reads.dada2.counted = ifelse(nrow(seqtab) == 1,
+                               sum(getUniques(dadaAs)),
+                               sapply(dadaAs, function(x) sum(getUniques(x))))
+track1 <- data.frame(ID=ids,
+               reads.dada2.counted = n.reads.dada2.counted, 
                uniqueSeqs=sapply(dadaAs, function(x) length(x$pval)), 
                nASV=apply(seqtab, 1, function(x) sum(x > 0)),
                nASV.part1 = apply(seqtab.filtered, 1, function(x) sum(x > 0)),
                reads.counted.part1 = rowSums(seqtab.filtered))
 
 # bring back records of samples that had all reads removed.
-track2 = merge(filterTableAll, track1, by.x=0, by.y="ID")
+filterTableAll2 = data.frame(ID=row.names(filterTableAll),
+                             filterTableAll)
+track2 = merge(filterTableAll2, track1, by="ID")
 
 # when showing reads removed, show a negative number.
-track3 = cbind(ID=track2$ID,
+track3 = data.frame(ID=track2$ID,
                reads.raw=track2$reads.in,
-               reads.filter.removed = track2$reads.in - track2$reads.out,
+               reads.filter.removed =  track2$reads.out - track2$reads.in,
                reads.afterFilter = track2$reads.out,
                reads.RemovedByDADA2 = track2$reads.dada2.counted - track2$reads.out,
-               track2$reads.dada2.counted,
-               track2$uniqueSeqs, 
-               track2$nASV,
+               reads.dada2.counted = track2$reads.dada2.counted,
+               uniqueSeqs = track2$uniqueSeqs, 
+               nASV = track2$nASV,
                scarceASVs = track2$nASV.part1 - track2$nASV,
-               track2$nASV.part1 )
-head(track)
+               nASV.part1 = track2$nASV.part1 )
+head(track3)
 trackFile = file.path(outDir, "trackReadCounts.txt")
-write.table(track, 
+write.table(track3, 
             file=trackFile, 
             sep="\t", quote=F, row.names = F)
 
