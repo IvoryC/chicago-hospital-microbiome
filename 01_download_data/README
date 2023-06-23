@@ -1,0 +1,19 @@
+# Download files
+
+### Metadata
+
+For each project (PRJEB14474 and PRJEB13117) go the sra website (https://www.ncbi.nlm.nih.gov/sra) and copy the project id in the 
+search bar (search within "sra"). When you get the results, select "Send to:" > "Run Selector" > "OK".  In the middle table, click the 
+buttons to download the "Metadata".
+
+I may have also made some manual adjustments to the files. I often change the file extension to ".csv" so that it opens correctly in Excel.  I guess I changed the "Run" column to "ID" in one of the files.  Just the head of the files is included in this folder.
+
+### Sequence Data
+
+Go to the "Run selector" (just like above for the metadata). This time use the "Accession List" button.
+
+Use a simple loop to download each file. See "download_start.sh".  If you are lucky, that will work all the way and be all you need.
+
+In my case, the download worked for several files before hitting an error, and I had to restart the process several times, adjusting my script to not re-download files that were already present. And I ultimately decided to split the 3,079-file download into more manageable batches in subfolders.
+
+The sequence data itself is not part of this reposiotry. If re-running this pipeline, make sure that scripts that read sequence data are set to look wherever you have downloaded the data, and accomodate any subdirectory structure you have implemented.

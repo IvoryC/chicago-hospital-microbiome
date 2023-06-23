@@ -1,6 +1,20 @@
 # Chicago Hospital Dataset
 
-**Publication**
+## Reproducing this pipeline
+
+**Note** Before you begin, you will need to download data manually, see instructions in `01_download_data/`.
+
+Each script is meant to run with the working directory set to the script's location.
+
+Each R markdown (`.Rmd`) can be run from Rstudio using the `knit` button (preferred), or run from the command line:
+
+> Rscript -e 'library(rmarkdown); rmarkdown::render("/path/to/test.Rmd", "html_document")'
+
+Either way, you need to have the `rmarkdown` package.
+
+
+
+## Publication
 
 Lax et al 2017 
 ["Bacterial colonization and succession in a newly opened hospital"](https://www.science.org/doi/10.1126/scitranslmed.aah6500)
