@@ -45,7 +45,7 @@ message("Read metadata from: ", metaFile)
 
 ```{r}
 assignTax = dir("../..", pattern="assign_ASV_taxonomy", full.names = T, include.dirs = T)
-taxaFile = file.path(assignTax, "output", "asvTaxaTable.txt")
+taxaFile = file.path(assignTax, "output/silva/asvTaxaTable_silva-v138.txt")
 taxa = read.delim2(taxaFile, row.names = "asvID")
 # drop the ASV column
 taxaLim = taxa[,grep("ASV", names(taxa), invert = T, value = T)]
