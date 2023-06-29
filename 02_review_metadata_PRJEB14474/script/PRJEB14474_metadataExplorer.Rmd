@@ -250,6 +250,64 @@ byday
 
 ggsave(file.path(outDir, "time-location_heat.png"), byday)
 ```
+
+Specifically for the patient surface samples, for each type, what location / time distribution do I have? Does it look like it might be enough into to infer when the patient changes?
+```{r}
+colorScale = c("blue", "orange", "darkgreen", "pink", "hotpink", "darkred")
+
+df9.2 = df2 %>% 
+  filter(surcat == "Patient_Skin") %>% 
+  #filter(SAMPLE_TYPE == "Hand") %>% 
+  count(study_day, Location, SAMPLE_TYPE) %>%
+  mutate(N=as.factor(n))
+
+byday2 = ggplot(df9.2) +
+  geom_tile(aes(x=study_day, y=Location, fill=N)) +
+  scale_fill_discrete(type=colorScale) +
+  xlab("study day") +
+  # theme_get() +
+  facet_wrap("SAMPLE_TYPE", ncol = 1)
+
+ggsave(file.path(outDir, "patient-skin_time.v.location_sample-count.png"), byday2)
+
+byday2
+```
+A lot of those, look like the different sample types were taken on the same day. Plot them all together to see if they do indeed line up.
+```{r}
+df9.1 = df2 %>%
+  filter(surcat == "Patient_Skin") %>%
+  count(study_day, Location) %>%
+  mutate(N=as.factor(n))
+
+byday1 = ggplot(df9.1) +
+  geom_tile(aes(x=study_day, y=Location, fill=N)) +
+  scale_fill_discrete(type=colorScale) +
+  xlab("study day") +
+  theme_minimal()
+byday1
+```
+
+Yup, as expected, the gaps from the individual samples types are still the gaps when they are all together.
+
+Save one iteration that is just the plot for the hand data.
+```{r}
+df9.hand = df2 %>% 
+  filter(SAMPLE_TYPE == "Hand") %>%
+  count(study_day, Location, SAMPLE_TYPE) %>%
+  mutate(N=as.factor(n))
+
+byday4 = ggplot(df9.2) +
+  geom_tile(aes(x=study_day, y=Location, fill=N)) +
+  scale_fill_discrete(type=colorScale) +
+  xlab("study day") +
+  ggtitle("Patient Hand Sample Counts")
+
+ggsave(file.path(outDir, "patient-hand_time.v.location_sample-count.png"), byday4, height = 2.2)
+
+byday4
+```
+
+
 ### Bases per sample type
 
 ```{r}
@@ -277,6 +335,15 @@ subsetPlot + geom_text_repel(aes(label = ID), show.legend = FALSE)
 ```
 
 Well, fiddles. I gave the intern a subset where the blanks are some of the largest samples and some of the actual samples are essentially empty.
+
+## Compare Lax et al. 2017 Table S1
+
+From the supplemental data file:
+ > Table S1. Summary of the 6523 samples included in the study, grouped by surface type.
+ 
+
+
+
 
 
 ## Which columns are redundant
