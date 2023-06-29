@@ -132,6 +132,22 @@ dev.off()
 
 
 
+```{r}
+doPCoA(sampleType=c("Floor", "Corridor Floor"))
+ggsave(file.path(outDir, "floors_bray_PCoA.png"))
+```
+
+
+```{r}
+doPCoA(sampleType=c("Countertop", "Computer Mouse", "Station Phone"))
+ggsave(file.path(outDir, "fig1-B.png"))
+```
+
+
+Now I am curious. 
+```{r}
+
+```
 
 
 
