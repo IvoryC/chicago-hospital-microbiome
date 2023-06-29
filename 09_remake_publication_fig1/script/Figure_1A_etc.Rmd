@@ -1,0 +1,145 @@
+---
+title: "Figure_1A_etc"
+output: html_document
+date: "2023-06-26"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# goal
+
+Here, we want to recreate Figure 1A of Lax et al 2017.
+
+In addition to looking at the floor samples like they did, we will look at each sample type separately.  In Figure 1A, they use room floor and station floor samples.
+
+# libs/input/output
+
+## libraries
+
+```{r}
+library(phyloseq); packageVersion("phyloseq")
+# library(Biostrings); packageVersion("Biostrings")
+library(ggplot2); packageVersion("ggplot2")
+```
+
+
+## metadata
+
+```{r}
+metaReduced = dir("../..", pattern="metadata_PRJEB14474", full.names = T, include.dirs = T)
+metaFile = file.path(metaReduced, "output", "PRJEB14474_SraRunTable_reduced.txt")
+meta = read.delim2(metaFile)
+row.names(meta) = meta$ID
+message("Read metadata from: ", metaFile)
+```
+
+We will need to describe days as being "pre-opening" or "post-opening".  This information is held is "study_day". Make a new variable that is a simple category instead of a numeric.
+```{r}
+meta$opening = "before opening"
+meta$opening[meta$study_day > 0] = "after opening"
+```
+
+
+## counts data
+
+```{r}
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
+counts = read.delim2(countsFile, row.names = 1)
+dim(counts)
+
+counts = counts[rowSums(counts) > 0,]
+dim(counts)
+```
+
+## taxonomy
+
+```{r}
+assignTax = dir("../..", pattern="assign_ASV_taxonomy", full.names = T, include.dirs = T)
+taxaFile = file.path(assignTax, "output/silva/asvTaxaTable_silva-v138.txt")
+taxa = read.delim2(taxaFile, row.names = "asvID")
+# drop the ASV column
+taxaLim = taxa[,grep("ASV", names(taxa), invert = T, value = T)]
+taxaMat = as.matrix(taxaLim)
+```
+
+
+## direct output
+
+```{r}
+# tmpDir = "../temp"
+# suppressWarnings(dir.create(tmpDir, recursive = T))
+# 
+outDir = "../output"
+suppressWarnings(dir.create(outDir, recursive = T))
+```
+
+# Ordination function
+
+In the legend, Figure 1A is described as:
+
+> (A) Principal coordinate analysis (PCoA) of all floor samples based on weighted UniFrac distance and colored by whether they were taken before or after the hospital’s opening.
+
+```{r}
+# alt syntax: 
+# doPCoA = function(counts=counts, meta=meta, taxaMat=taxaMat, sampleType="Floor"){
+
+doPCoA = function(sampleType="Floor"){
+  sampleSet = meta[meta$SAMPLE_TYPE %in% sampleType, "ID"]
+  countslim = counts[sampleSet,]
+  
+  ps <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+                 sample_data(meta[sampleSet,]), 
+                 tax_table(taxaMat))
+  ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+  ord <- ordinate(ps.prop, method="PCoA", distance="bray") # TODO: switch to unifrac to match paper
+  po = plot_ordination(ps.prop, ord, shape="surcat", color="opening", title=paste0("bray PCoA - ", sampleType))
+  return(po)
+}
+floor = doPCoA(sampleType="Floor")
+floor
+ggsave(file.path(outDir, "floor_bray_PCoA.png"))
+```
+
+Do the same for each sample type.
+
+```{r}
+sampleTypes = unique(meta$SAMPLE_TYPE)
+plotList = as.list(sampleTypes)
+names(plotList) = sampleTypes
+
+for (type in sampleTypes){
+  aplot = doPCoA(sampleType=type)
+  plotList[[type]] = aplot
+  show(aplot)
+}
+```
+
+Save images to a pdf.
+```{r}
+pdf(file.path(outDir, "allTypes_unifrac_PCoA.pdf"))
+
+for (type in sampleTypes){
+  show(plotList[[type]])
+}
+
+dev.off()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+sessionInfo()
+```
+
