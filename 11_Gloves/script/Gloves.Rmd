@@ -1,0 +1,311 @@
+---
+title: "Gloves"
+output: html_document
+date: "2023-07-01"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# goal
+
+Could the gloves serve as a pseudo-blank that includes the sample collection step?
+
+# libs/input/output
+
+## libraries
+
+```{r}
+library(phyloseq); packageVersion("phyloseq")
+# library(Biostrings); packageVersion("Biostrings")
+library(ggplot2); packageVersion("ggplot2")
+library(dplyr); packageVersion("dplyr")
+library(ggrepel); packageVersion("ggrepel")
+require(broman); packageVersion("broman") #optional
+```
+
+
+## counts data
+
+```{r}
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
+counts = read.delim2(countsFile, row.names = 1)
+dim(counts)
+
+counts = counts[rowSums(counts) > 0,]
+dim(counts)
+head(row.names(counts))
+head(colnames(counts))
+```
+
+## metadata
+
+```{r}
+metaReduced = dir("../..", pattern="metadata_PRJEB14474", full.names = T, include.dirs = T)
+metaFile = file.path(metaReduced, "output", "PRJEB14474_SraRunTable_reduced.txt")
+meta = read.delim2(metaFile)
+row.names(meta) = meta$ID
+message("Read metadata from: ", metaFile)
+```
+
+We will need to describe days as being "pre-opening" or "post-opening".  This information is held is "study_day". Make a new variable that is a simple category instead of a numeric.
+```{r}
+meta$opening = "before opening"
+meta$opening[meta$study_day > 0] = "after opening"
+```
+
+We should have meta data for all samples we had data for...and for some samples that have been filtered out. Limit the meta data to only include samples we have in the data.
+```{r}
+inData = row.names(counts)
+meta = meta[inData, ]
+dim(meta)
+```
+
+
+## taxonomy
+
+```{r}
+assignTax = dir("../..", pattern="assign_ASV_taxonomy", full.names = T, include.dirs = T)
+taxaFile = file.path(assignTax, "output/silva/asvTaxaTable_silva-v138.txt")
+taxa = read.delim2(taxaFile, row.names = "asvID")
+# drop the ASV column
+taxaLim = taxa[,grep("ASV", names(taxa), invert = T, value = T)]
+taxaMat = as.matrix(taxaLim)
+```
+
+
+## direct output
+
+```{r}
+# tmpDir = "../temp"
+# suppressWarnings(dir.create(tmpDir, recursive = T))
+# 
+outDir = "../output"
+suppressWarnings(dir.create(outDir, recursive = T))
+```
+
+## set seed
+
+The seed each time that the dirction of the pcoa matters; like times that we add annotations or comments with hard-coded values based on the pcoa.
+```{r}
+seed = 22
+set.seed(seed)
+```
+
+
+# Ordination 
+
+
+## colors
+
+Lets lay out a set of colors to use for each type / category to be consistent between plots.
+```{r}
+# library(broman)
+myProjectPalette = c(
+  # match paper figures
+  before = "#2E5473",
+  'before opening'= "#2E5473",
+  Preopening = "#2E5473",
+  after = "#BB302F",
+  'after opening'= "#BB302F",
+  Postopening = "#BB302F",
+  # Gloves (with extended categories)
+  Glove1 = "deepskyblue",
+  Glove2 = "deepskyblue3",
+  'Glove from Glove Box' = "deepskyblue1",
+  Glove = "deepskyblue1",
+  'blank control' = "black", #white? consider: ("#fefe22") brocolors("crayons")["Laser Lemon"]
+  # Staff_Surface >> muted blue
+  'Personal Cell Phone' = "#a2a2d0", # brocolors("crayons")["Blue Bell"]
+  'Hospital Pager' = "#dbd7d2", # brocolors("crayons")["Timberwolf"]
+  'Shirt Hem' = "#c5d0e6", # brocolors("crayons")["Periwinkle"]
+  Shoe = "#b0b7c6", # brocolors("crayons")["Cadet Blue"]
+  # Station_Surface >> purples
+  'Countertop' = "#dd4492", # brocolors("crayons")["Cerise"] 
+  'Computer Mouse' = "#c364c5", # brocolors("crayons")["Fuchsia"]
+  'Station Phone'= "#f664af", # brocolors("crayons")["Magenta"]
+  'Chair Armrest' = "#de5d83", # brocolors("crayons")["Blush"]
+  'Corridor Floor' = "purple", 
+  # (Room_Surface | Station_Surface) > Water Faucet Handle >> green
+  'Hot Tap Water Faucet Handle' = "#71bc78", # brocolors("crayons")["Fern"]  
+  'Cold Tap Water Faucet Handle'= "#87a96b", # brocolors("crayons")["Asparagus"]
+  'Cold Tap Faucet Handle'="#a8e4a0" , # brocolors("crayons")["Granny Smith Apple"]
+  # Patient_Skin | Staff_Skin >> organic?
+  'Inguinal Fold'="#ffa089" , # brocolors("crayons")["Vivid Tangerine"]
+  Hand="#fae7b5" , # brocolors("crayons")["Banana Mania"]
+  Nose = "#ffcf48" , # brocolors("crayons")["Sunglow"]
+  # Nose="#c5e384" , # brocolors("crayons")["Yellow Green"]
+  Axilla="#f78fa7" , # brocolors("crayons")["Pink Sherbert"]
+  # Room_Surface >> greenish/blueish
+  Floor = "#2b6cc4" , # brocolors("crayons")["Denim"]
+  Bedrail = "#aaf0d1" # brocolors("crayons")["Magic Mint"]
+)
+
+# to use this with ggplot2, add a scale_*_manual layer:
+# plot1 + 
+#    scale_colour_manual(values = myProjectPalette) 
+```
+
+
+## ordination function
+
+In the legend, Figure 1A is described as:
+
+> (A) Principal coordinate analysis (PCoA) of all floor samples based on weighted UniFrac distance and colored by whether they were taken before or after the hospital’s opening.
+
+```{r}
+# alt syntax: 
+# doPCoA = function(counts=counts, meta=meta, taxaMat=taxaMat, sampleType="Floor"){
+
+doPCoA = function(sampleType="Floor", colorBy = "opening"){
+  sampleSet = meta[meta$SAMPLE_TYPE %in% sampleType, "ID"]
+  countslim = counts[sampleSet,]
+  
+  ps <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+                 sample_data(meta[sampleSet,]), 
+                 tax_table(taxaMat))
+  ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+  ord <- ordinate(ps.prop, method="PCoA", distance="bray") # TODO: switch to unifrac to match paper
+  po = plot_ordination(ps.prop, ord, shape="surcat", color=colorBy, 
+                       title=paste0("bray PCoA - ", paste0(sampleType, collapse=", "))) +
+    scale_colour_manual(values = myProjectPalette) 
+  return(list(ord=ord, plotA=po))
+}
+
+set.seed(seed)
+gloves = doPCoA(sampleType="Glove from Glove Box")
+gloves$plotA
+```
+
+
+```{r}
+ordGlove = gloves$ord$vectors[,1:3] %>% data.frame()
+ordGlove$ID = row.names(ordGlove)
+ordGlove = merge(ordGlove, meta)
+row.names(ordGlove) = ordGlove$ID
+
+p1 = ggplot(data.frame(ordGlove), aes(x=Axis.1, y=Axis.2, col=SAMPLE_TYPE, label=ID)) + 
+  geom_point() +
+  scale_colour_manual(values = myProjectPalette) +
+  ggtitle("Unused Glove")
+p1
+Ax1.cut = 0.08
+p1a = p1 + 
+  # abline parameters and Ax1.cut were set based on a plot made after set.seed(22)
+  geom_abline(slope=1.1, intercept = -0.1, linetype=2, col="gray") +
+  geom_vline(xintercept = Ax1.cut)
+p1a
+p1b = p1a + geom_text_repel(show.legend = F)
+p1b
+ggsave(file.path(outDir, "UnusedGlove_PCOA.png"))
+```
+
+Using just axis.1 I can capture most of group2.  Only two samples (ERR1461892 and ERR1461651) are left out.
+
+```{r}
+group1 = row.names(ordGlove)[ordGlove[,"Axis.1"] < Ax1.cut]
+group2 = row.names(ordGlove)[ordGlove[,"Axis.1"] > Ax1.cut]
+ordGlove$group = NA
+ordGlove[group1,"group"] = "Glove1"
+ordGlove[group2,"group"] = "Glove2"
+
+ggplot(data.frame(ordGlove), aes(x=Axis.1, y=Axis.2, col=group, label=ID)) + 
+  geom_point() +
+  scale_colour_manual(values = myProjectPalette) +
+  ggtitle("Unused Glove (grouped)")
+```
+
+```{r}
+allglove = table(meta$study_day[meta$SAMPLE_TYPE=="Glove from Glove Box"]) %>% data.frame()
+allglovedf = data.frame(study_day=allglove$Var1, total=allglove$Freq)
+g2glove = table(meta[group2, "study_day"]) %>% data.frame()
+names(g2glove) = c("study_day", "g2")
+df = merge(allglovedf, g2glove, all=T)
+df$g2[is.na(df$g2)] = 0
+df$portionG2 = df$g2 / df$total
+
+table(df$portionG2)
+```
+
+There are 95 days where all glove samples are in group1, and 13 days where all glove samples are in group2. And 5 days are a mix. The mix days are:
+```{r}
+df[df$portionG2 > 0 & df$portionG2 < 1,]
+```
+
+
+How many glove samples are usually taken on the same day?
+```{r}
+table(df$total)
+```
+
+
+This does not distinguish it by room. 
+
+```{r}
+all.glove = meta %>% 
+  filter(SAMPLE_TYPE == "Glove from Glove Box") %>% 
+  count(study_day, Location) %>%
+  mutate(total=n) %>% select(-n)
+
+g2.glove = meta %>% 
+  filter(ID %in% group2) %>% 
+  count(study_day, Location) %>%
+  mutate(g2=n) %>% select(-n)
+
+m2 = merge(all.glove, g2.glove, all=T)
+m2$g2[is.na(m2$g2)] = 0
+m2$portionG2 = as.factor(m2$g2 / m2$total)
+
+p1f = ggplot(m2, aes(x=study_day, y=Location, fill=portionG2)) +
+  geom_tile() 
+p1f
+```
+
+```{r}
+p1f + xlim(c(0,10))
+p1f + xlim(c(55,105))
+p1f + xlim(c(220,270))
+p1f + xlim(c(275,330))
+```
+Save images.
+```{r}
+pdf(file.path(outDir, "gloveCollectionDays.pdf"))
+p1f
+p1f + xlim(c(0,10))
+p1f + xlim(c(55,105))
+p1f + xlim(c(220,270))
+p1f + xlim(c(275,330))
+dev.off()
+```
+
+
+Where would my left-out samles fall?
+```{r}
+leftOut = c("ERR1461892", "ERR1461651")
+meta[leftOut, c("ID", "study_day", "Location")]
+```
+
+
+## gloves with others
+
+```{r}
+sampleTypes = unique(meta$SAMPLE_TYPE)
+
+meta[group1,"SAMPLE_TYPE"] = "Glove1"
+meta[group2,"SAMPLE_TYPE"] = "Glove2"
+
+eachVsGlove = list()
+for (type in sampleTypes){
+  eachVsGlove[[type]] = doPCoA(sampleType = c("Glove1", "Glove2", type), colorBy="SAMPLE_TYPE")
+  show(eachVsGlove[[type]]$plotA)
+}
+```
+
+
+```{r}
+sessionInfo()
+```
+
