@@ -22,8 +22,24 @@ In addition to looking at the floor samples like they did, we will look at each 
 library(phyloseq); packageVersion("phyloseq")
 # library(Biostrings); packageVersion("Biostrings")
 library(ggplot2); packageVersion("ggplot2")
+library(dplyr); packageVersion("dplyr")
+library(ggrepel); packageVersion("ggrepel")
 ```
 
+
+## counts data
+
+```{r}
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
+counts = read.delim2(countsFile, row.names = 1)
+dim(counts)
+
+counts = counts[rowSums(counts) > 0,]
+dim(counts)
+head(row.names(counts))
+head(colnames(counts))
+```
 
 ## metadata
 
@@ -41,18 +57,13 @@ meta$opening = "before opening"
 meta$opening[meta$study_day > 0] = "after opening"
 ```
 
-
-## counts data
-
+We should have meta data for all samples we had data for...and for some samples that have been filtered out. Limit the meta data to only include samples we have in the data.
 ```{r}
-DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
-countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
-counts = read.delim2(countsFile, row.names = 1)
-dim(counts)
-
-counts = counts[rowSums(counts) > 0,]
-dim(counts)
+inData = row.names(counts)
+meta = meta[inData, ]
+dim(meta)
 ```
+
 
 ## taxonomy
 
@@ -95,13 +106,14 @@ doPCoA = function(sampleType="Floor"){
                  tax_table(taxaMat))
   ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
   ord <- ordinate(ps.prop, method="PCoA", distance="bray") # TODO: switch to unifrac to match paper
-  po = plot_ordination(ps.prop, ord, shape="surcat", color="opening", title=paste0("bray PCoA - ", sampleType))
-  return(po)
+  po = plot_ordination(ps.prop, ord, shape="surcat", color="opening", title=paste0("bray PCoA - ", paste0(sampleType, collapse=", ")))
+  return(list(ord=ord, plotA=po))
 }
 floor = doPCoA(sampleType="Floor")
-floor
+floor$plotA
 ggsave(file.path(outDir, "floor_bray_PCoA.png"))
 ```
+### Each type
 
 Do the same for each sample type.
 
@@ -113,16 +125,16 @@ names(plotList) = sampleTypes
 for (type in sampleTypes){
   aplot = doPCoA(sampleType=type)
   plotList[[type]] = aplot
-  show(aplot)
+  show(aplot$plotA)
 }
 ```
 
 Save images to a pdf.
 ```{r}
-pdf(file.path(outDir, "allTypes_unifrac_PCoA.pdf"))
+pdf(file.path(outDir, "allTypes_bray_PCoA.pdf"))
 
 for (type in sampleTypes){
-  show(plotList[[type]])
+  show(plotList[[type]]$plotA)
 }
 
 dev.off()
@@ -130,29 +142,131 @@ dev.off()
 
 
 
-
+### specific groups
 
 ```{r}
-doPCoA(sampleType=c("Floor", "Corridor Floor"))
-ggsave(file.path(outDir, "floors_bray_PCoA.png"))
+a = doPCoA(sampleType=c("Floor", "Corridor Floor"))
+show(a$plotA)
+ggsave(file.path(outDir, "floors_bray_PCoA.png"), a$plotA)
 ```
 
 
 ```{r}
-doPCoA(sampleType=c("Countertop", "Computer Mouse", "Station Phone"))
-ggsave(file.path(outDir, "fig1-B.png"))
+b = doPCoA(sampleType=c("Countertop", "Computer Mouse", "Station Phone"))
+show(b$plotA)
+ggsave(file.path(outDir, "fig1-B.png"), b$plotA)
 ```
 
+### post trends
 
-Now I am curious. 
+Now I am curious. Corridor Floor samples separate nicely along axis 1 between pre- and post-opening.
+What do I see if I plot the axis 1 value against the study day? Do I see leap from one stable state to another? Do I see a gradual change over time?
 ```{r}
+do.plot2 = function(type, axis="Axis.1"){
+  y = plotList[[type]]$ord$vectors[,axis]
+  df = data.frame(pcoa = y,
+                  study_day = meta[names(y),"study_day"],
+                  opening = meta[names(y),"opening"])
+  dfPost = df[df$study_day > 0, ]
+  ct = cor.test(x = dfPost$study_day, y = dfPost$pcoa)
+  plot2 = ggplot(df, aes(x=study_day, y=pcoa, col=opening)) +
+    geom_point() +
+    geom_vline(xintercept = 0,
+               linetype = 1, 
+               col="grey") +
+    ylab(axis) +
+    ggtitle(type)
+  if (ct$p.value < 0.05) {
+    annot = paste("post-opening cor: ", round(ct$estimate, 2), "; pval:", round(ct$p.value, 4))
+    plot2 = plot2 + 
+      ggtitle(type, subtitle = annot)
+  }
+  show(plot2)
+  return(plot2)
+}
+L2 = list(
+  do.plot2("Corridor Floor"),
+  do.plot2("Floor", "Axis.1"),
+  do.plot2("Floor", "Axis.2"),
+  do.plot2("Cold Tap Water"),
+  do.plot2("Countertop"),
+  do.plot2("Computer Mouse"),
+  do.plot2("Station Phone"),
+  do.plot2("blank control")
+)
+```
 
+```{r}
+pdf(file.path(outDir, "study-day.v.pcoAx.pdf"))
+
+for (p2 in L2){
+  show(p2)
+}
+
+dev.off()
 ```
 
 
+### each vs blank and/or glove
+
+Do each sapmle type alongside the blank controls.
+```{r}
+doPCoA2 = function(sampleType="Floor"){
+  sampleSet = meta[meta$SAMPLE_TYPE %in% sampleType, "ID"]
+  countslim = counts[sampleSet,]
+  
+  ps <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+                 sample_data(meta[sampleSet,]), 
+                 tax_table(taxaMat))
+  ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+  ord <- ordinate(ps.prop, method="PCoA", distance="bray") # TODO: switch to unifrac to match paper
+  po = plot_ordination(ps.prop, ord, shape="surcat", color="SAMPLE_TYPE", title=paste0("bray PCoA - ", paste0(sampleType, collapse=", ")))
+  return(list(ord=ord, plotB=po))
+}
+
+eachVsBlank = list()
+for (type in sampleTypes){
+  eachVsBlank[[type]] = doPCoA2(sampleType=c("blank control", type))
+  show(eachVsBlank[[type]]$plotB)
+}
+```
+
+```{r}
+pdf(file.path(outDir, "eachType_vBlank_PCoA.pdf"))
+
+for (type in sampleTypes){
+  show(eachVsBlank[[type]]$plotA)
+}
+
+dev.off()
+```
+
+```{r}
+eachVsGlove = list()
+for (type in sampleTypes){
+  eachVsGlove[[type]] = doPCoA2(sampleType=c("Glove from Glove Box", type))
+  show(eachVsGlove[[type]]$plotB)
+}
+```
+
+```{r}
+pdf(file.path(outDir, "eachType_vGlove_PCoA.pdf"))
+
+for (type in sampleTypes){
+  show(eachVsGlove[[type]]$plotA)
+}
+
+dev.off()
+```
 
 
-
+```{r}
+eachVsBlankGlove = list()
+for (type in sampleTypes){
+  eachVsBlankGlove[[type]] = doPCoA2(sampleType=c("blank control", "Glove from Glove Box", type))
+  show(eachVsBlankGlove[[type]]$plotB)
+}
+```
 
 
 ```{r}
