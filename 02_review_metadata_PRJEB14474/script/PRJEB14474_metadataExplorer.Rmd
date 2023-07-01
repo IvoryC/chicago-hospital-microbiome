@@ -202,8 +202,7 @@ byday = ggplot(df4) +
   scale_color_gradient(low="blue", high="red") +
   scale_fill_gradient(low="blue", high="red") +
   xlab("Day (rounded to 10-day period)") +
-  geom_vline(x = 0,
-             xintercept = 0,
+  geom_vline(xintercept = 0,
              linetype = "solid") +
   annotate(geom = "text",
              label = " opening",
@@ -341,10 +340,51 @@ Well, fiddles. I gave the intern a subset where the blanks are some of the large
 From the supplemental data file:
  > Table S1. Summary of the 6523 samples included in the study, grouped by surface type.
  
+```{r}
+preCount = df2 %>% 
+  filter(study_day < 0 ) %>%
+  count(surcat, SAMPLE_TYPE) %>%
+  mutate(sra.pre = n) %>%
+  select(-n)
+postCount = df2 %>% 
+  filter(study_day >= 0 ) %>%
+  count(surcat, SAMPLE_TYPE) %>%
+  mutate(sra.post = n) %>%
+  select(-n)
+totCount = df2 %>% 
+  count(surcat, SAMPLE_TYPE) %>%
+  mutate(sra.total = n) %>%
+  select(-n)
 
+m2 = merge(preCount, postCount, all = T)
+m2 = merge(m2, totCount, all = T)
+m2[m2$SAMPLE_TYPE=="blank control","surcat"] = "Blank"
 
+s1 = read.delim2("../../data/inGit/Lax-et-al.2017_TableS1.txt")
+m3 = merge(m2, s1, all = T)
+m3[is.na(m3)] = 0
 
+m3$missing.pre = m3$Pre_Opening - m3$sra.pre
+m3$missing.post = m3$Post_Opening - m3$sra.post
+m3$missing.tot = m3$Surface_Total - m3$sra.total
 
+write.table(m3, file=file.path(outDir, "SampleCountByType_sra-vs-tableS1.txt"), 
+                               sep="\t", row.names=F, quote=F)
+
+m3
+```
+
+It can be hard to match up exactly what is missing.  We expected to find 6,523 samples, and only have 3,079.  Keep in mind that some of the sra table rows are technical replicates.
+
+Based on this matchup, we see `r sum(s1$Surface_Total)` described in table S1, which comes in as `r sum(m3$Surface_Total)` in the joined table. 
+We see `r nrow(meta)` described in the sra metadata, which comes in as `r sum(m3$sra.total)` in the joined table.  We are missing `r sum(m3$missing.tot)` samples.
+
+It looks like we have more "Inguinal Fold" samples than we expect (?). This might be explained by technical replicates not actually counting as unique samples.
+```{r}
+length(unique(df2$Sample.Name[df2$SAMPLE_TYPE=="Inguinal Fold"]))
+```
+
+Table S1 says there are 28 Inuinal Fold samples. We have 36 runs of this sample type, but only 22 of those are actually unique samples.
 
 ## Which columns are redundant
 
