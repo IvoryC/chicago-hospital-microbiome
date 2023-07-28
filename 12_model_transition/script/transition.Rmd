@@ -1,0 +1,527 @@
+---
+title: "Model Transition"
+output: html_document
+date: "2023-07-07"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# libs/input/output
+
+## libraries
+
+```{r}
+library(phyloseq); packageVersion("phyloseq")
+# library(Biostrings); packageVersion("Biostrings")
+library(ggplot2); packageVersion("ggplot2")
+library(dplyr); packageVersion("dplyr")
+library(ggrepel); packageVersion("ggrepel")
+```
+
+
+## counts data
+
+```{r}
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
+counts = read.delim2(countsFile, row.names = 1)
+dim(counts)
+
+counts = counts[rowSums(counts) > 0,]
+dim(counts)
+head(row.names(counts))
+head(colnames(counts))
+```
+
+## metadata
+
+```{r}
+metaReduced = dir("../..", pattern="metadata_PRJEB14474", full.names = T, include.dirs = T)
+metaFile = file.path(metaReduced, "output", "PRJEB14474_SraRunTable_reduced.txt")
+meta = read.delim2(metaFile)
+row.names(meta) = meta$ID
+message("Read metadata from: ", metaFile)
+```
+
+We will need to describe days as being "pre-opening" or "post-opening".  This information is held is "study_day". Make a new variable that is a simple category instead of a numeric.
+```{r}
+meta$opening = "before opening"
+meta$opening[meta$study_day > 0] = "after opening"
+```
+
+We should have meta data for all samples we had data for...and for some samples that have been filtered out. Limit the meta data to only include samples we have in the data.
+```{r}
+inData = row.names(counts)
+meta = meta[inData, ]
+dim(meta)
+```
+
+
+## taxonomy
+
+```{r}
+assignTax = dir("../..", pattern="assign_ASV_taxonomy", full.names = T, include.dirs = T)
+taxaFile = file.path(assignTax, "output/silva/asvTaxaTable_silva-v138.txt")
+taxa = read.delim2(taxaFile, row.names = "asvID")
+# drop the ASV column
+taxaLim = taxa[,grep("ASV", names(taxa), invert = T, value = T)]
+taxaMat = as.matrix(taxaLim)
+```
+
+
+## direct output
+
+```{r}
+# tmpDir = "../temp"
+# suppressWarnings(dir.create(tmpDir, recursive = T))
+# 
+outDir = "../output"
+suppressWarnings(dir.create(outDir, recursive = T))
+```
+
+
+## Colors.
+```{r}
+if (file.exists("../../project_themes.R")){
+  # first choice - reference the single shared file
+	source("../../project_themes.R")
+  myProjectPalette = getMyProjectPalette()
+}else{
+  # second choice, use hard-coded values here.
+# require(broman)
+myProjectPalette = c(
+  # match paper figures
+  before = "#2E5473",
+  'before opening'= "#2E5473",
+  Preopening = "#2E5473",
+  after = "#BB302F",
+  'after opening'= "#BB302F",
+  Postopening = "#BB302F",
+  # Gloves (with extended categories)
+  Glove1 = "deepskyblue",
+  Glove2 = "deepskyblue3",
+  'Glove from Glove Box' = "deepskyblue1",
+  Glove = "deepskyblue1",
+  'blank control' = "black", #white? consider: ("#fefe22") brocolors("crayons")["Laser Lemon"]
+  # Staff_Surface >> muted blue
+  'Personal Cell Phone' = "#a2a2d0", # brocolors("crayons")["Blue Bell"]
+  'Hospital Pager' = "#dbd7d2", # brocolors("crayons")["Timberwolf"]
+  'Shirt Hem' = "#c5d0e6", # brocolors("crayons")["Periwinkle"]
+  Shoe = "#b0b7c6", # brocolors("crayons")["Cadet Blue"]
+  # Station_Surface >> purples
+  'Countertop' = "#dd4492", # brocolors("crayons")["Cerise"] 
+  'Computer Mouse' = "#c364c5", # brocolors("crayons")["Fuchsia"]
+  'Station Phone'= "#f664af", # brocolors("crayons")["Magenta"]
+  'Chair Armrest' = "#de5d83", # brocolors("crayons")["Blush"]
+  'Corridor Floor' = "purple", 
+  # (Room_Surface | Station_Surface) > Water Faucet Handle >> green
+  'Hot Tap Water Faucet Handle' = "#71bc78", # brocolors("crayons")["Fern"]  
+  'Cold Tap Water Faucet Handle'= "#87a96b", # brocolors("crayons")["Asparagus"]
+  'Cold Tap Faucet Handle'="#a8e4a0" , # brocolors("crayons")["Granny Smith Apple"]
+  # Patient_Skin | Staff_Skin >> organic?
+  'Inguinal Fold'="#ffa089" , # brocolors("crayons")["Vivid Tangerine"]
+  Hand="#fae7b5" , # brocolors("crayons")["Banana Mania"]
+  Nose = "#ffcf48" , # brocolors("crayons")["Sunglow"]
+  # Nose="#c5e384" , # brocolors("crayons")["Yellow Green"]
+  Axilla="#f78fa7" , # brocolors("crayons")["Pink Sherbert"]
+  # Room_Surface >> greenish/blueish
+  Floor = "#2b6cc4" , # brocolors("crayons")["Denim"]
+  Bedrail = "#aaf0d1" # brocolors("crayons")["Magic Mint"]
+)
+
+# to use this with ggplot2, add a scale_*_manual layer:
+# plot1 + 
+#    scale_colour_manual(values = myProjectPalette) 	
+}
+```
+
+
+
+# Ordination function
+
+In the legend, Figure 1A is described as:
+
+> (A) Principal coordinate analysis (PCoA) of all floor samples based on weighted UniFrac distance and colored by whether they were taken before or after the hospital’s opening.
+
+```{r}
+# alt syntax: 
+# doPCoA = function(counts=counts, meta=meta, taxaMat=taxaMat, sampleType="Floor"){
+
+doPCoA = function(sampleType="Floor"){
+  sampleSet = meta[meta$SAMPLE_TYPE %in% sampleType, "ID"]
+  countslim = counts[sampleSet,]
+  
+  ps <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+                 sample_data(meta[sampleSet,]), 
+                 tax_table(taxaMat))
+  ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+  ord <- ordinate(ps.prop, method="PCoA", distance="bray") # TODO: switch to unifrac to match paper
+  po = plot_ordination(ps.prop, ord, shape="surcat", color="opening", 
+                       title=paste0("bray PCoA - ", paste0(sampleType, collapse=", "))) + 
+    scale_colour_manual(values = myProjectPalette)
+  return(list(ord=ord, plotA=po))
+}
+floor = doPCoA(sampleType="Floor")
+floor$plotA
+ggsave(file.path(outDir, "floor_bray_PCoA.png"))
+```
+### Each type
+
+Do the same for each sample type.
+
+```{r}
+sampleTypes = unique(meta$SAMPLE_TYPE)
+plotList = as.list(sampleTypes)
+names(plotList) = sampleTypes
+
+for (type in sampleTypes){
+  aplot = doPCoA(sampleType=type)
+  plotList[[type]] = aplot
+  show(aplot$plotA)
+}
+```
+
+Save images to a pdf.
+```{r}
+pdf(file.path(outDir, "allTypes_bray_PCoA.pdf"))
+
+for (type in sampleTypes){
+  show(plotList[[type]]$plotA)
+}
+
+dev.off()
+```
+
+
+
+
+
+
+### post trends
+
+Now I am curious. Corridor Floor samples separate nicely along axis 1 between pre- and post-opening.
+What do I see if I plot the axis 1 value against the study day? Do I see leap from one stable state to another? Do I see a gradual change over time?
+```{r}
+do.plot2 = function(type, axis="Axis.1"){
+  message(type)
+  y = plotList[[type]]$ord$vectors[,axis]
+  df = data.frame(pcoa = y,
+                  study_day = meta[names(y),"study_day"],
+                  opening = meta[names(y),"opening"],
+                  Location = meta[names(y), "Location"])
+  dfPost = df[df$study_day > 0, ]
+  ct = cor.test(x = dfPost$study_day, y = dfPost$pcoa)
+  plot2 = ggplot(df, aes(x=study_day, y=pcoa, col=opening)) +
+    geom_point() +
+    geom_vline(xintercept = 0,
+               linetype = 1, 
+               col="grey") +
+    ylab(axis) +
+    ggtitle(type) + 
+    scale_colour_manual(values = myProjectPalette)
+  # if (ct$p.value < 0.05) {
+  #   annot = paste("post-opening cor: ", round(ct$estimate, 2), "; pval:", round(ct$p.value, 4))
+  #   plot2 = plot2 + 
+  #     ggtitle(type, subtitle = annot) 
+  # }
+  
+  # add predictions
+  predColors = c(pred1="red", pred2="green", pred3="orange", pred4="purple")
+  plot2 = plot2 + scale_colour_manual(values = c(myProjectPalette, predColors))
+  df.post = df[df$study_day > 0,]
+  
+  myLm1 = lm(df.post$pcoa ~ df.post$study_day)
+  df.post$pred1 = fitted(myLm1)
+  plot3 = plot2 + geom_point(data=df.post, aes(x=study_day, y=pred1, colour="pred1")) +
+    geom_line(data=df.post, aes(x=study_day, y=pred1, colour="pred1"))
+  
+  myLm2 = lm(df.post$pcoa ~ poly(df.post$study_day, 2))
+  df.post$pred2 = fitted(myLm2)
+  plot3 = plot3 + geom_point(data=df.post, aes(x=study_day, y=pred2, colour="pred2"))+
+    geom_line(data=df.post, aes(x=study_day, y=pred2, colour="pred2"))
+  
+  myLm3 = lm(df.post$pcoa ~ poly(df.post$study_day, 3))
+  df.post$pred3 = fitted(myLm3)
+  plot3 = plot3 + geom_point(data=df.post, aes(x=study_day, y=pred3, colour="pred3")) +
+    geom_line(data=df.post, aes(x=study_day, y=pred3, colour="pred3"))
+  
+  myLm4 = lm(df.post$pcoa ~ poly(df.post$study_day, 4))
+  df.post$pred4 = fitted(myLm4)
+  plot3 = plot3 + geom_line(data=df.post, aes(x=study_day, y=pred4, colour="pred4")) + 
+    geom_point(data=df.post, aes(x=study_day, y=pred4, colour="pred4"))
+  
+  ###
+  
+   aicVals = c(myLm1 = AIC(myLm1),
+              myLm2 = AIC(myLm2),
+              myLm3 = AIC(myLm3),
+              myLm4 = AIC(myLm4))
+  
+  
+  if (length(unique(df.post$Location)) > 1){
+    
+  myLm1.L = lm(df.post$pcoa ~ df.post$study_day + df.post$Location)
+  df.post$pred1.L = fitted(myLm1.L)
+  plot3.L = plot2 + geom_point(data=df.post, aes(x=study_day, y=pred1.L, colour="pred1"))
+  for (room in unique(df.post$Location)){
+    plot3.L = plot3.L + 
+      geom_line(data=df.post %>% filter(Location==room), aes(x=study_day, y=pred1.L, colour="pred1"))
+  }
+  
+  myLm2.L = lm(df.post$pcoa ~ poly(df.post$study_day, 2) + df.post$Location)
+  df.post$pred2.L = fitted(myLm2.L)
+  plot3.L = plot3.L + geom_point(data=df.post, aes(x=study_day, y=pred2.L, colour="pred2"))
+  for (room in unique(df.post$Location)){
+    plot3.L = plot3.L + 
+      geom_line(data=df.post %>% filter(Location==room), aes(x=study_day, y=pred2.L, colour="pred2"))
+  }
+  
+  myLm3.L = lm(df.post$pcoa ~ poly(df.post$study_day, 3) + df.post$Location)
+  df.post$pred3.L = fitted(myLm3.L)
+  plot3.L = plot3.L + geom_point(data=df.post, aes(x=study_day, y=pred3.L, colour="pred3")) 
+  for (room in unique(df.post$Location)){
+    plot3.L = plot3.L + 
+      geom_line(data=df.post %>% filter(Location==room), aes(x=study_day, y=pred3.L, colour="pred3"))
+  }
+  
+  myLm4.L = lm(df.post$pcoa ~ poly(df.post$study_day, 4) + df.post$Location)
+  df.post$pred4.L = fitted(myLm4.L)
+  plot3.L = plot3.L + geom_point(data=df.post, aes(x=study_day, y=pred4.L, colour="pred4"))
+  for (room in unique(df.post$Location)){
+    plot3.L = plot3.L + 
+      geom_line(data=df.post %>% filter(Location==room), aes(x=study_day, y=pred4.L, colour="pred4"))
+  }
+  
+  
+  aicVals = c(aicVals,
+              myLm1.withLocation = AIC(myLm1.L),
+              myLm2.withLocation = AIC(myLm2.L),
+              myLm3.withLocation = AIC(myLm3.L),
+              myLm4.withLocation = AIC(myLm4.L))
+  
+  }else{
+    plot3.L = NULL
+  }  
+  
+  ###
+  
+  aicVals = round(aicVals, 3)
+  message(paste("AIC values:", paste0(aicVals, collapse=", ")))
+  smallestAIC = names(aicVals)[which(aicVals==min(aicVals))]
+  annot = paste0("Best AIC score is ", aicVals[smallestAIC], " for model ", smallestAIC, ".")
+  plot3 = plot3 + 
+      ggtitle(type, subtitle = annot) 
+  
+  show(plot2)
+  show(plot3)
+  show(plot3.L)
+  return(list(df.post=df.post, plot2=plot2, plot3=plot3, plot3.L=plot3.L))
+}
+
+L2 = list(
+  do.plot2(type="Corridor Floor"),
+  do.plot2(type="Floor"),
+  #do.plot2(type="Floor", "Axis.2"),
+  do.plot2(type="Cold Tap Water"),
+  do.plot2(type="Countertop"),
+  do.plot2(type="Computer Mouse"),
+  do.plot2(type="Station Phone"),
+  do.plot2(type="blank control")
+)
+```
+
+```{r}
+pdf(file.path(outDir, "study-day.v.PC1.mult.pdf"), width = 8, height = 4)
+
+par(mfrow=c(1,3))
+
+for (item in L2){
+  show(item$plot2)
+  show(item$plot3)
+  show(item$plot3L)
+}
+
+dev.off()
+```
+
+
+### duplicate - inverse
+
+```{r}
+do.plot2 = function(type, axis="Axis.1"){
+  y = plotList[[type]]$ord$vectors[,axis]
+  df = data.frame(pcoa = y,
+                  study_day = meta[names(y),"study_day"],
+                  opening = meta[names(y),"opening"])
+  dfPost = df[df$study_day > 0, ]
+  ct = cor.test(x = dfPost$study_day, y = dfPost$pcoa)
+  plot2 = ggplot(df, aes(x=study_day, y=pcoa, col=opening)) +
+    geom_point() +
+    geom_vline(xintercept = 0,
+               linetype = 1, 
+               col="grey") +
+    ylab(axis) +
+    ggtitle(type) + 
+    scale_colour_manual(values = myProjectPalette)
+  # if (ct$p.value < 0.05) {
+  #   annot = paste("post-opening cor: ", round(ct$estimate, 2), "; pval:", round(ct$p.value, 4))
+  #   plot2 = plot2 + 
+  #     ggtitle(type, subtitle = annot) 
+  # }
+  
+  # add predictions
+  predColors = c(pred1="red", pred2="green", pred3="orange", pred4="purple")
+  plot2 = plot2 + scale_colour_manual(values = c(myProjectPalette, predColors))
+  df.post = df[df$study_day > 0,]
+  
+  myLm1 = lm(df.post$pcoa ~ 1/df.post$study_day)
+  df.post$pred1 = fitted(myLm1)
+  plot3 = plot2 + geom_point(data=df.post, aes(x=study_day, y=pred1, colour="pred1")) +
+    geom_line(data=df.post, aes(x=study_day, y=pred1, colour="pred1"))
+  
+  myLm2 = lm(df.post$pcoa ~ poly(1/df.post$study_day, 2))
+  df.post$pred2 = fitted(myLm2)
+  plot3 = plot3 + geom_point(data=df.post, aes(x=study_day, y=pred2, colour="pred2"))+
+    geom_line(data=df.post, aes(x=study_day, y=pred2, colour="pred2"))
+  
+  myLm3 = lm(df.post$pcoa ~ poly(1/df.post$study_day, 3))
+  df.post$pred3 = fitted(myLm3)
+  plot3 = plot3 + geom_point(data=df.post, aes(x=study_day, y=pred3, colour="pred3")) +
+    geom_line(data=df.post, aes(x=study_day, y=pred3, colour="pred3"))
+  
+  myLm4 = lm(df.post$pcoa ~ poly(1/df.post$study_day, 4))
+  df.post$pred4 = fitted(myLm4)
+  plot3 = plot3 + geom_line(data=df.post, aes(x=study_day, y=pred4, colour="pred4")) + 
+    geom_point(data=df.post, aes(x=study_day, y=pred4, colour="pred4"))
+  
+  aicVals = c(myLm1 = AIC(myLm1),
+              myLm2 = AIC(myLm2),
+              myLm3 = AIC(myLm3),
+              myLm4 = AIC(myLm4) )
+  aicVals = round(aicVals, 3)
+  message(paste("AIC values:", paste0(aicVals, collapse=", ")))
+  smallestAIC = names(aicVals)[which(aicVals==min(aicVals))]
+  annot = paste0("With inverse; Best AIC score is ", aicVals[smallestAIC], " for model ", smallestAIC, ".")
+  plot3 = plot3 + 
+      ggtitle(type, subtitle = annot) 
+  
+  show(plot2)
+  show(plot3)
+  return(list(df.post=df.post, plot2=plot2, plot3=plot3))
+}
+
+L3 = list(
+  do.plot2("Corridor Floor"),
+  do.plot2("Floor"),
+  #do.plot2("Floor", "Axis.2"),
+  do.plot2("Cold Tap Water"),
+  do.plot2("Countertop"),
+  do.plot2("Computer Mouse"),
+  do.plot2("Station Phone"),
+  do.plot2("blank control")
+)
+```
+
+```{r}
+pdf(file.path(outDir, "study-day.v.PC1_inverse.pdf"))
+
+for (item in L3){
+  show(item$plot2)
+  show(item$plot3)
+}
+
+dev.off()
+```
+
+
+### duplicate - do sqrt()
+
+```{r}
+do.plot2 = function(type, axis="Axis.1"){
+  y = plotList[[type]]$ord$vectors[,axis]
+  df = data.frame(pcoa = y,
+                  study_day = meta[names(y),"study_day"],
+                  opening = meta[names(y),"opening"])
+  dfPost = df[df$study_day > 0, ]
+  ct = cor.test(x = dfPost$study_day, y = dfPost$pcoa)
+  plot2 = ggplot(df, aes(x=study_day, y=pcoa, col=opening)) +
+    geom_point() +
+    geom_vline(xintercept = 0,
+               linetype = 1, 
+               col="grey") +
+    ylab(axis) +
+    ggtitle(type) + 
+    scale_colour_manual(values = myProjectPalette)
+  # if (ct$p.value < 0.05) {
+  #   annot = paste("post-opening cor: ", round(ct$estimate, 2), "; pval:", round(ct$p.value, 4))
+  #   plot2 = plot2 + 
+  #     ggtitle(type, subtitle = annot) 
+  # }
+  
+  # add predictions
+  predColors = c(pred1="red", pred2="green", pred3="orange", pred4="purple")
+  plot2 = plot2 + scale_colour_manual(values = c(myProjectPalette, predColors))
+  df.post = df[df$study_day > 0,]
+  
+  myLm1 = lm(df.post$pcoa ~ sqrt(df.post$study_day))
+  df.post$pred1 = fitted(myLm1)
+  plot3 = plot2 + geom_point(data=df.post, aes(x=study_day, y=pred1, colour="pred1")) +
+    geom_line(data=df.post, aes(x=study_day, y=pred1, colour="pred1"))
+  
+  myLm2 = lm(df.post$pcoa ~ poly(sqrt(df.post$study_day), 2))
+  df.post$pred2 = fitted(myLm2)
+  plot3 = plot3 + geom_point(data=df.post, aes(x=study_day, y=pred2, colour="pred2"))+
+    geom_line(data=df.post, aes(x=study_day, y=pred2, colour="pred2"))
+  
+  myLm3 = lm(df.post$pcoa ~ poly(sqrt(df.post$study_day), 3))
+  df.post$pred3 = fitted(myLm3)
+  plot3 = plot3 + geom_point(data=df.post, aes(x=study_day, y=pred3, colour="pred3")) +
+    geom_line(data=df.post, aes(x=study_day, y=pred3, colour="pred3"))
+  
+  myLm4 = lm(df.post$pcoa ~ poly(sqrt(df.post$study_day), 4))
+  df.post$pred4 = fitted(myLm4)
+  plot3 = plot3 + geom_line(data=df.post, aes(x=study_day, y=pred4, colour="pred4")) + 
+    geom_point(data=df.post, aes(x=study_day, y=pred4, colour="pred4"))
+  
+  aicVals = c(myLm1 = AIC(myLm1),
+              myLm2 = AIC(myLm2),
+              myLm3 = AIC(myLm3),
+              myLm4 = AIC(myLm4) )
+  aicVals = round(aicVals, 3)
+  message(paste("AIC values:", paste0(aicVals, collapse=", ")))
+  smallestAIC = names(aicVals)[which(aicVals==min(aicVals))]
+  annot = paste0("With sqrt(); Best AIC score is ", aicVals[smallestAIC], " for model ", smallestAIC, ".")
+  plot3 = plot3 + 
+      ggtitle(type, subtitle = annot) 
+  
+  show(plot2)
+  show(plot3)
+  return(list(df.post=df.post, plot2=plot2, plot3=plot3))
+}
+
+L3 = list(
+  do.plot2("Corridor Floor"),
+  do.plot2("Floor"),
+  #do.plot2("Floor", "Axis.2"),
+  do.plot2("Cold Tap Water"),
+  do.plot2("Countertop"),
+  do.plot2("Computer Mouse"),
+  do.plot2("Station Phone"),
+  do.plot2("blank control")
+)
+```
+
+```{r}
+pdf(file.path(outDir, "study-day.v.PC1_inverse.pdf"))
+
+for (item in L3){
+  show(item$plot2)
+  show(item$plot3)
+}
+
+dev.off()
+```
+
