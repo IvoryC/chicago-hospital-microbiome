@@ -1,0 +1,393 @@
+---
+title: "Human-vs-non"
+output: html_document
+date: "2023-07-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+What does it mean for the samples to become more human?
+
+In the Hong Kong study (Wilkins et al. 2016), they said that air bacterial communities assemble independently of the the occupants but that surfaces reflect the "bacterial fingerprint" of room occupants.  
+
+In a newly opened hospital, do surfaces become "more human" over time?
+
+A limitation: We do not have DNA recovery quantities.  So a surface that has no bacteria and gradually accumulates more bacteria from human skin over time will look essentially constant.
+
+We may be able to solve backwards if we can find contaminants that we beleive are inversely proportional to initial DNA concentration, but this principal is used for identifying contaminants, not using "contaminants" to reverse quantify DNA concentration.
+
+
+
+Libraries
+```{r}
+require(broman)
+library(phyloseq); packageVersion("phyloseq")
+library(ggplot2); packageVersion("ggplot2")
+library(dplyr); packageVersion("dplyr")
+library(ggrepel); packageVersion("ggrepel")
+```
+
+
+## counts data
+
+```{r}
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
+counts = read.delim2(countsFile, row.names = 1)
+dim(counts)
+
+counts = counts[rowSums(counts) > 0,]
+dim(counts)
+head(row.names(counts))
+head(colnames(counts))
+```
+
+## metadata
+
+```{r}
+metaReduced = dir("../..", pattern="metadata_PRJEB14474", full.names = T, include.dirs = T)
+metaFile = file.path(metaReduced, "output", "PRJEB14474_SraRunTable_reduced.txt")
+meta = read.delim2(metaFile)
+row.names(meta) = meta$ID
+message("Read metadata from: ", metaFile)
+```
+
+We will need to describe days as being "pre-opening" or "post-opening".  This information is held is "study_day". Make a new variable that is a simple category instead of a numeric.
+```{r}
+meta$opening = "before opening"
+meta$opening[meta$study_day > 0] = "after opening"
+```
+
+We should have meta data for all samples we had data for...and for some samples that have been filtered out. Limit the meta data to only include samples we have in the data.
+```{r}
+inData = row.names(counts)
+meta = meta[inData, ]
+dim(meta)
+```
+
+
+## taxonomy
+
+```{r}
+assignTax = dir("../..", pattern="assign_ASV_taxonomy", full.names = T, include.dirs = T)
+taxaFile = file.path(assignTax, "output/silva/asvTaxaTable_silva-v138.txt")
+taxa = read.delim2(taxaFile, row.names = "asvID")
+# drop the ASV column
+taxaLim = taxa[,grep("ASV", names(taxa), invert = T, value = T)]
+taxaMat = as.matrix(taxaLim)
+```
+
+
+## direct output
+
+```{r}
+outDir = "../output"
+suppressWarnings(dir.create(outDir, recursive = T))
+```
+
+## Colors.
+```{r}
+if (file.exists("../../project_themes.R")){
+  # first choice - reference the single shared file
+  source("../../project_themes.R")
+  myProjectPalette = getMyProjectPalette()
+}else{
+  # second choice, use hard-coded values here.
+  # require(broman)
+  myProjectPalette = c(
+    # match paper figures
+    before = "#2E5473",
+    'before opening'= "#2E5473",
+    Preopening = "#2E5473",
+    after = "#BB302F",
+    'after opening'= "#BB302F",
+    Postopening = "#BB302F",
+    # Gloves (with extended categories)
+    Glove1 = "deepskyblue",
+    Glove2 = "deepskyblue3",
+    'Glove from Glove Box' = "deepskyblue1",
+    Glove = "deepskyblue1",
+    'blank control' = "black", #white? consider: ("#fefe22") brocolors("crayons")["Laser Lemon"]
+    # Staff_Surface >> muted blue
+    Staff_Surface = "#a2a2d0", # brocolors("crayons")["Blue Bell"]
+    'Personal Cell Phone' = "#a2a2d0", # brocolors("crayons")["Blue Bell"]
+    'Hospital Pager' = "#dbd7d2", # brocolors("crayons")["Timberwolf"]
+    'Shirt Hem' = "#c5d0e6", # brocolors("crayons")["Periwinkle"]
+    Shoe = "#b0b7c6", # brocolors("crayons")["Cadet Blue"]
+    # Station_Surface >> purples
+    'Station_Surface' = "#f664af", # brocolors("crayons")["Magenta"]
+    'Countertop' = "#dd4492", # brocolors("crayons")["Cerise"] 
+    'Computer Mouse' = "#c364c5", # brocolors("crayons")["Fuchsia"]
+    'Station Phone'= "#f664af", # brocolors("crayons")["Magenta"]
+    'Chair Armrest' = "#de5d83", # brocolors("crayons")["Blush"]
+    'Corridor Floor' = "purple", 
+    # (Room_Surface | Station_Surface) > Water Faucet Handle >> green
+    Room_Surface = "#71bc78", # brocolors("crayons")["Fern"]  
+    'Hot Tap Water Faucet Handle' = "#71bc78", # brocolors("crayons")["Fern"]  
+    'Cold Tap Water Faucet Handle'= "#87a96b", # brocolors("crayons")["Asparagus"]
+    'Cold Tap Faucet Handle'="#a8e4a0" , # brocolors("crayons")["Granny Smith Apple"]
+    # Patient_Skin | Staff_Skin >> organic?
+    Staff_Skin = "#ffa089" , # brocolors("crayons")["Vivid Tangerine"]
+    Patient_Skin = "#ffa089" , # brocolors("crayons")["Vivid Tangerine"]
+    'Inguinal Fold'="#ffa089" , # brocolors("crayons")["Vivid Tangerine"]
+    Hand="#fae7b5" , # brocolors("crayons")["Banana Mania"]
+    Nose = "#ffcf48" , # brocolors("crayons")["Sunglow"]
+    # Nose="#c5e384" , # brocolors("crayons")["Yellow Green"]
+    Axilla="#f78fa7" , # brocolors("crayons")["Pink Sherbert"]
+    # Room_Surface >> greenish/blueish
+    Room_Surface = "#2b6cc4" , # brocolors("crayons")["Denim"]
+    Floor = "#2b6cc4" , # brocolors("crayons")["Denim"]
+    Bedrail = "#aaf0d1", # brocolors("crayons")["Magic Mint"]
+    Water = "dodgerblue"
+  )
+  
+  # to use this with ggplot2, add a scale_*_manual layer:
+  # plot1 + 
+  #    scale_colour_manual(values = myProjectPalette) 	
+}
+
+colorKey = data.frame(color=myProjectPalette, key=names(myProjectPalette))
+colorKeyPlot = ggplot(data=colorKey, aes(x=1, y = 1:nrow(colorKey), fill=key, label=key)) +
+  geom_tile() +
+  scale_fill_manual(values = myProjectPalette) +
+  theme_void()+
+  theme(legend.position="none") + 
+  geom_text()
+```
+
+## Phyloseq object
+
+```{r}
+ps <- phyloseq(otu_table(counts, taxa_are_rows=FALSE), 
+               sample_data(meta), 
+               tax_table(taxaMat))
+ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+```
+
+
+Ordinatation.
+```{r}
+ord.all <- ordinate(ps.prop, method="PCoA", distance="bray") # TODO: switch to unifrac to match paper
+po.all = plot_ordination(ps.prop, ord.all, color="surcat", 
+                         title=paste0("bray PCoA - all samples")) + 
+  scale_colour_manual(values = myProjectPalette)
+po.all
+```
+
+I see a giant horseshoe.  With all samples, I think the data is too internally correlated to make a good PCA.
+
+Lets try again with a subset.
+
+Split the data into time perionds: early mid late.
+```{r}
+meta$era = factor(NA, levels=c("before", "early", "mid", "late"))
+b = which(meta$study_day > -75 & meta$study_day <= -15)
+meta$era[b] = "before"
+e = which(meta$study_day > 5 & meta$study_day <= 55)
+meta$era[e] = "early"
+m = which(meta$study_day > 105 & meta$study_day <= 155)
+meta$era[m] = "mid"
+l = which(meta$study_day > 205 & meta$study_day <= 285)
+meta$era[l] = "late"
+table(meta$era)
+```
+
+Staff categories.
+
+Hypothesis: If I ordinate the samples for early, mid and late separately, the "staff_surfaces" will consistently be some similarity to staff skin; but the station surfaces will drift from being less like the staff skin in "before" and "early" toward being a similar distance to staff skin in late.
+
+```{r}
+catories = c("Staff_Skin", "Station_Surface") #, "Staff_Surface", ""
+
+do.ordinate <- function(sampleSet, title){
+  ps <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+                 sample_data(meta[sampleSet,]), 
+                 tax_table(taxaMat))
+  ps.prop <- transform_sample_counts(ps, function(otu) otu/sum(otu))
+  ord <- ordinate(ps.prop, method="PCoA", distance="bray")
+  
+  plot.1.2 = plot_ordination(ps.prop, ord, color="surcat", shape=SAMPLE_TYPE, axes = c(1, 2),
+                         title=paste0("bray PCoA - ", title)) + 
+  scale_colour_manual(values = myProjectPalette)
+  plot.3.4 = plot_ordination(ps.prop, ord, color="surcat", axes = c(3, 4),
+                         title=paste0("bray PCoA - ", title)) + 
+  scale_colour_manual(values = myProjectPalette)
+  plot.5.6 = plot_ordination(ps.prop, ord, color="surcat", axes = c(5, 6),
+                         title=paste0("bray PCoA - ", title)) + 
+  scale_colour_manual(values = myProjectPalette)
+  
+  return(list(ps.prop=ps.prop, ord=ord, plot.1.2=plot.1.2, plot.3.4=plot.3.4, plot.5.6=plot.5.6))
+}
+
+sampleSet.staff = meta[which(meta$surcat %in% catories), "ID"] 
+ord.staff = do.ordinate(sampleSet.staff, "staff*")
+ord.staff$plot.1.2
+ord.staff$plot.3.4
+ord.staff$plot.5.6
+```
+
+```{r}
+sampleSet.before = meta[which(meta$surcat %in% catories & meta$era=="before"), "ID"] 
+sampleSet.early = meta[which(meta$surcat %in% catories & meta$era=="early"), "ID"] 
+sampleSet.mid = meta[which(meta$surcat %in% catories & meta$era=="mid"), "ID"]
+sampleSet.late = meta[which(meta$surcat %in% catories & meta$era=="late"), "ID"]
+
+par(mfrow=c(4,2))
+
+ord.staff.before = do.ordinate(sampleSet.before, "before")
+ord.staff.before$plot.1.2
+ord.staff.before$plot.3.4
+ord.staff.early = do.ordinate(sampleSet.early, "early")
+ord.staff.early$plot.1.2
+ord.staff.early$plot.3.4
+ord.staff.mid = do.ordinate(sampleSet.mid, "mid")
+ord.staff.mid$plot.1.2
+ord.staff.mid$plot.3.4
+ord.staff.late = do.ordinate(sampleSet.late, "late")
+ord.staff.late$plot.1.2
+ord.staff.late$plot.3.4
+```
+
+
+
+
+
+
+# Staff meta data?
+
+Lets understand the staff metadata.
+
+```{r}
+staff.surface = meta %>% filter(surcat=="Staff_Surface")
+dim(staff.surface)
+unique(staff.surface$Location)
+```
+
+```{r}
+staff.skin = meta %>% filter(surcat=="Staff_Skin") %>%
+  mutate(ABCD = gsub("Staff [019]*-", "", Location)) %>%
+  mutate(floor = ifelse(grepl("9", Location), "9th", "10th"))
+dim(staff.skin)
+unique(staff.skin$Location)
+```
+
+
+Location is given with terms like "Staff 10-A", where we have values for each floor (9 and 10), and A-D for each.  Does A-D indicate the nurse station or the nurse (person)?
+
+Figure S1 from the Lax et al 2017 paper shows the floor plan. It shows 5 patient rooms and 1 central nurse station.  The station looks large enough to have muliptle sites or sections, which could be the A-D bit, ...or maybe its people.
+
+Ordinate the skin samples to see if they separate by floor and/or by ABCD and/or by study_day.
+
+```{r}
+sampleSet = staff.skin %>% 
+  select(ID) %>% 
+  unlist()
+ps.skin <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+               sample_data(staff.skin), 
+               tax_table(taxaMat))
+ps.skin.prop <- transform_sample_counts(ps.skin, function(otu) otu/sum(otu))
+ord.skin <- ordinate(ps.skin.prop, method="PCoA", distance="bray") 
+plot_ordination(ps.skin.prop, ord.skin, color="SAMPLE_TYPE", 
+                         title=paste0("bray PCoA - staff skin samples"))
+```
+
+As expected, if we have multiple sample types samples group by type (body site). I'm a bit surprised that the separation isn't better than this.
+
+Lets look at one sample type at a time.
+
+```{r}
+skin.type = "Hand"
+
+
+sampleSet = staff.skin %>% 
+  filter(SAMPLE_TYPE == skin.type) %>% 
+  select(ID) %>% 
+  unlist()
+ps.skin <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+               sample_data(staff.skin), 
+               tax_table(taxaMat))
+ps.skin.prop <- transform_sample_counts(ps.skin, function(otu) otu/sum(otu))
+
+ord.skin <- ordinate(ps.skin.prop, method="PCoA", distance="bray") 
+
+# PC 1-2
+plot_ordination(ps.skin.prop, ord.skin, color="ABCD", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="floor", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="Location", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="SAMPLE_TYPE", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="study_day", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+
+# PC 3-4
+plot_ordination(ps.skin.prop, ord.skin, color="ABCD", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="floor", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="Location", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="study_day", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+```
+
+Repeat for nose
+```{r}
+skin.type = "Nose"
+
+
+sampleSet = staff.skin %>% 
+  filter(SAMPLE_TYPE == skin.type) %>% 
+  select(ID) %>% 
+  unlist()
+ps.skin <- phyloseq(otu_table(counts[sampleSet,], taxa_are_rows=FALSE), 
+               sample_data(staff.skin), 
+               tax_table(taxaMat))
+ps.skin.prop <- transform_sample_counts(ps.skin, function(otu) otu/sum(otu))
+
+ord.skin <- ordinate(ps.skin.prop, method="PCoA", distance="bray") 
+
+# PC 1-2
+plot_ordination(ps.skin.prop, ord.skin, color="ABCD", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="floor", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="Location", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="SAMPLE_TYPE", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="study_day", 
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+
+# PC 3-4
+plot_ordination(ps.skin.prop, ord.skin, color="ABCD", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="floor", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="Location", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+plot_ordination(ps.skin.prop, ord.skin, color="study_day", axes = c(3,4),
+                         title=paste0("bray PCoA - staff skin samples, ", skin.type))
+```
+
+I don't see any patterns here.  It looks like PC1,2,3,4 are not particularly correllated to with floor, or ABCD, or the intersection of the two, or study_day.
+
+
+
+
+
+
+```{r fig.width=3, fig.height=6}
+show(colorKeyPlot)
+```
+
+
+```{r}
+sessionInfo()
+```
+
