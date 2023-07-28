@@ -303,6 +303,27 @@ for (type in sampleTypes){
   show(eachVsGlove[[type]]$plotA)
 }
 ```
+# richness
+
+```{r}
+ps <- phyloseq(otu_table(counts, taxa_are_rows=FALSE), 
+                 sample_data(meta), 
+                 tax_table(taxaMat))
+
+plot_richness(ps, x="SAMPLE_TYPE", col="SAMPLE_TYPE", measures=c("Chao1", "Shannon")) +
+  scale_colour_manual(values = myProjectPalette) + theme(legend.position = "none") +
+  geom_boxplot(col="black") + geom_point()
+```
+
+```{r}
+ps.gloves <- phyloseq(otu_table(counts[c(group1, group2),], taxa_are_rows=FALSE), 
+                 sample_data(meta[c(group1, group2),]), 
+                 tax_table(taxaMat))
+ps.prop <- transform_sample_counts(ps.gloves, function(otu) otu/sum(otu))
+plot_bar(ps.prop, x="ID", fill="Phylum") + 
+  theme(legend.position = "none") + facet_wrap("SAMPLE_TYPE")
+ggsave(file.path(outDir, "temp.png"), width = 45)
+```
 
 
 ```{r}

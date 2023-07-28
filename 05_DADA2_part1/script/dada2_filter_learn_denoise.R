@@ -124,31 +124,40 @@ if (is.null(row.names(seqtab))) row.names(seqtab) = ids
 
 #### filter scarce ASV ####
 
-# use ceiling() because minSamples should never be less than 1, even if you have less than 100 samples
-minSamples = ceiling(nrow(seqtab) * .02)
+# # use ceiling() because minSamples should never be less than 1, even if you have less than 100 samples
+# minSamples = ceiling(nrow(seqtab) * .02)
+# 
+# # If you only have 1 sample, then minSamples is greater than 0 but less than 1
+# # We don't want to require greater than the sample size.
+# minSamples = min(c(minSamples, nrow(seqtab)*.5 )) 
+# message("With ", nrow(seqtab), " samples, I want to see a given ASV in at least ", minSamples, " samples, or I don't believe it.")
+# 
+# minProportion = 0.002
+# message("For me to really think I see an ASV in a sample, it needs to make up at least ", minProportion * 100, "% of the reads in that sample.")
+# 
+# seqProportions = seqtab
+# for (i in 1:nrow(seqtab) ) {
+#   rowIn = seqtab[i,]
+#   sampleTotal = sum(rowIn)
+#   if (sampleTotal==0) proportion = rep(0, length(rowIn))
+#   proportion = rowIn / sampleTotal
+#   seeIt = ifelse(proportion > minProportion, 1, 0)
+#   seqProportions[i, ] = seeIt
+# }
+# keepASV = colSums(seqProportions, na.rm=T) > minSamples
+# 
+# message("Of the ", ncol(seqtab), " ASVs I looked at, ", sum(keepASV), " ASVs met this criteria.")
+# # use "drop=FALSE" to prevent a single-sample set being converted to a vector
+# seqtab.filtered = seqtab[,keepASV, drop=FALSE]
 
-# If you only have 1 sample, then minSamples is greater than 0 but less than 1
-# We don't want to require greater than the sample size.
-minSamples = min(c(minSamples, nrow(seqtab)*.5 )) 
-message("With ", nrow(seqtab), " samples, I want to see a given ASV in at least ", minSamples, " samples, or I don't believe it.")
 
-minProportion = 0.002
-message("For me to really think I see an ASV in a sample, it needs to make up at least ", minProportion * 100, "% of the reads in that sample.")
+# Temporarily turn off filtering.
+seqtab.filtered = seqtab
 
-seqProportions = seqtab
-for (i in 1:nrow(seqtab) ) {
-  rowIn = seqtab[i,]
-  sampleTotal = sum(rowIn)
-  if (sampleTotal==0) proportion = rep(0, length(rowIn))
-  proportion = rowIn / sampleTotal
-  seeIt = ifelse(proportion > minProportion, 1, 0)
-  seqProportions[i, ] = seeIt
-}
-keepASV = colSums(seqProportions, na.rm=T) > minSamples
 
-message("Of the ", ncol(seqtab), " ASVs I looked at, ", sum(keepASV), " ASVs met this criteria.")
-# use "drop=FALSE" to prevent a single-sample set being converted to a vector
-seqtab.filtered = seqtab[,keepASV, drop=FALSE]
+
+
+
 
 # png(file.path(outDir, "asv-total-abundance.png"))
 # 

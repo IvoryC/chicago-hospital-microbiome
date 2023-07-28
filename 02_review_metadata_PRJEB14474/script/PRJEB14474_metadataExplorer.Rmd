@@ -100,12 +100,27 @@ Close enough! Lets call this "study_day".
 ds3$study_day = ds3$hsi3
 ```
 
+### Submitter Id
+
+In an individual email correspondence, I asked the authors for patient IDs.  They generously sent a mapping file. The "SampleID" in that file, corresponds to the second half of the "Library Name" column in this metadata.  So keep that around. 
+
+Unfortunately, using that, I found that some values that should have been "1000" were represented as "1", it looks like the issue is somewhere upstream of the sra metadata. Fortunately, the "Submitter_Id" field has a qiita identifier, that also includes this id and it has the "1000" value. So just use that instead.
+
+```{r}
+data = data %>% 
+  mutate(internalID = sapply(strsplit(Submitter_Id, split=".", fixed=T), "[[", 2 ) ) %>% 
+  mutate(preID = sapply(strsplit(Submitter_Id, split=".", fixed=T), "[[", 1 ) ) 
+
+unique(data$preID)
+```
+
+
 ## Reduced data frame
 
 Select limited columns.
 ```{r}
 df = merge(data, ds3, by=0)
-df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat", "Bases", "AvgSpotLen")]
+df2 = df[,c("ID", "Sample.Name", "Sample_name", "host_subject_id", "internalID", "Date", "study_day", "SAMPLE_TYPE", "Location", "run_prefix..exp.", "env_material", "surcat", "Bases", "AvgSpotLen")]
 ```
 
 Give a value to the blank run prefix.
@@ -377,7 +392,7 @@ m3
 It can be hard to match up exactly what is missing.  We expected to find 6,523 samples, and only have 3,079.  Keep in mind that some of the sra table rows are technical replicates.
 
 Based on this matchup, we see `r sum(s1$Surface_Total)` described in table S1, which comes in as `r sum(m3$Surface_Total)` in the joined table. 
-We see `r nrow(meta)` described in the sra metadata, which comes in as `r sum(m3$sra.total)` in the joined table.  We are missing `r sum(m3$missing.tot)` samples.
+We see `r nrow(data)` described in the sra metadata, which comes in as `r sum(m3$sra.total)` in the joined table.  We are missing `r sum(m3$missing.tot)` samples.
 
 It looks like we have more "Inguinal Fold" samples than we expect (?). This might be explained by technical replicates not actually counting as unique samples.
 ```{r}
