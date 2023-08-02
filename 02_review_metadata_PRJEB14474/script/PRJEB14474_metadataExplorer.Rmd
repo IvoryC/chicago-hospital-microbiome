@@ -1,6 +1,9 @@
 ---
 title: "Chicago Hospital Metadata"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    code_folding: show
 date: "2023-06-05"
 ---
 
@@ -32,7 +35,7 @@ suppressWarnings(dir.create(outDir))
 ```
 
 
-## Some modified data
+## Modify some data
 
 ### Date
 
@@ -65,7 +68,7 @@ This id column seems to have 3 parts separated by ".".
 head(data$host_subject_id)
 ```
 
-First looks like location, second looks like sampel type, and third is an integer.  Not sure what that means.  Lets grab it and check it out.
+First looks like location, second looks like sample type, and third is an integer.  Not sure what that means.  Lets grab it and check it out.
 
 ```{r}
 data$hsi3 = sapply(strsplit(data$host_subject_id, split=".", fixed=T),
@@ -80,7 +83,6 @@ Lets see if it is correlated with any other data.
 ds3 = merge(ds2, data["hsi3"], by=0)
 row.names(ds3) = ds3$Row.names
 ds3 = ds3[,grep(x=names(ds3), "Row.names", value=T, invert = T)]
-plot(ds3$hsi3 , ds3$thDay, las=1)
 ```
 ```{r}
 table(ds3$thDay - ds3$hsi3 == 81)
@@ -88,23 +90,25 @@ table(ds3$thDay - ds3$hsi3 == 81)
 
 Oh! I guess this number refers to integer day.
 
-And maybe 0 is the day the hospital opened?  The paper says "Sampling began 2 months before the hos- pital opening on 23 February 2013 and continued for a year thereafter."
+And maybe 0 is the day the hospital opened?  The paper says 
+
+ > Sampling began 2 months before the hospital opening on 23 February 2013 and continued for a year thereafter.
 
 ```{r}
 is0 = which(ds3$hsi3 == 0 )
-ds3$date[is0]
+ds3$date[is0] %>% unique()
 ```
 
-Close enough! Lets call this "study_day".
+Expected Feb 23, and seeing Feb 24... Close enough! Lets call this "study_day".
 ```{r}
 ds3$study_day = ds3$hsi3
 ```
 
 ### Submitter Id
 
-In an individual email correspondence, I asked the authors for patient IDs.  They generously sent a mapping file. The "SampleID" in that file, corresponds to the second half of the "Library Name" column in this metadata.  So keep that around. 
+In an individual email correspondence, I asked the authors for patient IDs.  They generously sent a mapping file. 
 
-Unfortunately, using that, I found that some values that should have been "1000" were represented as "1", it looks like the issue is somewhere upstream of the sra metadata. Fortunately, the "Submitter_Id" field has a qiita identifier, that also includes this id and it has the "1000" value. So just use that instead.
+The "SampleID" in that file, corresponds to the second half of the "Library Name" column in this metadata.  Unfortunately, using that, I found that some values that should have been "1000" were represented as "1", it looks like the issue is somewhere upstream of the sra metadata. Fortunately, the "Submitter_Id" field has a qiita identifier, that also includes this id and it has the "1000" value. Use that instead.
 
 ```{r}
 data = data %>% 
@@ -114,6 +118,7 @@ data = data %>%
 unique(data$preID)
 ```
 
+The part of the qiita identifier ahead of the sample id is the same for all samples, so we can drop that.  We'll hold on to this "internalID" column to easily merge to the mapping file.
 
 ## Reduced data frame
 
@@ -137,7 +142,7 @@ write.table(file = file.path(outDir, "PRJEB14474_SraRunTable_reduced.txt"),
 
 ## Visually summarize
 
-### Whats interesting
+### sample number by type, time, location
 
 
 Location vs SAMPLE_TYPE
@@ -163,31 +168,32 @@ I guess the 'blank control' samples are not assigned a location.
 
 Repeat, but only consider unque samples.
 ```{r}
-df8 = df2 %>% 
+df8.u = df2 %>% 
   filter(!duplicated(Sample.Name)) %>%
   mutate(SAMPLE_TYPE = paste0("(", surcat, ") ", SAMPLE_TYPE)) %>%
   count(SAMPLE_TYPE, Location)
 
-hm = ggplot(df8, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
+hm.u = ggplot(df8.u, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
   geom_tile() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
-  ggtitle("PRJEB14474 samples (unqiue samples)", subtitle = paste("N =", sum(df8$n)))
-hm
+  ggtitle("PRJEB14474 samples (unqiue samples)", subtitle = paste("N =", sum(df8.u$n)))
+ggsave(file.path(outDir, "Locatoin-sampletype_heat_unique.png"), hm.u)
+hm.u
 ```
 
 That looks pretty much the same. Where are the technical replicates?
 
 ```{r}
-df8 = df2 %>% 
+df8.d = df2 %>% 
   filter(duplicated(Sample.Name)) %>%
   mutate(SAMPLE_TYPE = paste0("(", surcat, ") ", SAMPLE_TYPE)) %>%
   count(SAMPLE_TYPE, Location)
 
-hm = ggplot(df8, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
+hm.d = ggplot(df8.d, aes(x=Location, y=SAMPLE_TYPE, color=n, fill=n)) + 
   geom_tile() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
-  ggtitle("PRJEB14474 samples (technical replicates)", subtitle = paste("N =", sum(df8$n)))
-hm
+  ggtitle("PRJEB14474 samples (technical replicates)", subtitle = paste("N =", sum(df8.d$n)))
+hm.d
 ```
 
 
@@ -286,6 +292,7 @@ ggsave(file.path(outDir, "patient-skin_time.v.location_sample-count.png"), byday
 
 byday2
 ```
+
 A lot of those, look like the different sample types were taken on the same day. Plot them all together to see if they do indeed line up.
 ```{r}
 df9.1 = df2 %>%
@@ -336,6 +343,7 @@ p1 = ggplot(data, aes(x=SAMPLE_TYPE, y=Bases, color=surcat)) +
 
 p1 + geom_boxplot()
 ```
+
 Of the subset that I used for testing, which samples have the most bases?
 ```{r}
 subset = df2 %>% filter(df$study_day==4)
@@ -349,57 +357,6 @@ subsetPlot + geom_text_repel(aes(label = ID), show.legend = FALSE)
 ```
 
 Well, fiddles. I gave the intern a subset where the blanks are some of the largest samples and some of the actual samples are essentially empty.
-
-## Compare Lax et al. 2017 Table S1
-
-From the supplemental data file:
- > Table S1. Summary of the 6523 samples included in the study, grouped by surface type.
- 
-```{r}
-preCount = df2 %>% 
-  filter(study_day < 0 ) %>%
-  count(surcat, SAMPLE_TYPE) %>%
-  mutate(sra.pre = n) %>%
-  select(-n)
-postCount = df2 %>% 
-  filter(study_day >= 0 ) %>%
-  count(surcat, SAMPLE_TYPE) %>%
-  mutate(sra.post = n) %>%
-  select(-n)
-totCount = df2 %>% 
-  count(surcat, SAMPLE_TYPE) %>%
-  mutate(sra.total = n) %>%
-  select(-n)
-
-m2 = merge(preCount, postCount, all = T)
-m2 = merge(m2, totCount, all = T)
-m2[m2$SAMPLE_TYPE=="blank control","surcat"] = "Blank"
-
-s1 = read.delim2("../../data/inGit/Lax-et-al.2017_TableS1.txt")
-m3 = merge(m2, s1, all = T)
-m3[is.na(m3)] = 0
-
-m3$missing.pre = m3$Pre_Opening - m3$sra.pre
-m3$missing.post = m3$Post_Opening - m3$sra.post
-m3$missing.tot = m3$Surface_Total - m3$sra.total
-
-write.table(m3, file=file.path(outDir, "SampleCountByType_sra-vs-tableS1.txt"), 
-                               sep="\t", row.names=F, quote=F)
-
-m3
-```
-
-It can be hard to match up exactly what is missing.  We expected to find 6,523 samples, and only have 3,079.  Keep in mind that some of the sra table rows are technical replicates.
-
-Based on this matchup, we see `r sum(s1$Surface_Total)` described in table S1, which comes in as `r sum(m3$Surface_Total)` in the joined table. 
-We see `r nrow(data)` described in the sra metadata, which comes in as `r sum(m3$sra.total)` in the joined table.  We are missing `r sum(m3$missing.tot)` samples.
-
-It looks like we have more "Inguinal Fold" samples than we expect (?). This might be explained by technical replicates not actually counting as unique samples.
-```{r}
-length(unique(df2$Sample.Name[df2$SAMPLE_TYPE=="Inguinal Fold"]))
-```
-
-Table S1 says there are 28 Inuinal Fold samples. We have 36 runs of this sample type, but only 22 of those are actually unique samples.
 
 ## Which columns are redundant
 
