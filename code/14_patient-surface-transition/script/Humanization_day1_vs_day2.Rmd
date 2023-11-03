@@ -68,9 +68,23 @@ inData = row.names(rawcounts)
 meta = meta[inData, ]
 ```
 
-Relative abundance
+Normalize counts.
 ```{r}
-counts <- rawcounts/rowSums(rawcounts)
+lognorm <- function(table, log10.do = TRUE){
+  # table - a table with rows for samples and columns for features
+  #         samples names are row names.
+  #         feature names are column names.
+  #         the table values are all numeric
+  sampleSums = rowSums(table)
+  meanSampleDepth = mean(sampleSums)
+  sampleProportion = t( apply(table, 1, function(row) row / sum(row)) )
+  t2 = sampleProportion * meanSampleDepth
+  if (log10.do) t3 = log10( t2 + 1 )
+  else t3 = t2 + 1
+  return( t3 )
+}
+
+counts = lognorm(rawcounts)
 ```
 
 Categorizing sample types
