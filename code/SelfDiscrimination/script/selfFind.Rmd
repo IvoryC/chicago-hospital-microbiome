@@ -1,0 +1,151 @@
+---
+title: "SelfDescrimination"
+output: html_document
+date: "2023-11-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### libraries
+
+```{r results = "hold"}
+tellme <- function(name){print(paste0("Package ", name, " version: ", packageVersion(name)))}
+
+library(tidyr); tellme("tidyr")
+suppressPackageStartupMessages(library(dplyr)); tellme("dplyr")
+library(ggplot2); tellme("ggplot2")
+library(ggrepel); tellme("ggrepel")
+# library(ggrepel); tellme("phyloseq")
+# library(ggpubr); tellme("ggpubr")
+```
+
+Read the functions made for this approach.
+```{r}
+source("selfFinderScore_functions.R")
+```
+
+
+## counts
+
+```{r}
+# rawcounts <- read.delim2("asv-counts.txt", row.names = 1)
+# rawcounts = rawcounts[rowSums(rawcounts) > 0,]
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
+rawcounts = read.delim2(countsFile, row.names = 1)
+rawcounts = rawcounts[rowSums(rawcounts) > 0,]
+dim(rawcounts)
+```
+
+Normalize counts.
+```{r}
+# lognorm <- function(table, log10.do = TRUE){
+#   # table - a table with rows for samples and columns for features
+#   #         samples names are row names.
+#   #         feature names are column names.
+#   #         the table values are all numeric
+#   sampleSums = rowSums(table)
+#   meanSampleDepth = mean(sampleSums)
+#   sampleProportion = t( apply(table, 1, function(row) row / sum(row)) )
+#   t2 = sampleProportion * meanSampleDepth
+#   if (log10.do) t3 = log10( t2 + 1 )
+#   else t3 = t2 + 1
+#   return( t3 )
+# }
+
+counts = lognorm(rawcounts)
+
+relAbund = rawcounts/rowSums(rawcounts)
+```
+
+
+```{r}
+# pairs=read.delim("../pairs/pairs_Patient-Nose.txt")
+# row.names(pairs) = pairs[,1]
+
+pairSets = dir("../pairs", pattern=".txt", full.names = T)
+names(pairSets) = gsub(x=basename(pairSets), pattern=".txt", replacement = "")
+pairList = lapply(pairSets, FUN=function(file){
+  df = read.delim(file)
+  row.names(df) = df[,1]
+  df
+})
+pairs = pairList[["pairs_Patient-Nose"]]
+```
+
+
+
+
+```{r}
+# selfSelectionScore <- function(pairs, counts, title="", showPlots = T){
+#   corMat = corrMatrix(pairs, counts)
+#   
+#   res = calcRes(corMat, pairs)
+#   
+#   heatmap = correlationTableToHeatMap(corMat, title=title)
+#   points = correlationPoints(corMat, title=title)
+#   
+#   if (showPlots){
+#     show(heatmap)
+#     show(points)
+#   }
+#   
+#   return(list(table=res, correlatoins=cor.co.short, heatmap=heatmap, points=points))
+# }
+
+vals = selfSelectionScore(pairs, counts)
+```
+
+```{r}
+lognormResults = selfSelectionScore(pairList[["pairs_Patient-Nose"]], 
+               counts, title="Patient-Nose, lognorm")
+rawResults = selfSelectionScore(pairList[["pairs_Patient-Nose"]], 
+               rawcounts, title="Patient-Nose, raw")
+relbundResults = selfSelectionScore(pairList[["pairs_Patient-Nose"]], 
+               relAbund, title="Patient-Nose, relAbund")
+```
+
+Oh... I guess the "raw" counts were actually already scaled (relative abundance).
+
+```{r}
+plot(lognormResults$table$score, 
+     relbundResults$table$score)
+abline(a=0, b=1)
+
+t.test(lognormResults$table$score, relbundResults$table$score, paired = T)
+```
+
+
+```{r}
+lognormResults2 = selfSelectionScore(pairList[["pairs_Patient-Axilla"]], 
+               counts, title="Patient-Axilla, lognorm")
+relbundResults2 = selfSelectionScore(pairList[["pairs_Patient-Axilla"]], 
+               relAbund, title="Patient-Axilla, relAbund")
+
+plot(lognormResults2$table$score, 
+     relbundResults2$table$score)
+abline(a=0, b=1)
+
+t.test(lognormResults2$table$score, relbundResults2$table$score, paired = T)
+```
+
+
+```{r}
+lognormResults3 = selfSelectionScore(pairList[["pairs_Patient-Hand"]], 
+               counts, title="Patient-Hand, lognorm")
+relbundResults3 = selfSelectionScore(pairList[["pairs_Patient-Hand"]], 
+               relAbund, title="Patient-Hand, relAbund")
+
+plot(lognormResults3$table$score, 
+     relbundResults3$table$score)
+abline(a=0, b=1)
+
+t.test(lognormResults3$table$score, relbundResults3$table$score, paired = T)
+```
+
+
+
+
