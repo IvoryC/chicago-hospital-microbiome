@@ -1,0 +1,217 @@
+---
+title: "Humanization day 1 vs day 2"
+author: "Nico Taber"
+date: "2023-07-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Note: this markdown uses inputs that are not part of the git repository!!!**
+
+Libraries
+```{r }
+library(phyloseq); packageVersion("phyloseq")
+library(ggplot2); packageVersion("ggplot2")
+library(dplyr); packageVersion("dplyr")
+library(ggrepel); packageVersion("ggrepel")
+library("tidyr")
+path <- file.path("Chicago-Hospital")
+library(gridExtra)
+```
+
+Importing data
+
+counts
+```{r}
+# rawcounts <- read.delim2("asv-counts.txt", row.names = 1)
+# rawcounts = rawcounts[rowSums(rawcounts) > 0,]
+DADA2_part2 = dir("../..", pattern="DADA2_part2", full.names = T, include.dirs = T)
+countsFile = file.path(DADA2_part2, "output", "asv-counts.txt")
+rawcounts = read.delim2(countsFile, row.names = 1)
+rawcounts = rawcounts[rowSums(rawcounts) > 0,]
+dim(rawcounts)
+```
+
+metadata
+```{r}
+# meta1 <- read.delim2("PRJEB14474_SraRunTable_reduced.txt")
+metaReduced = dir("../..", pattern="metadata_PRJEB14474", full.names = T, include.dirs = T)
+metaFile = file.path(metaReduced, "output", "PRJEB14474_SraRunTable_reduced.txt")
+meta1 = read.delim2(metaFile)
+row.names(meta1) = meta1$ID
+message("Read metadata from: ", metaFile)
+```
+
+Private metadata data.
+```{r}
+# meta2 <- read.delim2("SRA-availability-PatientID_Mapping.txt")
+# meta2 <- meta2[,c("RunID", "PatientID")]
+meta2 <- read.delim2("../../input/SRA-availability-PatientID_Mapping.txt")[,c("RunID", "PatientID")]
+
+# dayofstay <- read.delim2("day_of_stay.txt")
+# dayofstay <- dayofstay[,c(2, 3, 4:6)]
+dayofstay <- read.delim2("../../input/day_of_stay.txt")[,c(2, 3, 4:6)]
+```
+
+merge meta data
+```{r}
+meta <- merge(meta1, meta2, by.x = "ID", by.y = "RunID")
+w = which(meta$SAMPLE_TYPE=="Cold Tap Faucet Handle")
+meta[w,"SAMPLE_TYPE"]="Faucet Handle"
+meta$opening = "before opening"
+meta$opening[meta$study_day > 0] = "after opening"
+row.names(meta) <- meta$ID
+inData = row.names(rawcounts)
+meta = meta[inData, ]
+```
+
+Relative abundance
+```{r}
+counts <- rawcounts/rowSums(rawcounts)
+```
+
+Categorizing sample types
+```{r}
+roomsurfaces <- c("Floor", "Bedrail", "Faucet Handle")
+patientsurfaces <- c("Nose", "Hand", "Axilla")
+```
+
+Colors
+```{r}
+
+myProjectPalette = c(
+  Day1 = "dodgerblue",
+  Day2 = "coral",
+  Yes = "darkgreen",
+  No = "pink"
+)
+
+# to use this with ggplot2, add a scale_*_manual layer:
+# plot1 + 
+#    scale_colour_manual(values = myProjectPalette) 	
+
+```
+
+Putting it all together!
+```{r}
+room=2
+roomsurface = "Floor"
+patientsurface = "Nose"
+day=1
+x=2
+boxplot.df.list <- list()
+cortab <- data.frame(matrix(nrow = 3, ncol =3))
+colnames(cortab) <- patientsurfaces
+row.names(cortab) <- roomsurfaces
+ptab <- cortab
+p2list <- list()
+p1list <- list()
+for(roomsurface in roomsurfaces){
+  for (patientsurface in patientsurfaces){
+    room.df = meta %>% 
+      filter(SAMPLE_TYPE==roomsurface) %>% 
+      mutate(patientday=paste(PatientID, study_day))  %>%
+      select(ID, patientday) %>%
+      rename(room.ID = ID)
+    patient.df = meta %>% 
+      filter(SAMPLE_TYPE==patientsurface) %>% 
+      mutate(patientday=paste(PatientID, study_day))  %>% 
+      select(ID, patientday, PatientID) %>% 
+      rename(Patient.ID = ID)
+    pairs <- merge(room.df, patient.df, by="patientday")
+    meta3 <- dayofstay %>% 
+      mutate(patientday=paste(PatientID, study_day)) %>% 
+      select(patientday, day_of_stay)
+    pairs <- merge(pairs, meta3, by="patientday")
+    r2.df <- data.frame(matrix(ncol=2,nrow=length(unique(pairs$PatientID))))
+    row.names(r2.df) <- unique(pairs$PatientID)
+    colnames(r2.df) <- c("Day1", "Day2")
+    r2.dfno00 <- r2.df
+    for(day in 1:2){
+      sub <- pairs[which(pairs$day_of_stay == day),]
+      for (room in 1:nrow(sub)){
+        ids <- sub[room, c("Patient.ID", "room.ID")] %>% unlist()
+        subcounts = t(counts[ids,])
+        colnames(subcounts) = c("Patient", "Room")
+        patientID <- sub[room,"PatientID"]
+        df <- data.frame(patient=unlist(counts[ids[1],]),
+                         room=unlist(counts[ids[2],]))
+        
+        suppressWarnings({cor <-cor.test(df$patient, df$room)$estimate})
+        r2.df[patientID, day] <- cor
+        
+        p1 <- ggplot(df, aes(x=patient,y=room)) +
+          geom_point() +
+          ggtitle(paste0("Patient: ", patientID,
+                         ", Study day: ",
+                         day, ", Room surface: ", roomsurface, ",
+                         Patient Surface: ", patientsurface), 
+                  subtitle = paste("cor =", round(cor, 3)))
+        #show(p1)
+        plotname = paste(room, day, patientsurface, roomsurface)
+        p1list[[plotname]] <- p1
+        
+        
+        # #Exclude 00s
+        # df <- df %>% 
+        #   filter(patient != 0 | room != 0) 
+        # cor <-cor.test(df$patient, df$room, method = "spearman")$estimate
+        # r2.dfno00[patientID, day] <- cor
+      }
+    }
+    pval <- t.test(na.omit(r2.df$Day1), na.omit(r2.df$Day2))$p.value
+    cortab[roomsurface,patientsurface] <-pval
+    r2.dflong <- r2.df %>%
+      mutate(PatientID=row.names(r2.df)) %>%
+      pivot_longer(cols=c(Day1, Day2), values_to = "cor", names_to = "Day_in_stay") %>%
+      mutate(Patient_surface = patientsurface, Room_surface = roomsurface)
+    key <- paste(roomsurface, patientsurface)
+    boxplot.df.list[[key]] <- r2.dflong
+    p2 <- ggplot(r2.dflong, aes(x=Day_in_stay, y=cor,grouping=Day_in_stay, fill=Day_in_stay)) +
+      geom_boxplot() +
+      geom_jitter(height = 0, width = 0.1) +
+      ggtitle(paste0(roomsurface, " vs. ", patientsurface), subtitle=paste0("pval = ", round(pval, 3))) +
+      ylab("Correlation Coefficient") + 
+      scale_fill_manual(values = myProjectPalette) +
+        theme(plot.subtitle = element_text(colour = ifelse(pval<=0.05, "red", "black")))
+    #show(p2)
+    
+    p2list[[key]] <- p2
+  }
+}
+
+```
+
+Grid boxplot
+```{r, fig.width=10, fig.height=10}
+suppressWarnings(
+  {
+    grid.arrange(p2list[[1]], p2list[[2]], p2list[[3]], 
+             p2list[[4]], p2list[[5]], p2list[[6]], 
+             p2list[[7]], p2list[[8]], p2list[[9]],  nrow=3, ncol=3)})
+```
+
+Better boxplots
+```{r}
+mega.df <- do.call(rbind, boxplot.df.list)
+p2big <- ggplot(mega.df, aes(x=Day_in_stay, y=cor,grouping=Day_in_stay, fill=Day_in_stay)) +
+      geom_boxplot(outlier.alpha = 0) +
+      geom_jitter(height = 0, width = 0.1) +
+      ylab("Correlation Coefficient") + 
+      scale_fill_manual(values = myProjectPalette) +
+  facet_grid(rows=vars(Room_surface), cols = vars(Patient_surface))
+show(p2big)
+```
+Saving scatterplots
+```{r}
+show(p1list[[1]])
+# pdf("Scatterplots.pdf")
+# for(plot in p1list){
+#   show(plot)
+# }
+# dev.off()
+```
+
