@@ -28,15 +28,23 @@ selfSelectionScore <- function(pairs, counts, title="", showPlots = T, method = 
   
   res = calcRes(corMat, pairs)
   
+  boxplotTest = isMatchedBetter(corMat, title=title)
+  
   heatmap = correlationTableToHeatMap(corMat, title=title)
   points = correlationPoints(corMat, title=title)
   
   if (showPlots){
     show(heatmap)
     show(points)
+    show(boxplotTest$boxplot)
   }
   
-  return(list(correlatoins=corMat, table=res, heatmap=heatmap, points=points))
+  return(list(correlatoins=corMat, 
+              table=res, 
+              heatmap=heatmap, 
+              points=points,
+              boxplot=boxplotTest$boxplot,
+              p.value=boxplotTest$p.value))
 }
 
 
@@ -64,20 +72,21 @@ calcRes <- function(corMat, pairs){
   if (is.null(pairs)){
     pairs = extractPairs(corMat)
   }
-  res = data.frame(left=NA, matchCor=0L, unmatchMedian=0L)
+  res = data.frame(left=NA, matchCor=0L, unmatchMedian=0L, score2=0L)
   for (left in row.names(pairs)){
     right = pairs[left, 2]
     matchCor = corMat[left, right]
     others = setdiff(pairs[,2], right)
     unmatchMedian = median(unlist(corMat[left, others]))
-    res = rbind(res, c(left, matchCor, unmatchMedian))
+    score2 = ( matchCor - median(corMat[left, others]) ) / sd(corMat[left, others])
+    res = rbind(res, c(left, matchCor, unmatchMedian, score2))
   }
   # remove starter row
   res = filter(res, !is.na(left))
   # calculate scores
   res$unmatchMedian = as.numeric(res$unmatchMedian)
   res$matchCor = as.numeric(res$matchCor)
-  res = mutate(res, score = matchCor / unmatchMedian)
+  res = mutate(res, score = matchCor / unmatchMedian) 
 }
 
 extractPairs <- function(corMat){
@@ -90,36 +99,71 @@ extractPairs <- function(corMat){
   return(pairs)
 }
 
+isMatchedBetter <- function(corMat, pairs=NULL, doPlot=T, showPlot=T, title=""){
+  if (is.null(pairs)){
+    pairs = extractPairs(corMat)
+  }
+  
+  longTab = corMat %>% 
+    as.data.frame() %>%
+    mutate(left= row.names(corMat) ) %>%
+    pivot_longer(cols=-left, names_to = "right", values_to="correlation") %>%
+    mutate(isMatch = ifelse(pairs[left,2]==right,"yes", "no"))
+  
+  tt = t.test(longTab[longTab$isMatch=="yes","correlation"], 
+              longTab[longTab$isMatch=="no","correlation"],
+              paired = F, alternative = "greater")
+  
+  returnObj = list(p.value=tt$p.value)
+  
+  if (doPlot){
+    bp = ggplot(data=longTab, aes(x=isMatch, y=correlation)) +
+      theme_linedraw() +
+      scale_color_manual(values=c(yes="red", no="gray")) + 
+      geom_boxplot(outlier.alpha = 0) + 
+      geom_jitter(width = .2, height = 0, aes(col=isMatch)) +
+      labs(title=title, 
+           subtitle = paste0("p-value: ", signif(tt$p.value, 3)),
+           caption = "p-value comes from the t.test(), tesing the statement:\n\"Matched pairs have a greater correlation than unmatched pairs.\"") +
+      theme(plot.subtitle=element_text(color=ifelse(tt$p.value < 0.05, "red", "black")))
+    
+    returnObj[["boxplot"]] = bp
+  }else{
+    returnObj[["boxplot"]] = NULL
+  }
+  return(returnObj)
+}
+
 
 #### plot functions ####
 
 correlationTableToHeatMap <- function(cor.table,
                                      pdfFilename=NULL, 
                                      title="correlations", 
-                                     midpointVal=.5, blueVal=0, redVal=1, 
-                                     xlab="right", ylab="left"){
+                                     midpointVal=.5, lowVal=0, redVal=1, 
+                                     xlab="left", ylab="right"){
   # cor.table - a matrix with row names and column names, and numeric values.
   # title - title for the plot
   # pdfFilename - if supplied, image is saved to a file.
-  # blueVal - values worse than this will all be shown in blue.
+  # lowVal - values worse than this will all be shown in blue.
   # redVal - values higher than this will be shown in red.
   # midpointVal - these will be shown in white, as a middle point between the blue and red gradients.
   # all p-values better than this will be shown in solid red.
 
   # max out at limits
   cor.table[cor.table > redVal] = redVal
-  cor.table[cor.table < blueVal] = blueVal
+  cor.table[cor.table < lowVal] = lowVal
   longTab = cor.table %>% 
     as.data.frame() %>%
     mutate(left = row.names(cor.table) ) %>%
     pivot_longer(cols=-left, names_to = "right", values_to="correlation")
   longTab$right = factor(x=as.character(longTab$right), levels=colnames(cor.table))
   longTab$left = factor(x=as.character(longTab$left), levels=row.names(cor.table))
-  gp = ggplot(longTab, aes(x=right, y=left, fill=correlation)) +
+  gp = ggplot(longTab, aes(x=left, y=right, fill=correlation)) +
     geom_tile(col="gray") +
     scale_fill_gradient2(low = "white", high = "red", mid = "yellow",
                          midpoint = midpointVal,
-                         limit = c(blueVal,redVal),
+                         limit = c(lowVal,redVal),
                          space = "Lab",
                          name="correlation",
                          na.value = gray(.9)) +
@@ -161,7 +205,9 @@ correlationPoints <- function(corMat, pairs=NULL, res=NULL, title=""){
     mutate(left= row.names(corMat) ) %>%
     pivot_longer(cols=-left, names_to = "right", values_to="correlation") %>%
     mutate(isMatch = ifelse(pairs[left,2]==right,"yes", "no"))
-  
+  # make elements appear in original order
+  longTab$left = factor(x=as.character(longTab$left), levels=row.names(corMat))
+
   points = ggplot(longTab, aes(x=left, y=correlation, col=isMatch)) +
     scale_color_manual(values=c(yes="red", no="gray")) +
     geom_jitter(width = .1, height = 0) + 

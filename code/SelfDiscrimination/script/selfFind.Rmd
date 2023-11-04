@@ -42,25 +42,13 @@ dim(rawcounts)
 
 Normalize counts.
 ```{r}
-# lognorm <- function(table, log10.do = TRUE){
-#   # table - a table with rows for samples and columns for features
-#   #         samples names are row names.
-#   #         feature names are column names.
-#   #         the table values are all numeric
-#   sampleSums = rowSums(table)
-#   meanSampleDepth = mean(sampleSums)
-#   sampleProportion = t( apply(table, 1, function(row) row / sum(row)) )
-#   t2 = sampleProportion * meanSampleDepth
-#   if (log10.do) t3 = log10( t2 + 1 )
-#   else t3 = t2 + 1
-#   return( t3 )
-# }
-
 counts = lognorm(rawcounts)
 
 relAbund = rawcounts/rowSums(rawcounts)
 ```
 
+
+## Pairs
 
 ```{r}
 # pairs=read.delim("../pairs/pairs_Patient-Nose.txt")
@@ -77,35 +65,35 @@ pairs = pairList[["pairs_Patient-Nose"]]
 ```
 
 
-
+## Example with explainations
 
 ```{r}
-# selfSelectionScore <- function(pairs, counts, title="", showPlots = T){
-#   corMat = corrMatrix(pairs, counts)
-#   
-#   res = calcRes(corMat, pairs)
-#   
-#   heatmap = correlationTableToHeatMap(corMat, title=title)
-#   points = correlationPoints(corMat, title=title)
-#   
-#   if (showPlots){
-#     show(heatmap)
-#     show(points)
-#   }
-#   
-#   return(list(table=res, correlatoins=cor.co.short, heatmap=heatmap, points=points))
-# }
-
 vals = selfSelectionScore(pairs, counts)
 ```
+
+
+
+
+
+
+
+
+
+
+## Patient examples
 
 ```{r}
 lognormResults = selfSelectionScore(pairList[["pairs_Patient-Nose"]], 
                counts, title="Patient-Nose, lognorm")
-rawResults = selfSelectionScore(pairList[["pairs_Patient-Nose"]], 
-               rawcounts, title="Patient-Nose, raw")
 relbundResults = selfSelectionScore(pairList[["pairs_Patient-Nose"]], 
                relAbund, title="Patient-Nose, relAbund")
+```
+
+
+```{r}
+rawResults = selfSelectionScore(pairList[["pairs_Patient-Nose"]], 
+               rawcounts, title="Patient-Nose, raw", showPlots = F)
+show(rawResults$heatmap)
 ```
 
 Oh... I guess the "raw" counts were actually already scaled (relative abundance).
@@ -115,7 +103,16 @@ plot(lognormResults$table$score,
      relbundResults$table$score)
 abline(a=0, b=1)
 
-t.test(lognormResults$table$score, relbundResults$table$score, paired = T)
+tt = t.test(lognormResults$table$score, relbundResults$table$score, paired = T)
+
+ggplot(data=rbind(data.frame(normalization="lognorm",
+                  score=lognormResults$table$score),
+                  data.frame(normalization="relAbund",
+                             score=relbundResults$table$score)
+       ), aes(x=normalization, y=score)) +
+  geom_boxplot(outlier.alpha = 0) +
+  geom_jitter(width = .2, height = 0) +
+  annotate("text", x=1.5, y=.5, label=signif(tt$p.value, 3))
 ```
 
 
@@ -125,11 +122,20 @@ lognormResults2 = selfSelectionScore(pairList[["pairs_Patient-Axilla"]],
 relbundResults2 = selfSelectionScore(pairList[["pairs_Patient-Axilla"]], 
                relAbund, title="Patient-Axilla, relAbund")
 
-plot(lognormResults2$table$score, 
-     relbundResults2$table$score)
-abline(a=0, b=1)
+# plot(lognormResults2$table$score, 
+#      relbundResults2$table$score)
+# abline(a=0, b=1)
 
-t.test(lognormResults2$table$score, relbundResults2$table$score, paired = T)
+tt = t.test(lognormResults2$table$score, relbundResults2$table$score, paired = T)
+
+ggplot(data=rbind(data.frame(normalization="lognorm",
+                  score=lognormResults2$table$score),
+                  data.frame(normalization="relAbund",
+                             score=relbundResults2$table$score)
+       ), aes(x=normalization, y=score)) +
+  geom_boxplot(outlier.alpha = 0) +
+  geom_jitter(width = .2, height = 0) +
+  annotate("text", x=1.5, y=.5, label=signif(tt$p.value, 3))
 ```
 
 
@@ -143,9 +149,32 @@ plot(lognormResults3$table$score,
      relbundResults3$table$score)
 abline(a=0, b=1)
 
-t.test(lognormResults3$table$score, relbundResults3$table$score, paired = T)
+tt = t.test(lognormResults3$table$score, relbundResults3$table$score, paired = T)
+
+ggplot(data=rbind(data.frame(normalization="lognorm",
+                  score=lognormResults3$table$score),
+                  data.frame(normalization="relAbund",
+                             score=relbundResults3$table$score)
+       ), aes(x=normalization, y=score)) +
+  geom_boxplot(outlier.alpha = 0) +
+  geom_jitter(width = .2, height = 0) +
+  annotate("text", x=1.5, y=.5, label=signif(tt$p.value, 3))
 ```
 
+```{r}
+lognormResults3 = selfSelectionScore(pairList[["pairs_Staff-Hand"]], 
+               counts, title="Staff-Hand, lognorm")
+relbundResults3 = selfSelectionScore(pairList[["pairs_Staff-Hand"]], 
+               relAbund, title="Staff-Hand, relAbund")
+```
 
+## Staff samples are poo pairs
+
+```{r}
+lognormResults3 = selfSelectionScore(pairList[["pairs_Staff-Nose"]], 
+               counts, title="Staff-Nose, lognorm")
+relbundResults3 = selfSelectionScore(pairList[["pairs_Staff-Nose"]], 
+               relAbund, title="Staff-Nose, relAbund")
+```
 
 

@@ -1,0 +1,156 @@
+---
+title: "pick-pairs"
+output: html_document
+date: "2023-11-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Make pairs sets of samples.  We are aiming to make one or more sets of samples. Withen each set, we should have pairs of samples that are definitively more like each other than the others.
+
+Libraries
+```{r}
+tellme <- function(name){print(paste0("Package ", name, " version: ", packageVersion(name)))}
+
+suppressPackageStartupMessages(library(dplyr))
+tellme("dplyr")
+```
+
+# Importing data
+
+Read our reduced meta data.
+```{r}
+metaDir = dir("../../", pattern="review_metadata_PRJEB14474", full.names = T)
+meta = read.delim(file.path(metaDir, "output", "PRJEB14474_SraRunTable_reduced.txt"))
+dim(meta)
+```
+
+
+
+Read the patientID mapping file.
+```{r}
+pm = read.delim("../../data/NOT_IN_GIT/meta/PatientID_Mapping.txt")
+dim(pm)
+```
+
+Join the sra metadata to the patientID mapping table.
+```{r}
+df = merge(pm, meta, by.x="SampleID", by.y="internalID")
+dim(df)
+```
+
+Remove trip hazards.
+```{r}
+# remove any technical reps.
+df = df %>% 
+  arrange(desc(Bases)) %>%
+  filter(!duplicated(host_subject_id)) 
+
+# make sure this is a numeric column
+df$Days_Post_Hospital_Opening = as.numeric(df$Days_Post_Hospital_Opening)
+
+# "null" is not a PatientID
+df$PatientID[df$PatientID=="null"] = NA
+```
+
+## pairs
+
+patient nose
+```{r}
+getPairs = function(dfs, idColumn="PatientID", maxDaysApart = NA){
+  # dfs - data frame with samples as rows
+  dfs$pairID = dfs[,idColumn]
+  pairset = data.frame(PairID="starter", 
+                       ID.Left=NA, 
+                       ID.Right=NA,
+                       daysApart=NA)
+  for (pid in unique(dfs$pairID)){
+    dfmini = dfs %>% filter(pairID==pid)
+    if (nrow(dfmini) > 1){
+      dfmini = dfmini %>% arrange(Days_Post_Hospital_Opening)
+      firstDay = dfmini[1, "Days_Post_Hospital_Opening"]
+      secondDay = dfmini[2, "Days_Post_Hospital_Opening"]
+      daysApart = secondDay - firstDay
+      pairset = rbind(pairset, 
+                      c(pid, 
+                        dfmini[1, "ID"], 
+                        dfmini[2, "ID"],
+                        daysApart=daysApart))
+    }
+  }
+  # remove empty starter row
+  pairset = pairset %>% filter(PairID != "starter") %>% select(-PairID)
+  # limit days separation
+  if (!is.na(maxDaysApart)){
+    pairset = pairset %>% 
+      filter(daysApart <= maxDaysApart) %>%
+      select(-daysApart)
+  }
+  pairset
+}
+
+pairs = df %>% 
+  filter(Surface == "Patient Nose") %>%
+  getPairs()
+
+dim(pairs)
+head(pairs)
+```
+
+_Seeing 19 rows_
+
+Most of those (16/19) are only one day apart.  It will probably be the same for other patient samples, so lets only use the ones that are one day apart. Save to a file.
+
+Save all files to a "pairs" folder.
+```{r}
+dir.create("../pairs")
+my.write.table <- function(x, file, ...){
+  write.table(x=x, 
+              file=file.path("../pairs", file), 
+              sep="\t", quote=F, row.names = F, ...)
+  return(dim(x))
+}
+```
+
+
+```{r}
+df %>% 
+  filter(Surface == "Patient Nose") %>%
+  getPairs(maxDaysApart=1) %>%
+  my.write.table(file="pairs_Patient-Nose.txt")
+
+df %>% 
+  filter(Surface == "Patient Axilla") %>%
+  getPairs(maxDaysApart=1) %>%
+  my.write.table(file="pairs_Patient-Axilla.txt")
+
+df %>% 
+  filter(Surface == "Patient Hand") %>%
+  getPairs(maxDaysApart=1) %>%
+  my.write.table(file="pairs_Patient-Hand.txt")
+
+df %>% 
+  filter(Surface == "Staff Hand") %>%
+  getPairs(maxDaysApart=30, idColumn="Room_Number") %>%
+  my.write.table(file="pairs_Staff-Hand.txt")
+
+df %>% 
+  filter(Surface == "Staff Nose") %>%
+  getPairs(maxDaysApart=60, idColumn="Room_Number") %>%
+  my.write.table(file="pairs_Staff-Nose.txt")
+```
+
+
+
+
+
+
+
+
+
+```{r}
+sessionInfo()
+```
+
